@@ -13,6 +13,7 @@ import { IoSearchSharp } from "react-icons/io5";
 import { IoMdHeart } from "react-icons/io";
 import { IoPersonSharp } from "react-icons/io5";
 import './Navbar.css'
+import Login from '../underdev/Login';
 const Navbar = () => {
     return (
         <div className='navbar'>
@@ -29,6 +30,7 @@ const Navbar = () => {
                     <Link to='search'><IoSearchSharp /></Link>
                     <Link to='wishlist'><IoMdHeart /></Link>
                     <Link to='profile'><IoPersonSharp/></Link>
+                    <Link to='login'><button className='btn-login'>Login</button></Link>
                 </div>
             </div>
             
@@ -39,6 +41,7 @@ const Navbar = () => {
                 <Route path='/search' element={<Search/>}/>
                 <Route path='/wishlist' element={<Wishlist/>}/>
                 <Route path='/profile' element={<Profile/>}/>
+                <Route path='/login' element={<Login/>} />
                 <Route path='*' Component={NotFound}/>
             </Routes>
         </div>

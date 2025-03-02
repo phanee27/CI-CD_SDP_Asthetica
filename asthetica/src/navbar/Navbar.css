@@ -33,3 +33,13 @@
     align-items: center;
     justify-content: end;
 }
+.btn-login{
+    border: none;
+    padding: 0.3rem;
+    width: 5em;
+    background-color: black;
+    color: white;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    font-family: Montserrat, sans-serif;
+}
