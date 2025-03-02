@@ -5,6 +5,7 @@
 
 .navbar a{
     text-decoration: none;
+    color: black;
 }
 
 .nav-links{ 
@@ -50,5 +51,12 @@
     color: white;
     border-radius: 0.2rem;
     cursor: pointer;
+    border: 1px solid black;
+    transition: 0.15s ease-in-out;
     font-family: Montserrat, sans-serif;
+}
+
+.btn-login:hover{
+    background-color: white;
+    color: black;
 }
