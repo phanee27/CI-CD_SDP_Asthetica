@@ -14,16 +14,17 @@
 .nav-start-section{
     align-items: center;
     display: flex;
-    width: 7vw;
+    width: 10vw;
     justify-content: start;
-    margin-left: 1rem;
+    margin-left: 2rem;
 }
 .nav-mid-section{
     display: flex;
     width: 50vw;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
     justify-content: start;
+    margin-left: 0.5rem;
 }
 .nav-end-section{
     display: flex;
