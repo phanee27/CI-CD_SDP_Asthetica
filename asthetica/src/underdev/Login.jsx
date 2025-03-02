@@ -8,7 +8,7 @@ const Login = () => {
                 <h1>Asthetica</h1>
                 <div className='login-section'>
                     <div className="header">
-
+                        
                     </div>
                     <div className="form-section">
 

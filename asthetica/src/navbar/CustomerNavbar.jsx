@@ -2,19 +2,25 @@ import React from 'react';
 import {Routes,Route,Link} from 'react-router-dom'
 import NotFound from './NotFound';
 import App from '../App';
-import Home from '../components/Home';
-import './style.css'
-import Artists from '../components/Artists';
-import Autions from '../components/Autions';
-import Search from '../components/Search';
-import Wishlist from '../components/Wishlist';
-import Profile from '../components/Profile';
+
+import Home from '../components/customer/Home';
+import Artists from '../components/customer/Artists';
+import Autions from '../components/customer/Autions';
+import Search from '../components/customer/Search';
+import Wishlist from '../components/customer/Wishlist';
+import Profile from '../components/customer/Profile';
+
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMdHeart } from "react-icons/io";
 import { IoPersonSharp } from "react-icons/io5";
-import './Navbar.css'
+
 import Login from '../underdev/Login';
-const Navbar = () => {
+
+import './styles/CustomerNavbar.css'
+
+
+
+const CustomerNavbar = () => {
     return (
         <div className='navbar'>
             <div className='nav-links'>
@@ -34,6 +40,7 @@ const Navbar = () => {
                 </div>
             </div>
             
+
             <Routes>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/artists' element={<Artists/>}/>
@@ -48,4 +55,4 @@ const Navbar = () => {
     );
 }
 
-export default Navbar;
+export default CustomerNavbar;
