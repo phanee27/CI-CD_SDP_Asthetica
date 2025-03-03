@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/Login.css'
 import { DiApple } from "react-icons/di";
-
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
     return (
@@ -30,12 +30,23 @@ const Login = () => {
                         <button>Sign In</button>
                     </div>
                     <div className="ggl-fcbk-sign">
-                        <div>
-                            
+                        <div className='login-divider'>
+                            <span>or</span>
+                        </div>  
+                        <div className='login-opts'>
+                            <button>
+                                <DiApple/>
+                                <p>Sign In with Apple</p>
+                            </button>
                         </div>
-                        <div>
-
+                        <div className='login-opts'>
+                            <button>
+                                <FaGoogle/>
+                                <p>Sign In with Google</p>
+                            </button>
                         </div>
+                        {/*Add corresponsind links in this page*/}
+                        <p className='login-register'>Don't have an account? <span>Register here</span></p>
                     </div>
                 </div>
             
