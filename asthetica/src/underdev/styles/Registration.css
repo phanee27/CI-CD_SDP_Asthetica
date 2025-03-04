@@ -1,0 +1,80 @@
+body{
+    margin: 0;
+}
+
+.register{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    gap: 0;
+    background-color: rgba(211, 211, 211, 0.457);
+    height: max-content;
+}
+
+.register h1{
+    margin: 0;
+}
+
+.register-section{
+    margin: 1rem;
+    padding: 1.5rem 2rem;
+
+    border-radius: 0.5rem;
+    background-color: white;
+}
+
+.register-input-fields{
+    display: flex;
+    flex-direction: column;
+}
+
+.register-input-fields input{
+    border: 1px solid lightgray;
+    width: 25vw;
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    font-family: Montserrat, sans-serif;
+}
+
+.register-create{
+    display: flex;
+    justify-content: center;
+}
+
+.register-create button{
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    width: 25vw;
+    border: none;
+    border-radius: 0.5rem;
+    font-family: Montserrat, sans-serif;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.register-create button:hover{
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.657);
+}
+
+.register-create button:active{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.482);
+}
+
+.register-sign-in a{
+    color: rgb(0, 132, 255);
+}
+
+.register-sign-in{
+    font-size: small;
+    color: gray;
+    margin: 0;
+}
+
+.register-quote{
+    font-weight: 500;
+    font-size: small;
+}
+
