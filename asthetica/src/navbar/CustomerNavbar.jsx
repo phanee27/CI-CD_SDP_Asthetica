@@ -17,6 +17,7 @@ import { IoPersonSharp } from "react-icons/io5";
 import Login from '../underdev/Login';
 
 import './styles/CustomerNavbar.css'
+import Registration from '../underdev/Registration';
 
 
 
@@ -49,6 +50,7 @@ const CustomerNavbar = () => {
                 <Route path='/wishlist' element={<Wishlist/>}/>
                 <Route path='/profile' element={<Profile/>}/>
                 <Route path='/login' element={<Login/>} />
+                <Route path='/register' element={<Registration/>} />
                 <Route path='*' Component={NotFound}/>
             </Routes>
         </div>
