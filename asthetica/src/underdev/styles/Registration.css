@@ -25,7 +25,7 @@ body{
     background-color: white;
 }
 
-.register-input-fields{
+.register-input-fields form{
     display: flex;
     flex-direction: column;
 }
@@ -43,11 +43,10 @@ body{
     justify-content: center;
 }
 
-.register-create button{
+.register-create{
     background-color: black;
     color: white;
     padding: 1rem;
-    width: 25vw;
     border: none;
     border-radius: 0.5rem;
     font-family: Montserrat, sans-serif;
@@ -55,11 +54,11 @@ body{
     transition: all 0.15s ease-in-out;
 }
 
-.register-create button:hover{
+.register-create:hover{
     box-shadow: 0 7px 10px rgba(0, 0, 0, 0.657);
 }
 
-.register-create button:active{
+.register-create:active{
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.482);
 }
 
@@ -71,6 +70,8 @@ body{
     font-size: small;
     color: gray;
     margin: 0;
+    text-align: center;
+    margin-top: 1rem;
 }
 
 .register-quote{
