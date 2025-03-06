@@ -15,13 +15,12 @@ import { IoMdHeart } from "react-icons/io";
 import { IoPersonSharp } from "react-icons/io5";
 
 import Login from '../underdev/Login';
+import Registration from '../underdev/Registration';
 
 import './styles/CustomerNavbar.css'
-<<<<<<< HEAD
+
 import Discover from './../components/customer/Discover';
-=======
-import Registration from '../underdev/Registration';
->>>>>>> f90ccb92f98fb220bf1bb32af8d450fd22337850
+
 
 
 
