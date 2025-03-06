@@ -18,9 +18,11 @@ import Login from '../underdev/Login';
 import Registration from '../underdev/Registration';
 
 import './styles/CustomerNavbar.css'
-
+<<<<<<< HEAD
 import Discover from './../components/customer/Discover';
-
+=======
+import Registration from '../underdev/Registration';
+>>>>>>> f90ccb92f98fb220bf1bb32af8d450fd22337850
 
 
 
@@ -35,7 +37,7 @@ const CustomerNavbar = () => {
                     <Link to='/'>Home</Link>
                     <Link to='discover'>Discover</Link>
                     <Link to='artists'>Artists</Link>
-                    <Link to='autions'>Auctions</Link>
+                    <Link to='auctions'>Auctions</Link>
                 </div>
                 <div className='nav-end-section'>
                     <Link to='search'><IoSearchSharp /></Link>
@@ -50,7 +52,7 @@ const CustomerNavbar = () => {
                 <Route path='/' element={<Home/>}/>
                 <Route path='/discover' element={<Discover/>}/>
                 <Route path='/artists' element={<Artists/>}/>
-                <Route path='/autions' element={<Autions/>}/>
+                <Route path='/auctions' element={<Autions/>}/>
                 <Route path='/search' element={<Search/>}/>
                 <Route path='/wishlist' element={<Wishlist/>}/>
                 <Route path='/profile' element={<Profile/>}/>
