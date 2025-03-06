@@ -17,6 +17,7 @@ import { IoPersonSharp } from "react-icons/io5";
 import Login from '../underdev/Login';
 
 import './styles/CustomerNavbar.css'
+import Discover from './../components/customer/Discover';
 
 
 
@@ -29,6 +30,7 @@ const CustomerNavbar = () => {
                 </div>
                 <div className='nav-mid-section'>
                     <Link to='/'>Home</Link>
+                    <Link to='discover'>Discover</Link>
                     <Link to='artists'>Artists</Link>
                     <Link to='autions'>Auctions</Link>
                 </div>
@@ -43,6 +45,7 @@ const CustomerNavbar = () => {
 
             <Routes>
                 <Route path='/' element={<Home/>}/>
+                <Route path='/discover' element={<Discover/>}/>
                 <Route path='/artists' element={<Artists/>}/>
                 <Route path='/autions' element={<Autions/>}/>
                 <Route path='/search' element={<Search/>}/>

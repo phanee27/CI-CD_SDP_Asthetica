@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import CustomerNavbar from './navbar/CustomerNavbar';
 import AdminNavbar from './navbar/AdminNavbar';
 import SellerNavbar from './navbar/SellerNavbar';
+import Footer from './components/customer/Footer';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <SellerNavbar/> */}
         <CustomerNavbar/>
       </BrowserRouter>
+      <Footer/>
     </div>
   )
 }
