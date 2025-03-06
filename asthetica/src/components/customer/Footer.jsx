@@ -1,6 +1,8 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import './styles/Footer.css'
+import { IoSend } from "react-icons/io5";
 
 const Footer = () => {
   return (
@@ -8,22 +10,52 @@ const Footer = () => {
       <div className="footer-section">
         <div className="footer-header">
           <h2>Asthetica</h2>
-          <p>caption</p>
+          <p>Art washes away from the soul the dust of everyday life.</p>
           <h4>Follow us on</h4>
-          <FaFacebook />
-          <FaInstagram />
-          <FaXTwitter />
+          <div className="footer-follow-links">
+            <Link>
+              <FaFacebook />
+            </Link>
+            <Link>
+              <FaInstagram />
+            </Link>
+            <Link>
+              <FaXTwitter />
+            </Link>
+          </div>
         </div>
         <div className="footer-quick-links">
-          <h3>Quick Links</h3>
+          <h3 style={{ marginBottom: "0.2rem" }}>Quick Links</h3>
           <Link to="/discover">Discover</Link>
           <Link to="/artists">Artists</Link>
           <Link to="/auctions">Auctions</Link>
           <Link to="/profile">Profile</Link>
+          <Link to="/login">Login</Link>
         </div>
-        <div className="footer-contacts"></div>
+        <div className="footer-contacts">
+          <div className="footer-newsletter">
+            <p>
+              <em>Subscribe to Our Newsletter for Exclusive Art&Updates</em>
+            </p>
+            <div className="newsletter-mail-box">
+              <input type="email" placeholder="example@gmail.com" />
+              <Link>
+                <IoSend />
+              </Link>
+            </div>
+          </div>
+          <div className="footer-contact-section">
+            <h4>Contact Us</h4>
+            <p>Phone: 9090909090</p>
+            <p>Email: 2300030317@kluniversity.in</p>
+          </div>
+        </div>
       </div>
-      <div className="footer-copyright"></div>
+      <div className="footer-copyright">
+        <p>
+          © {new Date().getFullYear()} Aesthetica. All Rights Reserved.
+        </p>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,105 @@
+.footer{
+    background-color: black;
+    color: white;
+}
+
+.footer-section{
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 40vh;
+    border-bottom: 1px solid gray;
+}
+
+.footer-follow-links{
+    display: flex;
+    gap: 0.7rem;
+}
+
+.footer-follow-links a{
+    text-decoration: none;
+    color: white;
+    padding: 0.7rem;
+    border:1px solid gray;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease-in-out;
+}
+
+.footer-follow-links a:hover{
+    opacity: 0.7;
+    background-color: rgba(128, 128, 128, 0.449);
+}
+
+.footer-quick-links{
+    display: flex;
+    align-items: start;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
+.footer-quick-links a{
+    text-decoration: none;
+    color: gray;
+    transition: all 0.1s ease-in-out;
+}
+
+.footer-quick-links a:hover{
+    color: white;
+}
+
+.footer-contacts{
+    display: flex;
+    font-size: medium;
+    flex-direction: column;
+}
+
+.footer-newsletter{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.footer-newsletter input{
+    background-color: black;
+    border: none;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.1rem;
+}
+
+.footer-newsletter input:focus{
+    color: white;
+    outline: none;
+}
+
+.newsletter-mail-box{
+    border-bottom: 1px solid gray;
+}
+
+.newsletter-mail-box{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.newsletter-mail-box a{
+    text-decoration: none;
+    color: white;
+}
+
+.footer-contact-section p{
+    color: gray;
+    font-size: small;
+}
+
+.footer-copyright{
+    display: flex;
+    justify-content: center;
+    color: gray;
+    font-size: small;
+}
