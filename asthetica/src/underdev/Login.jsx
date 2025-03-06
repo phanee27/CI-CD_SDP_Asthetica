@@ -2,6 +2,7 @@ import React from 'react';
 import './styles/Login.css'
 import { DiApple } from "react-icons/di";
 import { FaGoogle } from "react-icons/fa";
+import {Link} from 'react-router-dom'
 
 const Login = () => {
     return (
@@ -24,7 +25,7 @@ const Login = () => {
                             <input type="checkbox" id='remember'/>
                         </div>
                         {/* This forget password needs to be changed using <Link></Link>*/}
-                        <p>Forgot password ?</p>
+                        <a href=""><p>Forgot password ?</p></a>
                     </div>
                     <div className="login-page-btn">
                         <button>Sign In</button>
@@ -46,7 +47,7 @@ const Login = () => {
                             </button>
                         </div>
                         {/*Add corresponsind links in this page*/}
-                        <p className='login-register'>Don't have an account? <span>Register here</span></p>
+                        <p className='login-register'>Don't have an account? <Link to='/register'><span>Register here</span></Link></p>
                     </div>
                 </div>
             
