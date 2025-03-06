@@ -1,11 +1,12 @@
 import React from 'react';
 import Footer from './Footer';
-
+import Carousel from '../homecomps/Carousel'
+import '../styles/Home.css'
 
 const Home = () => {
     return (
-        <div>
-            <h1>This is Home page</h1>
+        <div className='home'>
+            <Carousel/>
         </div>
     );
 }
