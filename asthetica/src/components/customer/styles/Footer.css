@@ -32,7 +32,9 @@
 
 .footer-follow-links a:hover{
     opacity: 0.7;
-    background-color: rgba(128, 128, 128, 0.449);
+    color: black;
+    background-color: white;
+    /* background-color: rgba(128, 128, 128, 0.449); */
 }
 
 .footer-quick-links{
@@ -94,6 +96,9 @@
 
 .footer-contact-section p{
     color: gray;
+    align-items: center;
+    display: flex;
+    gap: 0.2rem;
     font-size: small;
 }
 

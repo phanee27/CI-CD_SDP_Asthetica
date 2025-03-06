@@ -2,7 +2,9 @@ import React from "react";
 import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import './styles/Footer.css'
+import { IoMdCall } from "react-icons/io";
 import { IoSend } from "react-icons/io5";
+import { MdOutlineMail } from "react-icons/md";
 
 const Footer = () => {
   return (
@@ -46,8 +48,8 @@ const Footer = () => {
           </div>
           <div className="footer-contact-section">
             <h4>Contact Us</h4>
-            <p>Phone: 9090909090</p>
-            <p>Email: 2300030317@kluniversity.in</p>
+            <p><IoMdCall style={{color:'white'}}/> Phone: 9090909090</p>
+            <p><MdOutlineMail style={{color:'white'}}/> Email: 2300030317@kluniversity.in</p>
           </div>
         </div>
       </div>
