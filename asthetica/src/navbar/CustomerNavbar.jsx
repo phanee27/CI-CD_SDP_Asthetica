@@ -14,8 +14,8 @@ import { IoSearchSharp } from "react-icons/io5";
 import { IoMdHeart } from "react-icons/io";
 import { IoPersonSharp } from "react-icons/io5";
 
-import Login from '../underdev/Login';
-import Registration from '../underdev/Registration';
+import Login from '../authentication/Login';
+import Registration from '../authentication/Registration';
 
 import './styles/CustomerNavbar.css'
 import Discover from './../components/customer/Discover';
