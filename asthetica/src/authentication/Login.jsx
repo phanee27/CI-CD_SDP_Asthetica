@@ -3,7 +3,6 @@ import './styles/Login.css'
 import { DiApple } from "react-icons/di";
 import { FaGoogle } from "react-icons/fa";
 import {Link} from 'react-router-dom'
-import ''
 
 const Login = () => {
     return (
