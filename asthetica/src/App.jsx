@@ -6,7 +6,6 @@ import CustomerNavbar from './navbar/CustomerNavbar';
 import AdminNavbar from './navbar/AdminNavbar';
 import SellerNavbar from './navbar/SellerNavbar';
 import Footer from './components/customer/Footer';
-import Carousel from './components/homecomps/Carousel'
 
 function App() {
 
@@ -14,11 +13,12 @@ function App() {
 
     <div>
       <BrowserRouter>
-        {/* <AdminNavbar/>
-        <SellerNavbar/> */}
-        <CustomerNavbar/>
+        {/* <AdminNavbar/> */}
+        <SellerNavbar/>
+        {/* <CustomerNavbar/> */}
         <Footer/>
       </BrowserRouter>
+      
     </div>
   )
 }
