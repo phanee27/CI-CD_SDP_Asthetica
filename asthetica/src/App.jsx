@@ -6,7 +6,6 @@ import CustomerNavbar from './navbar/CustomerNavbar';
 import AdminNavbar from './navbar/AdminNavbar';
 import SellerNavbar from './navbar/SellerNavbar';
 import Footer from './components/customer/Footer';
-import ProfileModule from './navbar/navcomps/ProfileModule';
 
 function App() {
 
@@ -19,7 +18,7 @@ function App() {
         <CustomerNavbar/>
         <Footer/>
       </BrowserRouter>
-      {/* <ProfileModule/> */}
+      
     </div>
   )
 }
