@@ -10,13 +10,13 @@ const HomeCarousel = () => {
   const itemsRef = useRef([]);
 
   const images = [
-    "https://i.etsystatic.com/20476529/r/il/2c438e/3089182770/il_fullxfull.3089182770_lbxv.jpg",
-    "https://i.etsystatic.com/14292233/r/il/4fc1c1/4672184527/il_1080xN.4672184527_gutp.jpg",
-    "https://i.pinimg.com/originals/4e/4d/94/4e4d94c563396ff925c3be53f7067c17.jpg",
-    "https://i.etsystatic.com/10944019/r/il/769dca/884655377/il_1588xN.884655377_hm1q.jpg",
-    "https://th.bing.com/th/id/OIP.bWGNgWscZO0iYg4TfYeCZwHaKS?rs=1&pid=ImgDetMain",
-    "https://th.bing.com/th/id/OIP.r90XDS8qz2kPXriZPHEAqwHaKX?rs=1&pid=ImgDetMain",
-    "https://images.saatchiart.com/saatchi/901670/art/5738435/4808237-HSC00923-7.jpg",
+    "https://i.pinimg.com/736x/bf/7c/34/bf7c34488b5ea4bef4d725d706de0b92.jpg",
+    "https://i.pinimg.com/736x/f3/21/07/f32107f833efeb1687557e8400d8419c.jpg",
+    "https://i.pinimg.com/474x/77/c5/5e/77c55ea960afac64baa1a1ceaaefc569.jpg",
+    "https://i.pinimg.com/474x/1e/fb/17/1efb17fbed67de14fc39e4c5ba8114de.jpg",
+    "https://i.pinimg.com/474x/87/12/77/871277c93bed3015c3ce5b6ae4dbe3f0.jpg",
+    "https://i.pinimg.com/474x/c3/89/72/c389727463b0bb82a68cf739a79494fc.jpg",
+    "https://i.pinimg.com/474x/db/f5/45/dbf54574a0fb6e43de01ffe4c0606bea.jpg",
   ];
 
   let width, height, totalWidth, margin = 20;
@@ -123,12 +123,12 @@ const HomeCarousel = () => {
   return (
     <div className="carousel" ref={carouselRef}>
       <div className="carousel__body">
-        <div className="carousel__prev" ref={prevBtnRef}>
+        {/* <div className="carousel__prev" ref={prevBtnRef}>
           <FaAngleLeft className="carousel-icon" />
         </div>
         <div className="carousel__next" ref={nextBtnRef}>
           <FaAngleRight className="carousel-icon" />
-        </div>
+        </div> */}
         <div className="carousel__slider" ref={sliderRef}>
           {images.map((src, index) => (
             <div
