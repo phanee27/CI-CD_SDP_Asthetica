@@ -7,7 +7,6 @@ import '../styles/ProfileModule.css'
 const ProfileModule = () => {
     return (
         <div className='nav-end-module'>
-            <IoCartOutline/>
             <FaUserCircle/>
             <FaHeart/>
             <button className='logout'>Logout</button>
