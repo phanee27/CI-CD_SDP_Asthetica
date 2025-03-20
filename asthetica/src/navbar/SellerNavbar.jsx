@@ -26,9 +26,9 @@ const SellerNavbar = () => {
             <Link to="hostanauction">HostAnAuction</Link>
             <Link to="profile">Profile</Link>
           </div>
-          <div className="nav-end-section">
+          {/* <div className="nav-end-section">
             <ProfileModule/>
-          </div>
+          </div> */}
         </div>
 
         <Routes>
