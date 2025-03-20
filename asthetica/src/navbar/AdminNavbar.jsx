@@ -15,7 +15,7 @@ const AdminNavbar = () => {
       <div className="navbar">
         <div className="nav-links">
           <div className="nav-start-section">
-            <Link to="/">
+            <Link to="/admin-dashboard">
               <strong>Asthetica</strong>
             </Link>
           </div>
