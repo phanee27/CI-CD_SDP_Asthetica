@@ -1,0 +1,36 @@
+/.metadata/
+# Ignore Eclipse-specific files
+*.class
+*.classpath
+*.project
+*.settings/
+*.factorypath
+
+# Ignore Maven target and build files
+target/
+mvnw
+mvnw.cmd
+.mvn/wrapper/maven-wrapper.jar
+dependency-reduced-pom.xml
+
+# Ignore logs and temporary files
+logs/
+*.log
+*.tmp
+*.out
+*.pid
+hs_err_pid*
+
+# Ignore environment and secret configuration files
+.env
+.env.local
+application.properties
+application.yml
+secrets.yml
+
+# Ignore OS/system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE-specific files
+.vscode/
