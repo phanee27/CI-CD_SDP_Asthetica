@@ -1,6 +1,11 @@
 import {Link} from 'react-router-dom'
 import React from 'react';
 import './styles/Registration.css'
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 const Registration = () => {
@@ -16,6 +21,8 @@ const Registration = () => {
                     <input type="text" id='fullname' placeholder='Enter full name' required/><br />
                     <label htmlFor="fullname">Email</label><br />
                     <input type="email" id='email' placeholder='Enter email' required/><br />
+                    <label htmlFor='username'>Username</label><br/>
+                    <input type="text" id='username' placeholder='Enter username' required/><br/>
                     <label htmlFor="pwd">Password</label><br />
                     <input type="password" id='pwd' placeholder='Enter password' required/><br />
                     <label htmlFor="con-pwd">Confirm Password</label><br />
