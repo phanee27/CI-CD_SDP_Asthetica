@@ -22,11 +22,7 @@ logs/
 hs_err_pid*
 
 # Ignore environment and secret configuration files
-.env
-.env.local
-application.properties
-application.yml
-secrets.yml
+
 
 # Ignore OS/system files
 .DS_Store
