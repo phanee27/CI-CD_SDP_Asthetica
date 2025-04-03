@@ -22,13 +22,18 @@ public class User {
 	private String name;
 	@Column(nullable = false, unique = true, length = 30)
 	private String username;
-	@Column(nullable = false, unique = true)
-	private String email;
+	@Column(nullable = false)
+	private String gender;
 	@Column(nullable = false)
 	private String password;
+	@Column(nullable = false, unique = true)
+	private String email;
+	@Column(nullable = false, length=10, unique = true)
+	private String contact;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "user_role")
-	private Role role; 
+	private Role role;
+	
 	
 	public int getId() {
 		return id;
