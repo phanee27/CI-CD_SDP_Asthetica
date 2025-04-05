@@ -13,9 +13,9 @@ function App() {
 
     <div>
       <BrowserRouter>
-        {/* <AdminNavbar/> */}
+        <AdminNavbar/>
         {/* <SellerNavbar/> */}
-        <CustomerNavbar/>
+        {/* <CustomerNavbar/> */}
         <Footer/>
       </BrowserRouter>
       

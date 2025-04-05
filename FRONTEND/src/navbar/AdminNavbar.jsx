@@ -7,6 +7,7 @@ import ManageUsers from './../components/admin/ManageUsers';
 import ManageArtWorks from './../components/admin/ManageArtWorks';
 import Transactions from './../components/admin/Transactions';
 import ReportsAnalytics from '../components/admin/ReportsAnalytics';
+import Login from '../authentication/Login';
 
 
 
@@ -25,6 +26,7 @@ const AdminNavbar = () => {
             <Link to="manage-artworks">ManageArtWorks</Link>
             <Link to="reports-analytics">ReportsAnalytics</Link>
             <Link to="transcations">Transactions</Link>
+            <Link to="login">Logout</Link>
           </div>
         </div>
 
@@ -34,6 +36,7 @@ const AdminNavbar = () => {
           <Route path="/manage-artworks" element={<ManageArtWorks />} />
           <Route path="/reports-analytics" element={<ReportsAnalytics />} />
           <Route path="/transcations" element={<Transactions />} />
+          <Route path="/login" element={<Login/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

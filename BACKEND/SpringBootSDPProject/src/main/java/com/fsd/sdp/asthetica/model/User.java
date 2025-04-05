@@ -31,7 +31,7 @@ public class User {
 	@Column(nullable = false, length=10, unique = true)
 	private String contact;
 	@Enumerated(EnumType.STRING)
-	@Column(name = "user_role")
+	@Column(name = "user_role", nullable = false)
 	private Role role;
 	
 	
@@ -71,7 +71,6 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
 	
 	@Override
 	public String toString() {
