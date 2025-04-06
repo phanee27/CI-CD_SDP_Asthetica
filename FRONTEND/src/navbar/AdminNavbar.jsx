@@ -8,10 +8,15 @@ import ManageArtWorks from './../components/admin/ManageArtWorks';
 import Transactions from './../components/admin/Transactions';
 import ReportsAnalytics from '../components/admin/ReportsAnalytics';
 import Login from '../authentication/Login';
-
+import { useAuth } from '../components/contextapi/AuthContext';
 
 
 const AdminNavbar = () => {
+    const { setIsAdminLoggedIn } = useAuth()
+
+    const handleLogout = () => {
+      setIsAdminLoggedIn(false)
+    }
     return (
       <div className="navbar">
         <div className="nav-links">
@@ -26,7 +31,7 @@ const AdminNavbar = () => {
             <Link to="manage-artworks">ManageArtWorks</Link>
             <Link to="reports-analytics">ReportsAnalytics</Link>
             <Link to="transcations">Transactions</Link>
-            <Link to="login">Logout</Link>
+            <Link to="login" onClick={handleLogout}>Logout</Link>
           </div>
         </div>
 

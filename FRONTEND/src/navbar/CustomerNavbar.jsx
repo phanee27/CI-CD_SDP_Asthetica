@@ -45,7 +45,7 @@ const CustomerNavbar = () => {
             
 
             <Routes>
-                <Route path='/' element={<Home/>}/>
+                <Route path='/customerhome' element={<Home/>}/>
                 <Route path='/discover' element={<Discover/>}/>
                 <Route path='/artists' element={<Artists/>}/>
                 <Route path='/auctions' element={<Autions/>}/>

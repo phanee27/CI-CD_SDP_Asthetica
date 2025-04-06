@@ -5,6 +5,7 @@ import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import config from "../../config";
+import { useAuth } from "../components/contextapi/AuthContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
+  const {setIsAdminLoggedIn, setIsCustomerLoggedIn, setIsSellerLoggedIn} = useAuth()
 
   // useAuth code
   const handleChange = (e) => {
@@ -30,7 +33,16 @@ const Login = () => {
         formData
       );
       if (response.status === 200) {
-        navigate("/admin-dashboard");
+        if(response.data.role == "ADMIN"){
+          setIsAdminLoggedIn(true)
+          navigate("/admin-dashboard")
+        }else if(response.data.role == "BUYER"){
+          setIsSellerLoggedIn(true)
+          navigate("/sellerhome")
+        }else{
+          setIsCustomerLoggedIn(true)
+          navigate("/customerhome")
+        }
       } else {
         setMessage(response.data);
       }

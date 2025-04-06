@@ -6,19 +6,37 @@ import CustomerNavbar from './navbar/CustomerNavbar';
 import AdminNavbar from './navbar/AdminNavbar';
 import SellerNavbar from './navbar/SellerNavbar';
 import Footer from './components/customer/Footer';
+import { AuthProvider, useAuth } from "./components/contextapi/AuthContext"
+import MainNavbar from './navbar/MainNavbar';
+
+function AppContent(){
+  const {isAdminLoggedIn, isCustomerLoggedIn, isSellerLoggedIn} = useAuth()
+
+  return (
+    <div>
+      <BrowserRouter>
+      {isAdminLoggedIn?
+      <AdminNavbar/>:
+      isCustomerLoggedIn?
+      <CustomerNavbar/>:
+      isSellerLoggedIn?
+      <SellerNavbar/>:
+      <CustomerNavbar/>
+      }
+      </BrowserRouter>
+    </div>
+  )
+}
+
 
 function App() {
 
   return (
 
     <div>
-      <BrowserRouter>
-        <AdminNavbar/>
-        {/* <SellerNavbar/> */}
-        {/* <CustomerNavbar/> */}
-        <Footer/>
-      </BrowserRouter>
-      
+      <AuthProvider>
+        <AppContent/>
+      </AuthProvider>
     </div>
   )
 }

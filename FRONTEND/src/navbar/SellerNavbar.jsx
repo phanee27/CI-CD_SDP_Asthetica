@@ -32,7 +32,7 @@ const SellerNavbar = () => {
         </div>
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/sellerhome" element={<Home />} />
           <Route path="/myartwork" element={<MyArtWork />} />
           <Route path="/uploadartwork" element={<UploadArtWork />} />
           <Route path="/hostanauction" element={<HostAnAuction />} />
