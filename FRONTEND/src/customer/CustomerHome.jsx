@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from './Footer';
 import Carousel from '../homecomps/Carousel'
-import '../styles/Home.css'
+import './styles/Home.css'
 
 const Home = () => {
     return (

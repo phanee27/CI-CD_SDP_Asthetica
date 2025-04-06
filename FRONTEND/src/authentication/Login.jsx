@@ -5,7 +5,7 @@ import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import config from "../../config";
-import { useAuth } from "../components/contextapi/AuthContext";
+import { useAuth } from "../contextapi/AuthContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +18,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   //useAuth for setting the local storage values
-  const {setIsAdminLoggedIn, setIsCustomerLoggedIn, setIsSellerLoggedIn} = useAuth()
+  const { setIsAdminLoggedIn, setIsCustomerLoggedIn, setIsSellerLoggedIn } =
+    useAuth();
 
   // useAuth code
   const handleChange = (e) => {
@@ -30,19 +31,19 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${config.url}/admin/checkadminlogin`,
+        `${config.url}/user/checkadminlogin`,
         formData
       );
       if (response.status === 200) {
-        if(response.data.role == "ADMIN"){
-          setIsAdminLoggedIn(true)
-          navigate("/admin-dashboard")
-        }else if(response.data.role == "BUYER"){
-          setIsSellerLoggedIn(true)
-          navigate("/sellerhome")
-        }else{
-          setIsCustomerLoggedIn(true)
-          navigate("/customerhome")
+        if (response.data.role == "ADMIN") {
+          setIsAdminLoggedIn(true);
+          navigate("/admin-dashboard");
+        } else if (response.data.role == "SELLER") {
+          setIsSellerLoggedIn(true);
+          navigate("/sellerhome");
+        } else {
+          setIsCustomerLoggedIn(true);
+          navigate("/customerhome");
         }
       } else {
         setMessage(response.data);

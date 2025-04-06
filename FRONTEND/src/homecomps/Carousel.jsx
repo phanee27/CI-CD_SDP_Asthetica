@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import '../styles/Carousel.css';
+import './Carousel.css';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 const HomeCarousel = () => {

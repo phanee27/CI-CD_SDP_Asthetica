@@ -1,13 +1,12 @@
 import React from 'react';
 import { Route,Routes,Link } from 'react-router-dom';
-import NotFound from './NotFound';
+import NotFound from '../main/NotFound';
 import './styles/SellerNavbar.css'
-import Home from '../components/seller/Home';
-import MyArtWork from './../components/seller/MyArtWork';
-import UploadArtWork from '../components/seller/UploadArtWork';
-import HostAnAuction from '../components/seller/HostAnAuction';
-import Profile from '../components/seller/Profile';
-import ProfileModule from './navcomps/ProfileModule';
+import SellerHome from './SellerHome';
+import MyArtWork from './MyArtWork';
+import UploadArtWork from './UploadArtWork';
+import HostAnAuction from './HostAnAuction';
+import Profile from './Profile';
 
 
 const SellerNavbar = () => {
@@ -15,29 +14,23 @@ const SellerNavbar = () => {
       <div className='navbar'>
         <div className="nav-links">
           <div className="nav-start-section">
-            <Link to="/">
+            <Link to="/sellerhome">
               <strong>Asthetica</strong>
             </Link>
           </div>
-          {/* <Link to="/">Home</Link> */}
           <div className="nav-mid-section">
             <Link to="myartwork">MyArtWork</Link>
             <Link to="uploadartwork">UploadArtWork</Link>
             <Link to="hostanauction">HostAnAuction</Link>
             <Link to="profile">Profile</Link>
           </div>
-          <div className="nav-end-section">
-            <ProfileModule/>
-          </div>
         </div>
 
         <Routes>
-          <Route path="/sellerhome" element={<Home />} />
+          <Route path="/sellerhome" element={<SellerHome />} />
           <Route path="/myartwork" element={<MyArtWork />} />
           <Route path="/uploadartwork" element={<UploadArtWork />} />
           <Route path="/hostanauction" element={<HostAnAuction />} />
-          <Route path="/profile" element={<Profile />} />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
