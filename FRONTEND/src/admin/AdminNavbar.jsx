@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route,Routes,Link } from 'react-router-dom';
-import NotFound from './NotFound';
-import './styles/AdminNavbar.css'
-import DashBoard from './../components/admin/DashBoard';
-import ManageUsers from './../components/admin/ManageUsers';
-import ManageArtWorks from './../components/admin/ManageArtWorks';
-import Transactions from './../components/admin/Transactions';
-import ReportsAnalytics from '../components/admin/ReportsAnalytics';
+import NotFound from '../navbar/NotFound';
+import './AdminNavbar.css'
+import DashBoard from './DashBoard'
+import ManageUsers from './ManageUsers';
+import ManageArtWorks from './ManageArtWorks';
+import Transactions from './Transactions';
+import ReportsAnalytics from './ReportsAnalytics';
 import Login from '../authentication/Login';
 import { useAuth } from '../components/contextapi/AuthContext';
 

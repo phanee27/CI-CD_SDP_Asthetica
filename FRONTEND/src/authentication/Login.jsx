@@ -17,6 +17,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  //useAuth for setting the local storage values
   const {setIsAdminLoggedIn, setIsCustomerLoggedIn, setIsSellerLoggedIn} = useAuth()
 
   // useAuth code
