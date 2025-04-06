@@ -12,7 +12,7 @@ import com.fsd.sdp.asthetica.service.UserService;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/admin")
+@RequestMapping("/user")
 public class UserController {
 	@Autowired
 	private UserService service;
