@@ -7,7 +7,7 @@ import axios from "axios";
 import config from "../../config";
 import { useAuth } from "../contextapi/AuthContext";
 
-const Login = () => {
+export const Login = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
