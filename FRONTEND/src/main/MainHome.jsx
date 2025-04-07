@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeCarousel from '../homecomps/HomeCarousel';
 
-const CustomerHome = () => {
+const MainHome = () => {
     return (
         <div>
             <HomeCarousel/>
@@ -9,4 +9,4 @@ const CustomerHome = () => {
     );
 }
 
-export default CustomerHome;
+export default MainHome;

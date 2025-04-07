@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import NotFound from "../main/NotFound";
 
-import Home from "./CustomerHome";
+import CustomerHome from "./CustomerHome";
 import Artists from "./Artist";
 import Auctions from "./Auctions";
 import Search from "./Search";
@@ -50,7 +50,7 @@ const CustomerNavbar = () => {
       </div>
 
       <Routes>
-        <Route path="/customerhome" element={<Home />} />
+        <Route path="/customerhome" element={<CustomerHome />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/artists" element={<Artists />} />
         <Route path="/auctions" element={<Auctions />} />
