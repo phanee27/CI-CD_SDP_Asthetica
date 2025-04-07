@@ -30,11 +30,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${config.url}/user/checkuserlogin`,
-        formData
-      );
-
+      const response = await axios.post(`${config.url}/user/checkuserlogin`,formData);
       if (response.status === 200) {
         const { role } = response.data;
 
