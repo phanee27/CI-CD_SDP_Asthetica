@@ -2,11 +2,13 @@ package com.fsd.sdp.asthetica.model;
 
 import java.io.ObjectInputFilter.Status;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -27,6 +29,10 @@ public class Artwork {
 	private String category;
 	@Column
 	private Status status;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	public int getId() {
 		return id;
@@ -64,5 +70,6 @@ public class Artwork {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	
 	
 }
