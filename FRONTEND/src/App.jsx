@@ -22,7 +22,7 @@ function AppContent() {
         ) : isSellerLoggedIn ? (
           <SellerNavbar />
         ) : (
-          <CustomerNavbar />
+          <MainNavbar />
         )}
         <Footer/>
       </BrowserRouter>

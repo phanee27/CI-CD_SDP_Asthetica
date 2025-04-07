@@ -1,10 +1,8 @@
-import {createContext, useState, useContext, useEffect} from 'react'
+import { useContext, useState, createContext, useEffect } from "react";
 
-const AuthContext = createContext();
+const context = createContext()
 
-import React from 'react';
-
-export function AuthProvider({children}){
+export const AuthProvider = ({children}) => {
     const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
         return localStorage.getItem("isAdminLoggedIn") === "true"
     })
@@ -16,25 +14,27 @@ export function AuthProvider({children}){
     })
 
     useEffect(() => {
-        localStorage.setItem("isAdminLoggedIn", isAdminLoggedIn)
-        localStorage.getItem("isCustomerLoggedIn", isCustomerLoggedIn)
-        localStorage.getItem("isSellerLoggedIn", isSellerLoggedIn)
-    }, [isAdminLoggedIn, isCustomerLoggedIn, isSellerLoggedIn]);
+        
+        return () => {
+            localStorage.setItem("isAdminLoggedIn", isAdminLoggedIn)
+            localStorage.setItem("isCustomerLoggedIn", isCustomerLoggedIn)
+            localStorage.setItem("isSellerLoggedIn", isSellerLoggedIn)    
+        };
+    }, [isAdminLoggedIn, isSellerLoggedIn, isCustomerLoggedIn]);
 
     return (
-        <AuthContext.Provider
-        value={{
+        <context.Provider value={{
             isAdminLoggedIn,
             setIsAdminLoggedIn,
             isCustomerLoggedIn,
             setIsCustomerLoggedIn,
             isSellerLoggedIn,
-            setIsSellerLoggedIn,
+            setIsSellerLoggedIn
         }}
         >
             {children}
-        </AuthContext.Provider>  
+        </context.Provider>
     )
 }
 
-export const useAuth = () => useContext(AuthContext)
+export const useAuth = () => useContext(context)

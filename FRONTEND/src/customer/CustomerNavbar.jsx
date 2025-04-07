@@ -9,6 +9,7 @@ import Search from "./Search";
 import Wishlist from "./Wishlist";
 import Profile from "./Profile";
 
+
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMdHeart } from "react-icons/io";
 import { IoPersonSharp } from "react-icons/io5";
@@ -19,7 +20,15 @@ import Registration from "../authentication/Registration";
 import "./styles/CustomerNavbar.css";
 import Discover from "./Discover";
 
+import {useAuth} from '../contextapi/AuthContext'
+import { useNavigate } from "react-router-dom";
+
 const CustomerNavbar = () => {
+  const {setisCustomerLoggedIn} = useAuth()
+  const navigate = useNavigate()
+  const handleClick = () => {
+    setisCustomerLoggedIn(false)
+  }
   return (
     <div className="navbar">
       <div className="nav-links">
@@ -43,8 +52,8 @@ const CustomerNavbar = () => {
           <Link to="profile">
             <IoPersonSharp />
           </Link>
-          <Link to="login">
-            <button className="btn-login">Login</button>
+          <Link to="logout" onClick={handleClick}>
+            <button className="btn-login">logout</button>
           </Link>
         </div>
       </div>
@@ -57,7 +66,7 @@ const CustomerNavbar = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Home />} />
         <Route path="/register" element={<Registration />} />
         <Route path="*" Component={NotFound} />
       </Routes>
