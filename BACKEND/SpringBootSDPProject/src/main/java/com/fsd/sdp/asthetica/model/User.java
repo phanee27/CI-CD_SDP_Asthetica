@@ -31,7 +31,7 @@ public class User {
 	@Column(nullable = false, length=10, unique = true)
 	private String contact;
 	@Enumerated(EnumType.STRING)
-	@Column(name = "user_role", nullable = false)
+	@Column(name = "user_role")
 	private Role role;
 	
 	
@@ -76,6 +76,18 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", username=" + username + ", email=" + email + ", password="
 				+ password + ", role=" + role + "]";
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
 	} 
 	
 	
