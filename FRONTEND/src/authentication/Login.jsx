@@ -31,7 +31,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${config.url}/user/checkadminlogin`,
+        `${config.url}/user/checkuserlogin`,
         formData
       );
       if (response.status === 200) {

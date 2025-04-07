@@ -1,14 +1,37 @@
 import {Link} from 'react-router-dom'
 import React from 'react';
 import './styles/Registration.css'
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
+import { useState } from 'react';
+import axios from 'axios';
+import config from '../../config';
 
 const Registration = () => {
+    const [formData, setFormData] = useState({
+        name:"",
+        email:"",
+        username:"",
+        password:"",
+        contact:"",
+        gender:"",
+    })
+
+    const [message, setMessage] = useState("")
+    const [error, SetError] = useState("")
+
+    const handleChange = (e) => {
+        const {id, value} = e.target
+        setFormData({...formData, [id]:value})
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await axios.post(`${config.url}/user/adduser`, formData)
+            
+        } catch (error) {
+            
+        }
+    }
     return (
         <div className='register'>
             <p className='register-header' style={{fontSize:'larger'}}>ASTHETICA</p>
@@ -19,14 +42,21 @@ const Registration = () => {
                     <form action="">
                     <label htmlFor="fullname">Full Name</label><br />
                     <input type="text" id='fullname' placeholder='Enter full name' required/><br />
+                    <label for="gender">Gender:</label><br />
+                        <select id="gender" name="gender" style={{width:"100%"}}>
+                        <option value="" disabled selected>-- select --</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                        </select><br />
                     <label htmlFor="fullname">Email</label><br />
                     <input type="email" id='email' placeholder='Enter email' required/><br />
                     <label htmlFor='username'>Username</label><br/>
                     <input type="text" id='username' placeholder='Enter username' required/><br/>
                     <label htmlFor="pwd">Password</label><br />
                     <input type="password" id='pwd' placeholder='Enter password' required/><br />
-                    <label htmlFor="con-pwd">Confirm Password</label><br />
-                    <input type="password" id='con-pwd' placeholder='confirm password' required/><br />
+                    <label htmlFor="contact">Contact</label><br/>
+                    <input type="number" id='contact' placeholder='Enter contact' required/><br />
                     <button className='register-create' type='submit'>Submit</button>
                     </form>
                     <p className='register-sign-in'>already have an account? <Link to='/login'>Login here</Link></p>

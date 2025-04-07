@@ -17,8 +17,8 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	@PostMapping("/checkadminlogin")
-	public ResponseEntity<?> checkadminlogin(@RequestBody User user){
+	@PostMapping("/checkuserlogin")
+	public ResponseEntity<?> checkuserlogin(@RequestBody User user){
 		User u = service.checkuserlogin(user.getUsername(), user.getPassword());
 		if(u != null) {
 			return ResponseEntity.ok(u);
@@ -26,4 +26,11 @@ public class UserController {
 			return ResponseEntity.status(401).body("Invalid Credentials");
 		}
 	}
+	
+	@PostMapping("/adduser")
+	public String adduser(@RequestBody User user) {
+		return service.adduser(user);
+	}
+	
+	
 }

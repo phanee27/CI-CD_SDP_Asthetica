@@ -30,7 +30,7 @@ body{
     flex-direction: column;
 }
 
-.register-input-fields input{
+.register-input-fields input,select{
     border: 1px solid lightgray;
     width: 25vw;
     padding: 0.7rem;
