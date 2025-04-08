@@ -8,6 +8,7 @@ import UploadArtWork from './UploadArtWork';
 import HostAnAuction from './HostAnAuction';
 import Profile from './Profile';
 import MainHome from '../main/MainHome';
+import Login from '../authentication/Login'
 import { useAuth } from '../contextapi/AuthContext';
 
 
@@ -26,11 +27,11 @@ const SellerNavbar = () => {
             </Link>
           </div>
           <div className="nav-mid-section">
-            <Link to="myartwork">MyArtWork</Link>
-            <Link to="uploadartwork">UploadArtWork</Link>
-            <Link to="hostanauction">HostAnAuction</Link>
-            <Link to="profile">Profile</Link>
-            <Link to="/" onClick={handleClick}>Logout</Link>
+            <Link to="/myartwork">MyArtWork</Link>
+            <Link to="/uploadartwork">UploadArtWork</Link>
+            <Link to="/hostanauction">HostAnAuction</Link>
+            <Link to="/profile">Profile</Link>
+            <Link to="/login" onClick={handleClick}>Logout</Link>
           </div>
         </div>
 
@@ -39,7 +40,7 @@ const SellerNavbar = () => {
           <Route path="/myartwork" element={<MyArtWork />} />
           <Route path="/uploadartwork" element={<UploadArtWork />} />
           <Route path="/hostanauction" element={<HostAnAuction />} />
-          <Route path="/logout" element={<MainHome/>} />
+          <Route path="/login" element={<Login/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

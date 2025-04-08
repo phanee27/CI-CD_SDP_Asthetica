@@ -21,12 +21,10 @@ import "./styles/CustomerNavbar.css";
 import Discover from "./Discover";
 
 import {useAuth} from '../contextapi/AuthContext'
-import { useNavigate } from "react-router-dom";
-import MainHome from "../main/MainHome";
 
 const CustomerNavbar = () => {
   const {setIsCustomerLoggedIn} = useAuth()
-  const navigate = useNavigate()
+  
   const handleClick = () => {
     setIsCustomerLoggedIn(false)
   }
@@ -39,21 +37,21 @@ const CustomerNavbar = () => {
           </Link>
         </div>
         <div className="nav-mid-section">
-          <Link to="discover">Discover</Link>
-          <Link to="artists">Artists</Link>
-          <Link to="auctions">Auctions</Link>
+          <Link to="/discover">Discover</Link>
+          <Link to="/artists">Artists</Link>
+          <Link to="/auctions">Auctions</Link>
         </div>
         <div className="nav-end-section">
-          <Link to="search">
+          <Link to="/search">
             <IoSearchSharp />
           </Link>
-          <Link to="wishlist">
+          <Link to="/wishlist">
             <IoMdHeart />
           </Link>
-          <Link to="profile">
+          <Link to="/profile">
             <IoPersonSharp />
           </Link>
-          <Link to="/" onClick={handleClick}>
+          <Link to="/login" onClick={handleClick}>
             <button className="btn-login">logout</button>
           </Link>
         </div>
@@ -67,7 +65,7 @@ const CustomerNavbar = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/logout" element={<MainHome />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
         <Route path="*" Component={NotFound} />
       </Routes>

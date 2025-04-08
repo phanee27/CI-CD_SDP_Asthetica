@@ -25,12 +25,12 @@ const AdminNavbar = () => {
           </Link>
         </div>
         <div className="nav-mid-section">
-          <Link to="admin-dashboard">DashBoard</Link>
-          <Link to="manage-users">ManageUsers</Link>
-          <Link to="manage-artworks">ManageArtWorks</Link>
-          <Link to="reports-analytics">ReportsAnalytics</Link>
-          <Link to="transcations">Transactions</Link>
-          <Link to="login" onClick={handleLogout}>
+          <Link to="/admin-dashboard">DashBoard</Link>
+          <Link to="/manage-users">ManageUsers</Link>
+          <Link to="/manage-artworks">ManageArtWorks</Link>
+          <Link to="/reports-analytics">ReportsAnalytics</Link>
+          <Link to="/transactions">Transactions</Link>
+          <Link to="/login" onClick={handleLogout}>
             Logout
           </Link>
         </div>
@@ -41,7 +41,7 @@ const AdminNavbar = () => {
         <Route path="/manage-users" element={<ManageUsers />} />
         <Route path="/manage-artworks" element={<ManageArtWorks />} />
         <Route path="/reports-analytics" element={<ReportsAnalytics />} />
-        <Route path="/transcations" element={<Transactions />} />
+        <Route path="/transactions" element={<Transactions />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
