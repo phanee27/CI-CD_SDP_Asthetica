@@ -4,6 +4,7 @@ import MainHome from './MainHome'
 import MainAbout from './MainAbout';
 import './styles/MainNavbar.css'
 import { Login } from '../authentication/Login';
+import Registration from '../authentication/Registration';
 
 const MainNavbar = () => {
     return (
@@ -17,6 +18,7 @@ const MainNavbar = () => {
                 <Route path='/' element={<MainHome/>}/>
                 <Route path='/about' element={<MainAbout/>}/>
                 <Route path='/login' element={<Login/>} />
+                <Route path='/register' element={<Registration/>}/>
             </Routes>
         </div>
     );
