@@ -7,9 +7,16 @@ import MyArtWork from './MyArtWork';
 import UploadArtWork from './UploadArtWork';
 import HostAnAuction from './HostAnAuction';
 import Profile from './Profile';
+import MainHome from '../main/MainHome';
+import { useAuth } from '../contextapi/AuthContext';
 
 
 const SellerNavbar = () => {
+    const {setIsSellerLoggedIn} = useAuth()
+
+    const handleClick = () => {
+      setIsSellerLoggedIn(false)
+    }
     return (
       <div className='navbar'>
         <div className="nav-links">
@@ -23,6 +30,7 @@ const SellerNavbar = () => {
             <Link to="uploadartwork">UploadArtWork</Link>
             <Link to="hostanauction">HostAnAuction</Link>
             <Link to="profile">Profile</Link>
+            <Link to="/" onClick={handleClick}>Logout</Link>
           </div>
         </div>
 
@@ -31,6 +39,7 @@ const SellerNavbar = () => {
           <Route path="/myartwork" element={<MyArtWork />} />
           <Route path="/uploadartwork" element={<UploadArtWork />} />
           <Route path="/hostanauction" element={<HostAnAuction />} />
+          <Route path="/logout" element={<MainHome/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

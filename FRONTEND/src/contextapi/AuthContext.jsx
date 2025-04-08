@@ -1,40 +1,38 @@
 import { useContext, useState, createContext, useEffect } from "react";
 
-const context = createContext()
+const context = createContext();
 
-export const AuthProvider = ({children}) => {
-    const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
-        return localStorage.getItem("isAdminLoggedIn") === "true"
-    })
-    const [isCustomerLoggedIn, setIsCustomerLoggedIn] = useState(() => {
-        return localStorage.getItem("isCustomerLoggedIn") === "true"
-    })
-    const [isSellerLoggedIn, setIsSellerLoggedIn] = useState(() => {
-        return localStorage.getItem("isSellerLoggedIn") === "true"
-    })
+export const AuthProvider = ({ children }) => {
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
+    return sessionStorage.getItem("isAdminLoggedIn") === "true";
+  });
+  const [isCustomerLoggedIn, setIsCustomerLoggedIn] = useState(() => {
+    return sessionStorage.getItem("isCustomerLoggedIn") === "true";
+  });
+  const [isSellerLoggedIn, setIsSellerLoggedIn] = useState(() => {
+    return sessionStorage.getItem("isSellerLoggedIn") === "true";
+  });
 
-    useEffect(() => {
-        
-        return () => {
-            localStorage.setItem("isAdminLoggedIn", isAdminLoggedIn)
-            localStorage.setItem("isCustomerLoggedIn", isCustomerLoggedIn)
-            localStorage.setItem("isSellerLoggedIn", isSellerLoggedIn)    
-        };
-    }, [isAdminLoggedIn, isSellerLoggedIn, isCustomerLoggedIn]);
+  useEffect(() => {
+    sessionStorage.setItem("isAdminLoggedIn", isAdminLoggedIn);
+    sessionStorage.setItem("isCustomerLoggedIn", isCustomerLoggedIn);
+    sessionStorage.setItem("isSellerLoggedIn", isSellerLoggedIn);
+  }, [isAdminLoggedIn, isSellerLoggedIn, isCustomerLoggedIn]);
 
-    return (
-        <context.Provider value={{
-            isAdminLoggedIn,
-            setIsAdminLoggedIn,
-            isCustomerLoggedIn,
-            setIsCustomerLoggedIn,
-            isSellerLoggedIn,
-            setIsSellerLoggedIn
-        }}
-        >
-            {children}
-        </context.Provider>
-    )
-}
+  return (
+    <context.Provider
+      value={{
+        isAdminLoggedIn,
+        setIsAdminLoggedIn,
+        isCustomerLoggedIn,
+        setIsCustomerLoggedIn,
+        isSellerLoggedIn,
+        setIsSellerLoggedIn,
+      }}
+    >
+      {children}
+    </context.Provider>
+  );
+};
 
-export const useAuth = () => useContext(context)
+export const useAuth = () => useContext(context);

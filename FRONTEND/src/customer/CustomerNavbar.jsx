@@ -22,12 +22,13 @@ import Discover from "./Discover";
 
 import {useAuth} from '../contextapi/AuthContext'
 import { useNavigate } from "react-router-dom";
+import MainHome from "../main/MainHome";
 
 const CustomerNavbar = () => {
-  const {setisCustomerLoggedIn} = useAuth()
+  const {setIsCustomerLoggedIn} = useAuth()
   const navigate = useNavigate()
   const handleClick = () => {
-    setisCustomerLoggedIn(false)
+    setIsCustomerLoggedIn(false)
   }
   return (
     <div className="navbar">
@@ -52,7 +53,7 @@ const CustomerNavbar = () => {
           <Link to="profile">
             <IoPersonSharp />
           </Link>
-          <Link to="logout" onClick={handleClick}>
+          <Link to="/" onClick={handleClick}>
             <button className="btn-login">logout</button>
           </Link>
         </div>
@@ -66,7 +67,7 @@ const CustomerNavbar = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/logout" element={<Home />} />
+        <Route path="/logout" element={<MainHome />} />
         <Route path="/register" element={<Registration />} />
         <Route path="*" Component={NotFound} />
       </Routes>
