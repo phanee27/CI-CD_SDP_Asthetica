@@ -22,6 +22,7 @@ import Discover from "./Discover";
 
 import {useAuth} from '../contextapi/AuthContext'
 import { useNavigate } from "react-router-dom";
+import MainHome from "../main/MainHome";
 
 const CustomerNavbar = () => {
   const {setisCustomerLoggedIn} = useAuth()
@@ -66,7 +67,7 @@ const CustomerNavbar = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/logout" element={<Home />} />
+        <Route path="/logout" element={<MainHome/>} />
         <Route path="/register" element={<Registration />} />
         <Route path="*" Component={NotFound} />
       </Routes>
