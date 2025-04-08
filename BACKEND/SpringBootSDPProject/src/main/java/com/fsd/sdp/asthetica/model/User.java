@@ -1,5 +1,7 @@
 package com.fsd.sdp.asthetica.model;
 
+import java.sql.Blob;
+
 import com.fsd.sdp.asthetica.enumeration.Role;
 
 import jakarta.persistence.Column;
@@ -14,6 +16,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="user_table")
 public class User {
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "user_id")
@@ -33,6 +37,8 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "user_role")
 	private Role role;
+	@Column
+	private Blob profile;
 	
 	
 	public int getId() {

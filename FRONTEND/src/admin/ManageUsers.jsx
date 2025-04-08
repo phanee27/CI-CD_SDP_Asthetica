@@ -16,7 +16,7 @@ const ManageUsers = () => {
 
   const displayusers = async () => {
     try {
-      const response = await axios.get(`${config.url}/user/viewallusers`);
+      const response = await axios.get(`${config.url}/admin/viewallusers`);
       setUsers(response.data);
     } catch (err) {
       setError("Failed to fetch users.. " + err.message);
@@ -29,7 +29,7 @@ const ManageUsers = () => {
 
   const deleteUser = async (cid) => {
     try {
-      const response = await axios.delete(`${config.url}/user/deleteuser?cid=${cid}`);
+      const response = await axios.delete(`${config.url}/admin/deleteuser?cid=${cid}`);
       alert(response.data);
       displayusers();
     } catch (err) {

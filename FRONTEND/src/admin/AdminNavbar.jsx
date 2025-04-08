@@ -19,7 +19,7 @@ const AdminNavbar = () => {
   return (
     <div className="navbar">
       <div className="nav-links">
-        <div className="nav-start-section">
+        <div className="admin-nav-start-section">
           <Link to="/admin-dashboard">
             <strong>Asthetica</strong>
           </Link>
@@ -30,10 +30,12 @@ const AdminNavbar = () => {
           <Link to="/manage-artworks">ManageArtWorks</Link>
           <Link to="/reports-analytics">ReportsAnalytics</Link>
           <Link to="/transactions">Transactions</Link>
-          <Link to="/login" onClick={handleLogout}>
+        </div>
+        <div className="nav-end-section">
+          <Link to="/login" onClick={handleLogout} >
             Logout
           </Link>
-        </div>
+          </div>
       </div>
 
       <Routes>
