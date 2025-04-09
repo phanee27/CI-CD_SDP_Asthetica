@@ -1,81 +1,102 @@
-body{
+body {
     margin: 0;
-}
-
-.register{
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fbfbf8;
+  }
+  
+  .register {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    gap: 0;
-    background-color: rgba(211, 211, 211, 0.457);
-    height: max-content;
-}
-
-.register h1{
-    margin: 0;
-}
-
-.register-section{
-    margin: 1rem;
-    padding: 1.5rem 2rem;
-
-    border-radius: 0.5rem;
+    height: 100vh;
+    padding: 2rem;
+    background-color: #fbfbf8;
+  }
+  
+  .register-header {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: black;
+  }
+  
+  .register-section {
     background-color: white;
-}
-
-.register-input-fields form{
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .header h1 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .register-quote {
+    font-size: 0.875rem;
+    color: gray;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  
+  .register-input-fields form {
     display: flex;
     flex-direction: column;
-}
-
-.register-input-fields input,select{
-    border: 1px solid lightgray;
-    width: 25vw;
-    padding: 0.7rem;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .register-input-fields label {
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
+  }
+  
+  .register-input-fields input,
+  .register-input-fields select {
+    border: 1px solid #ccc;
+    padding: 0.75rem;
     border-radius: 0.5rem;
-    font-family: Montserrat, sans-serif;
-}
-
-.register-create{
-    display: flex;
-    justify-content: center;
-}
-
-.register-create{
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0.1rem;
+    font-size: 0.95rem;
+  }
+  
+  .register-create {
     background-color: black;
     color: white;
-    padding: 1rem;
+    padding: 0.75rem;
     border: none;
     border-radius: 0.5rem;
-    font-family: Montserrat, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     cursor: pointer;
-    transition: all 0.15s ease-in-out;
-}
-
-.register-create:hover{
-    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.657);
-}
-
-.register-create:active{
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.482);
-}
-
-.register-sign-in a{
-    color: rgb(0, 132, 255);
-}
-
-.register-sign-in{
-    font-size: small;
+    font-size: 1rem;
+    transition: opacity 0.2s ease-in-out;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  .register-create:hover {
+    opacity: 0.85;
+  }
+  
+  .register-sign-in {
+    font-size: 0.875rem;
     color: gray;
-    margin: 0;
+    margin-top: 1.5rem;
     text-align: center;
-    margin-top: 1rem;
-}
-
-.register-quote{
+  }
+  
+  .register-sign-in a {
+    color: black;
     font-weight: 500;
-    font-size: small;
-}
-
+    text-decoration: none;
+  }
+  
+  .register-sign-in a:hover {
+    text-decoration: underline;
+  }
+  

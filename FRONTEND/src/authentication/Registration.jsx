@@ -13,7 +13,7 @@ const Registration = () => {
     password: "",
     contact: "",
     gender: "",
-    role: "ADMIN",
+    role: "BUYER",
   });
 
   const [message, setMessage] = useState("");
@@ -49,6 +49,7 @@ const Registration = () => {
         SetError("An unexpected Error Occurred.");
       }
     }
+
   };
   return (
     <div className="register">
