@@ -9,11 +9,15 @@ import NotFound from './NotFound';
 
 const MainNavbar = () => {
     return (
-        <div className='mn-navbar'>
-            <div className='nav-link-mn-bar' style={{display:'flex', alignItems:'center', gap:'1.5rem'}}>
-                <Link to='/' style={{fontSize:'1.5rem'}}>Asthetica</Link>
-                <Link to='/about'>About</Link>
-                <Link to='/login'>Login</Link>
+        <div className='navbar'>
+            <div className='nav-links' >
+                <div className='nav-start-section'>
+                    <Link to='/' style={{fontSize:'1.5rem'}}>Asthetica</Link>
+                </div>
+                <div className='nav-mid-section'>
+                    <Link to='/about'>About</Link>
+                    <Link to='/login'>Login</Link>
+                </div>
             </div>
             <Routes>
                 <Route path='/' element={<MainHome/>}/>

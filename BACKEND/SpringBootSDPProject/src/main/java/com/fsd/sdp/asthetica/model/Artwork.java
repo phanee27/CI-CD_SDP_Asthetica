@@ -70,6 +70,4 @@ public class Artwork {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
-	
 }
