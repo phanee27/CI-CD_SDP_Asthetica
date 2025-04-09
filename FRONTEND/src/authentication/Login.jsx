@@ -17,7 +17,7 @@ export const Login = () => {
 
   const navigate = useNavigate();
 
-  const { setIsAdminLoggedIn, setIsCustomerLoggedIn, setIsSellerLoggedIn } =
+  const { setIsAdminLoggedIn, setIsCustomerLoggedIn, setIsSellerLoggedIn, setUsername } =
     useAuth();
 
   const handleChange = (e) => {
@@ -33,7 +33,7 @@ export const Login = () => {
       const response = await axios.post(`${config.url}/user/checkuserlogin`,formData);
       if (response.status === 200) {
         const { role } = response.data;
-
+        setUsername(response.data.username)
         if (role === "ADMIN") {
           setIsAdminLoggedIn(true);
           navigate("/admin-dashboard");

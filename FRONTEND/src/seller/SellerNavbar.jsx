@@ -13,10 +13,11 @@ import { useAuth } from '../contextapi/AuthContext';
 
 
 const SellerNavbar = () => {
-    const {setIsSellerLoggedIn} = useAuth()
+    const {setIsSellerLoggedIn, setUsername} = useAuth()
 
     const handleClick = () => {
       setIsSellerLoggedIn(false)
+      setUsername(null)
     }
     return (
       <div className='navbar'>

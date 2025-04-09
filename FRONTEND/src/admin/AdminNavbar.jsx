@@ -11,10 +11,11 @@ import Login from "../authentication/Login";
 import { useAuth } from "../contextapi/AuthContext";
 
 const AdminNavbar = () => {
-  const { setIsAdminLoggedIn } = useAuth();
+  const { setIsAdminLoggedIn, setUsername } = useAuth();
 
   const handleLogout = () => {
     setIsAdminLoggedIn(false);
+    setUsername(null)
   };
   return (
     <div className="navbar">

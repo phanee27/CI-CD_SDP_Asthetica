@@ -3,6 +3,7 @@ import { useContext, useState, createContext, useEffect } from "react";
 const context = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [username, setUsername] = useState("")
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
     return sessionStorage.getItem("isAdminLoggedIn") === "true";
   });
@@ -17,7 +18,8 @@ export const AuthProvider = ({ children }) => {
     sessionStorage.setItem("isAdminLoggedIn", isAdminLoggedIn);
     sessionStorage.setItem("isCustomerLoggedIn", isCustomerLoggedIn);
     sessionStorage.setItem("isSellerLoggedIn", isSellerLoggedIn);
-  }, [isAdminLoggedIn, isSellerLoggedIn, isCustomerLoggedIn]);
+    sessionStorage.setItem("username", username);
+  }, [isAdminLoggedIn, isSellerLoggedIn, isCustomerLoggedIn, username]);
 
   return (
     <context.Provider
@@ -28,6 +30,8 @@ export const AuthProvider = ({ children }) => {
         setIsCustomerLoggedIn,
         isSellerLoggedIn,
         setIsSellerLoggedIn,
+        username,
+        setUsername
       }}
     >
       {children}

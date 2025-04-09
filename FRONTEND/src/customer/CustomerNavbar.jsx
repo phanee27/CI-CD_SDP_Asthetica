@@ -23,10 +23,11 @@ import Discover from "./Discover";
 import {useAuth} from '../contextapi/AuthContext'
 
 const CustomerNavbar = () => {
-  const {setIsCustomerLoggedIn} = useAuth()
+  const {setIsCustomerLoggedIn, setUsername} = useAuth()
   
   const handleClick = () => {
     setIsCustomerLoggedIn(false)
+    setUsername(null)
   }
   return (
     <div className="navbar">
