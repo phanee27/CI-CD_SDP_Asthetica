@@ -22,7 +22,6 @@ public class UserController {
 	
 	@PostMapping("/checkuserlogin")
 	public ResponseEntity<?> checkuserlogin(@RequestBody User user){
-//	    System.out.println("Login Attempt: " + user.getUsername() + ", " + user.getPassword());
 	    User u = service.checkuserlogin(user.getUsername(), user.getPassword());
 	    try {
 	    if(u != null) {
