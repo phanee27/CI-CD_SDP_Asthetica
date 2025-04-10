@@ -3,7 +3,9 @@ import { useContext, useState, createContext, useEffect } from "react";
 const context = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [username, setUsername] = useState("")
+  const [username, setUsername] = useState(() => {
+    return localStorage.getItem('username') || null;
+  })
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
     return sessionStorage.getItem("isAdminLoggedIn") === "true";
   });
@@ -18,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     sessionStorage.setItem("isAdminLoggedIn", isAdminLoggedIn);
     sessionStorage.setItem("isCustomerLoggedIn", isCustomerLoggedIn);
     sessionStorage.setItem("isSellerLoggedIn", isSellerLoggedIn);
-    sessionStorage.setItem("username", username);
+    localStorage.setItem("username", username);
   }, [isAdminLoggedIn, isSellerLoggedIn, isCustomerLoggedIn, username]);
 
   return (

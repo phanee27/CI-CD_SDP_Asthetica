@@ -2,11 +2,13 @@ package com.fsd.sdp.asthetica.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.fsd.sdp.asthetica.enumeration.Role;
 import com.fsd.sdp.asthetica.model.User;
 import com.fsd.sdp.asthetica.repository.UserRepository;
 
@@ -27,7 +29,6 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User checkuserlogin(String username, String password) {
 		User user = repository.findByUsername(username);
-//		return repository.findByUsernameAndPassword(username, password);
 		if(user != null && passwordEncoder.matches(password, user.getPassword())) {
 			return user;
 		}
@@ -36,7 +37,12 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public List<User> displayusers() {
-		return repository.findAll();
+		List<User> users = repository.findAll();
+		List<User> filteredUsers = users.stream()
+			 							.filter(user -> user.getRole().equals(Role.BUYER) || user.getRole().equals(Role.SELLER))
+			 							.collect(Collectors.toList());
+		
+		return filteredUsers;
 	}
 
 	@Override
@@ -51,4 +57,23 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	@Override
+	public User getprofile(String username) {
+		User user = repository.findByUsername(username);
+		return user;
+	}
+
+	@Override
+	public User updateProfile(User user) {
+		User u = repository.findByUsername(user.getUsername());
+		if(u != null) {
+			u.setName(user.getName());
+	        u.setEmail(user.getEmail());
+	        u.setContact(user.getContact());
+			return repository.save(u);
+		}
+		return null;
+	}
+	
+	
 }

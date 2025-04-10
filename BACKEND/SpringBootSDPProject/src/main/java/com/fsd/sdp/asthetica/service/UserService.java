@@ -11,5 +11,6 @@ public interface UserService {
 	public User checkuserlogin(String username, String password);
 	public List<User> displayusers();
 	public String deleteuser(int cid);
-	
+	public User getprofile(String username);
+	public User updateProfile(User user);
 }
