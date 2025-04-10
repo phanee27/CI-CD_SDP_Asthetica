@@ -13,4 +13,11 @@ public interface UserService {
 	public String deleteuser(int cid);
 	public User getprofile(String username);
 	public User updateProfile(User user);
+	
+	public List<User> displayallsellerrequest();
+	public String approveseller(int cid);
+	public String rejectseller(int cid);
+	public String removeseller(int cid);
+	public String requestToBecomeSeller(int cid);
+
 }

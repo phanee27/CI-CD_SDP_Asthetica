@@ -39,6 +39,8 @@ public class User {
 	private Role role;
 	@Column
 	private Blob profile;
+	@Column(length = 20)
+	private String status;
 	
 	
 	public int getId() {
@@ -78,11 +80,6 @@ public class User {
 		this.role = role;
 	}
 	
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", username=" + username + ", email=" + email + ", password="
-				+ password + ", role=" + role + "]";
-	}
 	public String getGender() {
 		return gender;
 	}
@@ -95,6 +92,21 @@ public class User {
 	public void setContact(String contact) {
 		this.contact = contact;
 	} 
-	// this is my code
+
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", username=" + username + ", gender=" + gender + ", password="
+				+ password + ", email=" + email + ", contact=" + contact + ", role=" + role + ", profile=" + profile
+				+ ", status=" + status + "]";
+	}
+	
+	
 	
 }

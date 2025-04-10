@@ -1,6 +1,6 @@
 package com.fsd.sdp.asthetica.service;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -74,6 +74,57 @@ public class UserServiceImpl implements UserService{
 		}
 		return null;
 	}
+	
+	public List<User> displayallsellerrequest() {
+        return repository.findByStatusIsNotNull();
+    }
+
+    public String approveseller(int id) {
+        User user = repository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setStatus("APPROVED");
+        user.setRole(Role.SELLER);
+        repository.save(user);
+        return "Seller Approved Successfully";
+    }
+
+    public String rejectseller(int id) {
+        User user = repository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setStatus("REJECTED");
+        repository.save(user);
+        return "Seller Rejected Successfully";
+    }
+    
+    
+    public String requestToBecomeSeller(int userId) {
+        Optional<User> optionalUser = repository.findById(userId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            
+            if (user.getRole() == Role.BUYER) {
+                user.setStatus("PENDING");
+                repository.save(user);
+                return "Seller request submitted";
+            } else {
+                return "Only buyers can request to become sellers";
+            }
+        }
+        throw new RuntimeException("User not found");
+    }
+    
+    public String removeseller(int id) {
+        User user = repository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        
+        if (user.getRole() == Role.SELLER) {
+            user.setRole(Role.BUYER);
+            user.setStatus(null); // Optional: clear the status
+            repository.save(user);
+            return "Seller role reverted to Buyer successfully";
+        } else {
+            return "Only users with SELLER role can be reverted";
+        }
+    }
+
+
 	
 	
 }

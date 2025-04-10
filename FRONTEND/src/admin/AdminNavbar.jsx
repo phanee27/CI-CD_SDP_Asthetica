@@ -9,6 +9,7 @@ import Transactions from "./Transactions";
 import ReportsAnalytics from "./ReportsAnalytics";
 import Login from "../authentication/Login";
 import { useAuth } from "../contextapi/AuthContext";
+import SellerRequest from "./SellerRequest";
 
 const AdminNavbar = () => {
   const { setIsAdminLoggedIn, setUsername } = useAuth();
@@ -28,6 +29,7 @@ const AdminNavbar = () => {
         <div className="nav-mid-section">
           <Link to="/admin-dashboard">DashBoard</Link>
           <Link to="/manage-users">ManageUsers</Link>
+          <Link to="/sellerrequest">SellerApproval</Link>
           <Link to="/manage-artworks">ManageArtWorks</Link>
           <Link to="/reports-analytics">ReportsAnalytics</Link>
           <Link to="/transactions">Transactions</Link>
@@ -47,6 +49,7 @@ const AdminNavbar = () => {
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/sellerrequest" element={<SellerRequest/>} />
       </Routes>
     </div>
   );

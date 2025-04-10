@@ -1,84 +1,111 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config";
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableContainer,
+  Paper,
+  Typography,
+  Button,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
 
-  const cellStyle = {
-    border: "1px solid black",
-    padding: "8px",
-    textAlign: "center"
-  };
-
-  const displayusers = async () => {
+  const fetchUsers = async () => {
     try {
       const response = await axios.get(`${config.url}/admin/viewallusers`);
       setUsers(response.data);
     } catch (err) {
-      setError("Failed to fetch users.. " + err.message);
+      setError("Failed to fetch users: " + err.message);
     }
   };
 
-  useEffect(() => {
-    displayusers();
-  }, []);
-
-  const deleteUser = async (cid) => {
+  const deleteUser = async (id) => {
     try {
       const response = await axios.delete(`${config.url}/admin/deleteuser?cid=${cid}`);
       alert(response.data);
       displayusers();
     } catch (err) {
-      setError("Unexpected Error Occurred... " + err.message);
+      setError("Unexpected Error: " + err.message);
     }
   };
 
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const font = { fontFamily: "Montserrat, sans-serif" };
+  const headings = ["ID", "Name", "Gender", "Email", "Username", "Contact", "Role", "Delete"];
+
   return (
-    <div style={{ padding: "20px" }}>
-      <h3 style={{ textAlign: "center", color: "black", fontWeight: "bolder" }}>
-        <u>Manage Users</u>
-      </h3>
+    <div style={{ padding: "30px", ...font }}>
+      <Typography
+        variant="h5"
+        align="center"
+        gutterBottom
+        sx={{ fontWeight: "bold", textDecoration: "underline" }}
+      >
+        Manage Users
+      </Typography>
 
       {error ? (
-        <p style={{ textAlign: "center", fontSize: "18px", fontWeight: "bold", color: "red" }}>
+        <Typography align="center" color="error" sx={{ fontWeight: "bold", fontSize: "18px" }}>
           {error}
-        </p>
+        </Typography>
       ) : users.length === 0 ? (
-        <p style={{ textAlign: "center", fontSize: "18px", fontWeight: "bold", color: "red" }}>
+        <Typography align="center" color="error" sx={{ fontWeight: "bold", fontSize: "18px" }}>
           No User Data Found
-        </p>
+        </Typography>
       ) : (
-        <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "20px" }}>
-          <thead>
-            <tr>
-              {["ID", "Name", "Gender", "Email", "Username", "Contact", "Role", "Delete"].map((heading) => (
-                <th key={heading} style={cellStyle}>{heading}</th>
+        <TableContainer component={Paper} elevation={4}>
+          <Table sx={{ ...font }}>
+            <TableHead>
+              <TableRow sx={{ backgroundColor: "#000000" }}>
+                {headings.map((head) => (
+                  <TableCell key={head} align="center" sx={{ fontWeight: "bold", color: "white" }}>
+                    {head}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {users.map((user, i) => (
+                <TableRow
+                  key={user.id}
+                  sx={{
+                    backgroundColor: i % 2 === 0 ? "#fff" : "#fafafa",
+                    "&:hover": { backgroundColor: "#e0f7fa" },
+                  }}
+                >
+                  {[user.id, user.name, user.gender, user.email, user.username, user.contact, user.role].map(
+                    (val, idx) => (
+                      <TableCell key={idx} align="center">
+                        {val}
+                      </TableCell>
+                    )
+                  )}
+                  <TableCell align="center">
+                    <Button
+                      variant="contained"
+                      color="error"
+                      startIcon={<DeleteIcon />}
+                      onClick={() => deleteUser(user.id)}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
               ))}
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td style={cellStyle}>{user.id}</td>
-                <td style={cellStyle}>{user.name}</td>
-                <td style={cellStyle}>{user.gender}</td>
-                <td style={cellStyle}>{user.email}</td>
-                <td style={cellStyle}>{user.username}</td>
-                <td style={cellStyle}>{user.contact}</td>
-                <td style={cellStyle}>{user.role}</td>
-                <td style={cellStyle}>
-                  <Button variant="outlined" startIcon={<DeleteIcon />} onClick={() => deleteUser(user.id)}>
-                    Delete
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            </TableBody>
+          </Table>
+        </TableContainer>
       )}
     </div>
   );
