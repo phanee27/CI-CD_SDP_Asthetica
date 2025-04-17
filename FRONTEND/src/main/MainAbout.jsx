@@ -9,11 +9,9 @@ import {
   Avatar,
 } from '@mui/material';
 import BrushIcon from '@mui/icons-material/Brush';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import GavelIcon from '@mui/icons-material/Gavel';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 import PublicIcon from '@mui/icons-material/Public';
 import GroupsIcon from '@mui/icons-material/Groups';
@@ -23,18 +21,18 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 const team = [
   {
     name: 'R CHARAN TEJA',
-    role: 'Frontend Developer',
+    role: 'Backend Developer',
     img: 'https://media.licdn.com/dms/image/v2/D5603AQEMKFKpjAu99A/profile-displayphoto-shrink_400_400/B56ZT7RamfGQAg-/0/1739382435061?e=1750291200&v=beta&t=n1UCBZsJsCSIVlv1FqFubx4nUtIvO-VfpnQq0Xx5M6c',
   },
   {
     name: 'K V PANEENDRA',
-    role: 'Backend Developer',
+    role: 'Full Stack Developer',
     img: 'https://media.licdn.com/dms/image/v2/D4E03AQGa0qNysmoOkA/profile-displayphoto-shrink_800_800/B4EZRLzTCCGYAc-/0/1736438527234?e=1750291200&v=beta&t=X8V_Hi6tC6p5LlCAIHtsKtouskUfi6hbp_RPDeMvytw',
   },
   {
     name: 'I SURYA PRAKASH',
-    role: 'UI/UX Designer',
-    img: 'https://media.licdn.com/dms/image/v2/D4E35AQGnAuzVCG2P-g/profile-framedphoto-shrink_800_800/B4EZWt3PPuHMAo-/0/1742378693908?e=1745431200&v=beta&t=7_G-QbZemEAH8yCEP9_e17-xRkIfNeLD_EG4nFaCIVc',
+    role: 'Frontend Developer',
+    img: 'https://media.licdn.com/dms/image/v2/D4E03AQGfXAxVAVvxEA/profile-displayphoto-shrink_800_800/B4EZWt2t1dGgAc-/0/1742378558964?e=1750291200&v=beta&t=SFpNiK4dMBbuC1J1cbmqWw_S7fF7uGj640oqCRzmCcM',
   },
 ];
 
