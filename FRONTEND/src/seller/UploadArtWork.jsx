@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './../../config';
-// import './styles/UploadArtwork.css'
+import './styles/UploadArtwork.css';
 
 const UploadArtwork = () => {
   const [artwork, setArtwork] = useState({
     title: '',
-    artist: '',  // This will be automatically filled with the logged-in user's name.
+    artist: '',
     description: '',
-    price: ''
+    price: '',
+    imageUrl: ''  // NEW: will store the Cloudinary image URL here
   });
   const [artworkImage, setArtworkImage] = useState(null);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [user, setUser] = useState(null);
 
-  // Fetch logged-in user data from localStorage or sessionStorage
+  // Fetch logged-in user data
   useEffect(() => {
-    // Assuming user info is stored in localStorage after login
-    const loggedInUser = JSON.parse(localStorage.getItem('user')); // or sessionStorage.getItem('user')
-
-
+    const loggedInUser = JSON.parse(localStorage.getItem('user'));
     if (loggedInUser) {
       setUser(loggedInUser);
-      setArtwork(prev => ({ ...prev, artist: loggedInUser.username })); // Automatically set the artist name to logged-in user's username
+      setArtwork(prev => ({ ...prev, artist: loggedInUser.username }));
     } else {
       setError("You must be logged in to upload artwork.");
     }
@@ -37,55 +35,71 @@ const UploadArtwork = () => {
     setArtworkImage(e.target.files[0]);
   };
 
+  const uploadImageToCloudinary = async (imageFile) => {
+    const data = new FormData();
+    data.append('file', imageFile);
+    data.append('upload_preset', 'vvz5zgoz'); // your unsigned preset name
+    data.append('cloud_name', 'dgmk3fhuz'); // <-- replace with your actual Cloudinary cloud name
+
+    try {
+      const res = await axios.post('https://api.cloudinary.com/v1_1/dgmk3fhuz/image/upload', data);
+      return res.data.secure_url; // get the HTTPS URL
+    } catch (err) {
+      console.error('Error uploading image to Cloudinary:', err);
+      throw new Error('Image upload failed');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!user) {
       setError("You must be logged in to upload artwork.");
       return;
     }
-
-    // Check if all required fields are filled
+  
     if (!artwork.title || !artwork.description || !artwork.price || !artworkImage) {
       setError("Please fill out all fields and upload an image.");
       return;
     }
-
-    const formData = new FormData();
-    formData.append('artworkImage', artworkImage);
-    formData.append('title', artwork.title);
-    formData.append('artist', artwork.artist); // Artist is set to the logged-in user's username
-    formData.append('description', artwork.description);
-    formData.append('price', artwork.price);
-    formData.append('artistId', user.id); // Send the user ID to associate the artwork with the user
-
-    console.log('Form data being submitted:', formData); // Debug log to see form data
-
+  
     try {
-      const response = await axios.post(`${config.url}/seller/upload`, formData, {
+      const imageUrl = await uploadImageToCloudinary(artworkImage);
+  
+      const newArtwork = {
+        title: artwork.title,
+        description: artwork.description,
+        price: parseFloat(artwork.price),
+        artistId: user.id,
+        image: imageUrl   // NOTE the name change here
+      };
+  
+      const response = await axios.post(`${config.url}/seller/upload`, newArtwork, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'application/json'
         }
       });
-      console.log('Response from server:', response.data); // Debug log to check server response
+  
+      console.log('Response from server:', response.data);
       setMessage(response.data);
       setError("");
-
-      // Clear form fields after successful submission
+  
       setArtwork({
         title: '',
         artist: '',
         description: '',
-        price: ''
+        price: '',
+        imageUrl: ''
       });
       setArtworkImage(null);
-
+  
     } catch (error) {
-      console.error('Error uploading artwork:', error); // Debug log for errors
+      console.error('Error uploading artwork:', error);
       setMessage("");
       setError(error.message || "An error occurred while uploading artwork.");
     }
   };
+  
 
   return (
     <div className="container mt-4">
@@ -102,7 +116,7 @@ const UploadArtwork = () => {
         </div>
         <div className="mb-3">
           <label>Artist:</label>
-          <input type="text" className="form-control" name="artist" value={artwork.artist} disabled />
+          <input type="text" className="form-control" name="artist" value={artwork.artist} disabled/>
         </div>
         <div className="mb-3">
           <label>Description:</label>

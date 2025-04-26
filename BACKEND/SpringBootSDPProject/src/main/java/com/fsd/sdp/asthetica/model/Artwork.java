@@ -12,7 +12,7 @@ public class Artwork
     @Column(name = "artwork_id")
     private int id;
     
-    @Column(name = "artwork_title", nullable = false, length = 100)
+    @Column(name = "artwork_title", nullable = true, length = 100)
     private String title;
     
     @Column(name = "artwork_description", nullable = false, length = 500)
@@ -22,7 +22,7 @@ public class Artwork
     private double price;
     
     @Column(name = "artwork_image", nullable = false)
-    private Blob image;
+    private String image;
     
     @Column(name = "artist_id", nullable = false)
     private int artistId;  // Store the user_id who uploaded this artwork
@@ -40,9 +40,14 @@ public class Artwork
     public void setPrice(double price) { this.price = price; }
     
     
-    public Blob getImage() { return image; }
-    public void setImage(Blob image) { this.image = image; }
-    
     public int getArtistId() { return artistId; }
     public void setArtistId(int artistId) { this.artistId = artistId; }
+    
+    
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 }
