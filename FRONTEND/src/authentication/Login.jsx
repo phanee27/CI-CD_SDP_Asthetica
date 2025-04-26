@@ -33,6 +33,10 @@ export const Login = () => {
       const response = await axios.post(`${config.url}/user/checkuserlogin`,formData);
       if (response.status === 200) {
         const { role } = response.data;
+
+        localStorage.setItem("user", JSON.stringify(response.data));
+
+        
         setUsername(response.data.username)
         if (role === "ADMIN") {
           setIsAdminLoggedIn(true);
