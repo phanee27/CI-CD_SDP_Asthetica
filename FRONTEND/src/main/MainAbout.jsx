@@ -21,7 +21,7 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 const team = [
   {
     name: 'R CHARAN TEJA',
-    role: 'Backend Developer',
+    role: 'Full Stack Developer',
     img: 'https://media.licdn.com/dms/image/v2/D5603AQEMKFKpjAu99A/profile-displayphoto-shrink_400_400/B56ZT7RamfGQAg-/0/1739382435061?e=1750291200&v=beta&t=n1UCBZsJsCSIVlv1FqFubx4nUtIvO-VfpnQq0Xx5M6c',
   },
   {
@@ -31,7 +31,7 @@ const team = [
   },
   {
     name: 'I SURYA PRAKASH',
-    role: 'Frontend Developer',
+    role: 'Full Stack Developer',
     img: 'https://media.licdn.com/dms/image/v2/D4E03AQGfXAxVAVvxEA/profile-displayphoto-shrink_800_800/B4EZWt2t1dGgAc-/0/1742378558964?e=1750291200&v=beta&t=SFpNiK4dMBbuC1J1cbmqWw_S7fF7uGj640oqCRzmCcM',
   },
 ];
