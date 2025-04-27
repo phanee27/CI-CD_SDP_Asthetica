@@ -51,11 +51,15 @@ public class SellerController
 	            dto.setId(art.getId());
 	            dto.setTitle(art.getTitle());
 	            dto.setDescription(art.getDescription());
+	            dto.setHeight(art.getHeight());
+	            dto.setWidth(art.getWidth());
 	            dto.setPrice(art.getPrice());
+	            dto.setStatus(art.getStatus().AVAILABLE);
+	            dto.setImage(art.getImage());
 	            dtoList.add(dto);
 	        }
 	        
 	        return ResponseEntity.ok(dtoList);
 	    }
-	
+
 }

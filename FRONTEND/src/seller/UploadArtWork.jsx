@@ -9,7 +9,10 @@ const UploadArtwork = () => {
     artist: '',
     description: '',
     price: '',
-    imageUrl: ''  // NEW: will store the Cloudinary image URL here
+    imageUrl: '',  // NEW: will store the Cloudinary image URL here
+    width: '',     // NEW: width of the artwork
+    height: '',    // NEW: height of the artwork
+    status: 'AVAILABLE'  // NEW: status of the artwork (default as AVAILABLE)
   });
   const [artworkImage, setArtworkImage] = useState(null);
   const [message, setMessage] = useState('');
@@ -58,7 +61,7 @@ const UploadArtwork = () => {
       return;
     }
   
-    if (!artwork.title || !artwork.description || !artwork.price || !artworkImage) {
+    if (!artwork.title || !artwork.description || !artwork.price || !artwork.width || !artwork.height || !artworkImage) {
       setError("Please fill out all fields and upload an image.");
       return;
     }
@@ -71,7 +74,10 @@ const UploadArtwork = () => {
         description: artwork.description,
         price: parseFloat(artwork.price),
         artistId: user.id,
-        image: imageUrl   // NOTE the name change here
+        image: imageUrl,   // NOTE the name change here
+        width: parseFloat(artwork.width),
+        height: parseFloat(artwork.height),
+        status: artwork.status  // Sending the status
       };
   
       const response = await axios.post(`${config.url}/seller/upload`, newArtwork, {
@@ -89,7 +95,10 @@ const UploadArtwork = () => {
         artist: '',
         description: '',
         price: '',
-        imageUrl: ''
+        imageUrl: '',
+        width: '',
+        height: '',
+        status: 'AVAILABLE'
       });
       setArtworkImage(null);
   
@@ -116,7 +125,7 @@ const UploadArtwork = () => {
         </div>
         <div className="mb-3">
           <label>Artist:</label>
-          <input type="text" className="form-control" name="artist" value={artwork.artist} disabled/>
+          <input type="text" className="form-control" name="artist" value={artwork.artist} disabled />
         </div>
         <div className="mb-3">
           <label>Description:</label>
@@ -125,6 +134,22 @@ const UploadArtwork = () => {
         <div className="mb-3">
           <label>Price:</label>
           <input type="number" step="0.01" className="form-control" name="price" value={artwork.price} onChange={handleChange} required />
+        </div>
+        <div className="mb-3">
+          <label>Width:</label>
+          <input type="number" step="0.01" className="form-control" name="width" value={artwork.width} onChange={handleChange} required />
+        </div>
+        <div className="mb-3">
+          <label>Height:</label>
+          <input type="number" step="0.01" className="form-control" name="height" value={artwork.height} onChange={handleChange} required />
+        </div>
+        <div className="mb-3">
+          <label>Status:</label>
+          <select className="form-control" name="status" value={artwork.status} onChange={handleChange}>
+            <option value="AVAILABLE">Available</option>
+            <option value="SOLD">Sold</option>
+            <option value="PENDING">Pending</option>
+          </select>
         </div>
         <div className="mb-3">
           <label>Artwork Image:</label>

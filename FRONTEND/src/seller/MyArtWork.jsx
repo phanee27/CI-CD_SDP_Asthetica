@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config";
-// import './styles/MyArtWork.css'
-
+import './styles/MyArtWork.css';
 
 const MyArtWork = () => {
   const [artworks, setArtworks] = useState([]);
@@ -43,7 +42,7 @@ const MyArtWork = () => {
           {artworks.map((art) => (
             <div key={art.id} className="artwork-card">
               <img
-                src={`${config.url}/seller/displayartworkimage?id=${art.id}`} // Assuming this URL fetches the image
+                src={art.image} // Assuming this URL fetches the image
                 alt={art.title}
                 className="artwork-image"
               />
@@ -51,7 +50,12 @@ const MyArtWork = () => {
                 <h3 className="artwork-card-title">{art.title}</h3>
                 <p className="artwork-description">{art.description}</p>
                 <p className="artwork-price">₹{art.price}</p>
-                {/* <p className="artwork-status">Status: {art.status}</p> */}
+                <p className="artwork-dimensions">
+                  {art.width} x {art.height} cm
+                </p>
+                <p className="artwork-status">
+                  Status: {art.status ? art.status : "Unavailable"}
+                </p>
               </div>
             </div>
           ))}

@@ -1,6 +1,9 @@
 package com.fsd.sdp.asthetica.model;
 
 import java.sql.Blob;
+
+import com.fsd.sdp.asthetica.enumeration.Status;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -18,11 +21,24 @@ public class Artwork
     @Column(name = "artwork_description", nullable = false, length = 500)
     private String description;
     
+    @Column(nullable = false)
+    private Double width; 
+
+    @Column(nullable = false)
+    private Double height; 
+
+    
     @Column(name = "artwork_price", nullable = false)
     private double price;
     
     @Column(name = "artwork_image", nullable = false)
     private String image;
+    
+    
+    @Enumerated(EnumType.STRING) // Store the enum as a string in the DB
+    @Column(length = 20, nullable = false)
+    private Status status; // Enum for artwork status
+
     
     @Column(name = "artist_id", nullable = false)
     private int artistId;  // Store the user_id who uploaded this artwork
@@ -49,5 +65,23 @@ public class Artwork
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public Double getWidth() {
+		return width;
+	}
+	public void setWidth(Double width) {
+		this.width = width;
+	}
+	public Double getHeight() {
+		return height;
+	}
+	public void setHeight(Double height) {
+		this.height = height;
+	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 }
