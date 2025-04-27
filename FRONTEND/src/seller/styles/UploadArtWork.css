@@ -1,95 +1,84 @@
-/* Styles for the Upload Art Work Form */
-form {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9fafb;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h3 {
-    font-size: 24px;
-    color: #000000; /* Deep Blue */
-    text-align: center;
-    margin-bottom: 20px;
-    text-decoration: underline;
-  }
-  
-  label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 8px;
-    display: block;
-  }
-  
-  input,
-  textarea,
-  select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 16px;
-    background-color: #fff;
-  }
-  
-  textarea {
-    resize: vertical;
-    height: 100px;
-  }
-  
-  input[type="file"] {
-    padding: 0;
-  }
-  
-  button {
-    width: 100%;
-    padding: 12px;
-    background-color: #3b82f6; /* Light Blue */
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #1e3a8a; /* Darker Blue */
-  }
-  
-  button:active {
-    background-color: #2563eb; /* Slightly Darker Blue */
-  }
-  
-  p {
-    font-size: 14px;
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  p.green {
-    color: green;
-    font-weight: bold;
-  }
-  
-  p.red {
-    color: red;
-    font-weight: bold;
-  }
-  
-  /* Styling for small screen responsiveness */
-  @media (max-width: 600px) {
-    form {
-      padding: 15px;
-    }
-  
-    h3 {
-      font-size: 20px;
-    }
-  }
-  
+.upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f6;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.upload-card {
+  background-color: white;
+  padding: 3.5rem;
+  width: 25%;
+  border-radius: 1rem;
+}
+
+.upload-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.upload-message {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.upload-message.success {
+  color: #28a745;
+}
+
+.upload-message.error {
+  color: #dc3545;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.upload-input, .upload-textarea, .upload-select, .upload-file {
+  padding: 10px 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+}
+
+.upload-input.disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.upload-textarea {
+  resize: vertical;
+}
+
+.upload-select {
+  background: #fff;
+}
+
+.upload-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.upload-button:hover {
+  background-color: #333333;
+}
