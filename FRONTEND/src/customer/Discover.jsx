@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config";
-import './styles/Discover.css'; // Assuming you have separate styles for Discover
+import './styles/Discover.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Discover = () => {
   const [artworks, setArtworks] = useState([]);
   const [error, setError] = useState("");
-  const [addedToWishlist, setAddedToWishlist] = useState([]); // Track added artworks
+  const [addedToWishlist, setAddedToWishlist] = useState([]);
 
-  const userId = sessionStorage.getItem('userId'); // Assuming userId is stored in sessionStorage after login
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user ? user.id : null;
 
+  // Fetch artworks and wishlist
   useEffect(() => {
     const fetchAllArtworks = async () => {
       try {
@@ -21,32 +25,62 @@ const Discover = () => {
       }
     };
 
+    const fetchWishlist = async () => {
+      if (!userId) return; // If not logged in, skip
+      try {
+        const response = await axios.get(`${config.url}/customer/wishlist/view/${userId}`); // Updated URL with path variable
+        const wishlistArtworkIds = response.data.map(item => item.artworkId);
+        setAddedToWishlist(wishlistArtworkIds); // ✅ set existing wishlist
+        localStorage.setItem("wishlist", JSON.stringify(wishlistArtworkIds)); // Store in localStorage
+      } catch (err) {
+        console.error("Failed to fetch wishlist", err);
+      }
+    };
+
     fetchAllArtworks();
-  }, []);
+    fetchWishlist();
+  }, [userId]);
 
   const handleAddToWishlist = async (artworkId) => {
-    const user = JSON.parse(localStorage.getItem("user"));  // Retrieve user data from localStorage
-    const userId = user ? user.id : null;  // Get the userId, default to null if not found
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userId = user ? user.id : null;
   
     if (!userId) {
-      alert("Please log in first.");
+      toast.error("Please log in first.");
       return;
+    }
+  
+    // Check if the artwork is already in the wishlist
+    if (addedToWishlist.includes(artworkId)) {
+      toast.info("Artwork is already in your wishlist.");
+      return; // No need to make the request if it's already added
     }
   
     try {
       const response = await axios.post(`${config.url}/customer/wishlist/add`, null, {
         params: {
           userId: userId,
-          artworkId: artworkId
-        }
+          artworkId: artworkId,
+        },
       });
-      alert(response.data);  // Show success message
+  
+      toast.success(response.data); // Backend success message
+      setAddedToWishlist((prevState) => {
+        const updatedWishlist = [...prevState, artworkId];
+        localStorage.setItem("wishlist", JSON.stringify(updatedWishlist)); // Store updated wishlist in localStorage
+        return updatedWishlist;
+      });
     } catch (error) {
-      console.error("Failed to add artwork to wishlist:", error);
-      alert("Failed to add artwork to wishlist");
+      console.error("Error adding to wishlist:", error);
+  
+      // Handle if the artwork is already in the wishlist on the backend
+      if (error.response && error.response.data) {
+        toast.error(error.response.data); // Show backend message (ex: "Artwork already in wishlist")
+      } else {
+        toast.error("Failed to add artwork to wishlist.");
+      }
     }
   };
-  
 
   return (
     <div className="artwork-container">
@@ -76,10 +110,10 @@ const Discover = () => {
                   Status: {art.status ? art.status : "Unavailable"}
                 </p>
 
+                {/* Add to Wishlist Button */}
                 <button
                   className="wishlist-button"
                   onClick={() => handleAddToWishlist(art.id)}
-                  disabled={addedToWishlist.includes(art.id)} // disable after adding
                 >
                   {addedToWishlist.includes(art.id) ? "Added to Wishlist" : "Add to Wishlist"}
                 </button>
@@ -89,6 +123,7 @@ const Discover = () => {
           ))}
         </div>
       )}
+      <ToastContainer position="top-center" autoClose={800} />
     </div>
   );
 };

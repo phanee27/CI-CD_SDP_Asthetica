@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
-    List<Wishlist> findByUser(User user);
-    Optional<Wishlist> findByUserAndArtwork(User user, Artwork artwork);
-    Optional<Wishlist> findByArtworkId(int artworkId);
-    Optional<Wishlist> findByUserIdAndArtworkId(int userId, int artworkId);
-
+	List<Wishlist> findByUser(User user);
+	Optional<Wishlist> findByUserAndArtwork(User user, Artwork artwork);
+	Optional<Wishlist> findByUserIdAndArtworkId(int userId, int artworkId);
+	boolean existsByUserAndArtwork(User user, Artwork artwork);
+	 
 }

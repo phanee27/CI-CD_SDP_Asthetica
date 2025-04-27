@@ -1,14 +1,11 @@
 package com.fsd.sdp.asthetica.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.fsd.sdp.asthetica.dto.ArtworkDTO;
-import com.fsd.sdp.asthetica.model.Wishlist;
+import com.fsd.sdp.asthetica.model.Artwork;
 
 public interface WishlistService {
     void addToWishlist(int userId, int artworkId);
-    List<ArtworkDTO> getWishlistItems(int userId);
+    List<Artwork> getWishlistItems(int userId);
     void removeFromWishlist(int userId, int artworkId); 
-
 }

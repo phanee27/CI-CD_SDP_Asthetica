@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config";
-import '../seller/styles/MyArtWork.css'; // Assuming you have separate styles for Wishlist
+import './styles/Wishlist.css'; 
 
 const Wishlist = () => {
   const [wishlistItems, setWishlistItems] = useState([]);
