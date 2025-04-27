@@ -1,7 +1,6 @@
 package com.fsd.sdp.asthetica.service;
 
-import java.util.List;
-
+import java.util.List; 
 import com.fsd.sdp.asthetica.model.Artwork;
 
 public interface ArtworkService 
