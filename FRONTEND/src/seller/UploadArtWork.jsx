@@ -12,7 +12,8 @@ const UploadArtwork = () => {
     imageUrl: '',
     width: '',
     height: '',
-    status: 'AVAILABLE'
+    category: '',
+    status: 'AVAILABLE',
   });
   const [artworkImage, setArtworkImage] = useState(null);
   const [message, setMessage] = useState('');
@@ -76,7 +77,8 @@ const UploadArtwork = () => {
         image: imageUrl,
         width: parseFloat(artwork.width),
         height: parseFloat(artwork.height),
-        status: artwork.status
+        status: artwork.status,
+        category: artwork.category
       };
 
       const response = await axios.post(`${config.url}/seller/upload`, newArtwork, {
@@ -94,6 +96,7 @@ const UploadArtwork = () => {
         imageUrl: '',
         width: '',
         height: '',
+        category:'',
         status: 'AVAILABLE'
       });
       setArtworkImage(null);
@@ -109,19 +112,29 @@ const UploadArtwork = () => {
     <div className="upload-container">
       <div className="upload-card">
         <h2 className="upload-title">Upload your Artwork here</h2>
-        {message && <p className="upload-message success">{message}</p>}
-        {error && <p className="upload-message error">{error}</p>}
+        {message && <p className="upload-message success" style={{fontWeight:"700"}}>{message}</p>}
+        {error && <p className="upload-message error" style={{fontWeight:"700"}}>{error}</p>}
         <form onSubmit={handleSubmit} encType="multipart/form-data" className="upload-form">
-          <input type="text" name="title" value={artwork.title} onChange={handleChange} placeholder="Title" className="upload-input" required />
+          <input type="text" name="title" value={artwork.title} onChange={handleChange} placeholder="Enter Title" className="upload-input" required />
           <input type="text" name="artist" value={artwork.artist} disabled className="upload-input disabled" />
-          <textarea name="description" rows="3" value={artwork.description} onChange={handleChange} placeholder="Description" className="upload-textarea" required />
+          <textarea name="description" rows="3" value={artwork.description} onChange={handleChange} placeholder="Description of your artwork" className="upload-textarea" required />
           <input type="number" name="price" value={artwork.price} onChange={handleChange} placeholder="Price" className="upload-input" step="0.01" required />
+          <label htmlFor="width">Dimensions</label>
           <input type="number" name="width" value={artwork.width} onChange={handleChange} placeholder="Width (cm)" className="upload-input" step="0.01" required />
           <input type="number" name="height" value={artwork.height} onChange={handleChange} placeholder="Height (cm)" className="upload-input" step="0.01" required />
+          <label htmlFor="status">Art status</label>
           <select name="status" value={artwork.status} onChange={handleChange} className="upload-select">
             <option value="AVAILABLE">Available</option>
             <option value="SOLD">Sold</option>
             <option value="PENDING">Pending</option>
+          </select>
+          <label htmlFor="category">Art Category</label>
+          <select name="category" value={artwork.category} onChange={handleChange} className="upload-select">
+            <option value="POTRAIT">Potrait</option>
+            <option value="ABSTRACT">Abstract</option>
+            <option value="LANDSCAPE">Land Scape</option>
+            <option value="STILL_LIFE">Still Life</option>
+            <option value="HOLISTIC">Holistic</option>
           </select>
           <input type="file" onChange={handleImageChange} className="upload-file" required />
           <button type="submit" className="upload-button">Upload</button>

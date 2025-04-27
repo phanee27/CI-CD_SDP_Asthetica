@@ -7,7 +7,7 @@ body, html{
 }
 
 :root {
-  font-family: 'poppins',Montserrat, sans-serif, Inter, system-ui, Avenir, Helvetica, Arial;
+  font-family: Montserrat, sans-serif, Inter, system-ui, Avenir, Helvetica, Arial;
   line-height: 1.5;
   font-weight: 700;
   margin: 0;
