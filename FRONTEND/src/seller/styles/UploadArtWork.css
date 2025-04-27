@@ -1,0 +1,95 @@
+/* Styles for the Upload Art Work Form */
+form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h3 {
+    font-size: 24px;
+    color: #000000; /* Deep Blue */
+    text-align: center;
+    margin-bottom: 20px;
+    text-decoration: underline;
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #fff;
+  }
+  
+  textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  input[type="file"] {
+    padding: 0;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3b82f6; /* Light Blue */
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #1e3a8a; /* Darker Blue */
+  }
+  
+  button:active {
+    background-color: #2563eb; /* Slightly Darker Blue */
+  }
+  
+  p {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  p.green {
+    color: green;
+    font-weight: bold;
+  }
+  
+  p.red {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* Styling for small screen responsiveness */
+  @media (max-width: 600px) {
+    form {
+      padding: 15px;
+    }
+  
+    h3 {
+      font-size: 20px;
+    }
+  }
+  
