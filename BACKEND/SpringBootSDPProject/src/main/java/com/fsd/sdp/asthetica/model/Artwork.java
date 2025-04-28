@@ -16,7 +16,7 @@ public class Artwork
     @Column(name = "artwork_id")
     private int id;
     
-    @Column(name = "artwork_title", nullable = true, length = 100)
+    @Column(name = "artwork_title", nullable = false, length = 100)
     private String title;
     
     @Column(name = "artwork_description", nullable = false, length = 500)

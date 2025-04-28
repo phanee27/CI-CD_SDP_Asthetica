@@ -127,13 +127,13 @@ const UploadArtwork = () => {
             <option value="AVAILABLE">Available</option>
             <option value="SOLD">Sold</option>
             <option value="PENDING">Pending</option>
+            <option value="AUCTION">Auction</option>
           </select>
           <label htmlFor="category">Art Category</label>
           <select name="category" value={artwork.category} onChange={handleChange} className="upload-select">
             <option value="POTRAIT">Potrait</option>
             <option value="ABSTRACT">Abstract</option>
             <option value="LANDSCAPE">Land Scape</option>
-            <option value="STILL_LIFE">Still Life</option>
             <option value="HOLISTIC">Holistic</option>
           </select>
           <input type="file" onChange={handleImageChange} className="upload-file" required />

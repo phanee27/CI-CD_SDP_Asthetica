@@ -1,5 +1,5 @@
 package com.fsd.sdp.asthetica.enumeration;
 
 public enum Status {
-	SOLD,AUCTION,AVAILABLE
+	SOLD,AUCTION,AVAILABLE,PENDING
 }
