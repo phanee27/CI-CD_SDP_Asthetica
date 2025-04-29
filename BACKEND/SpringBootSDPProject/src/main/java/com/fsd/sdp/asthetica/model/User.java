@@ -37,10 +37,10 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "user_role")
 	private Role role;
-	@Column
-	private Blob profile;
 	@Column(length = 20)
 	private String status;
+	@Column
+	private String profileImage;
 	
 	
 	public int getId() {
@@ -100,11 +100,17 @@ public class User {
 		this.status = status;
 	}
 	
+	public String getProfileImage() {
+		return profileImage;
+	}
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", username=" + username + ", gender=" + gender + ", password="
-				+ password + ", email=" + email + ", contact=" + contact + ", role=" + role + ", profile=" + profile
-				+ ", status=" + status + "]";
+				+ password + ", email=" + email + ", contact=" + contact + ", role=" + role + ", status=" + status
+				+ ", profileImage=" + profileImage + "]";
 	}
 	
 	

@@ -23,6 +23,7 @@ import Discover from "./Discover";
 
 import { useAuth } from "../contextapi/AuthContext";
 
+
 const CustomerNavbar = () => {
   const { setIsCustomerLoggedIn, setUsername } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);

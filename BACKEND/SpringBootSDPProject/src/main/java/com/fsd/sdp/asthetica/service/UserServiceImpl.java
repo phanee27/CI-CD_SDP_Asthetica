@@ -70,6 +70,7 @@ public class UserServiceImpl implements UserService{
 			u.setName(user.getName());
 	        u.setEmail(user.getEmail());
 	        u.setContact(user.getContact());
+	        u.setProfileImage(user.getProfileImage());
 			return repository.save(u);
 		}
 		return null;
