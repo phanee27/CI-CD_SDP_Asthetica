@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.fsd.sdp.asthetica.enumeration.Category;
 import com.fsd.sdp.asthetica.model.Artwork;
 import com.fsd.sdp.asthetica.repository.ArtworkRepository;
 
@@ -39,6 +39,9 @@ public class ArtworkServiceImpl implements ArtworkService
 		return artworkRepository.findByArtistId(artistId);
 	}
 
-	
+	@Override
+	public List<Artwork> viewbycategory(Category category) {
+		return artworkRepository.findByCategory(category);
+	}
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fsd.sdp.asthetica.enumeration.Category;
 import com.fsd.sdp.asthetica.model.Artwork;
 import com.fsd.sdp.asthetica.model.User;
 import com.fsd.sdp.asthetica.service.ArtworkService;
@@ -94,7 +95,20 @@ public class CustomerController {
 	    }
 	}
 
+	@GetMapping("/category")
+	public ResponseEntity<?> getByCategory(@RequestParam String category) {
+	    try {
+	        if (category.equalsIgnoreCase("ALL")) {
+	            return ResponseEntity.ok(artworkService.viewallartworks());
+	        } else {
+	            Category catEnum = Category.valueOf(category.toUpperCase()); // This will throw if invalid
+	            return ResponseEntity.ok(artworkService.viewbycategory(catEnum));
+	        }
+	    } catch (IllegalArgumentException e) {
+	        return ResponseEntity.badRequest().body("Invalid category");
+	    } catch (Exception e) {
+	        return ResponseEntity.status(500).body("Unable to filter by category");
+	    }
+	}
 
-
-	
 }

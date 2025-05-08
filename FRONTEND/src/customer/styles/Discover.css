@@ -100,6 +100,7 @@
     border-radius: 4px;
     cursor: pointer;
     margin-top: 12px;
+    font-family: 'Poppins';
   }
   
   .wishlist-button:hover {
@@ -111,4 +112,27 @@
     color: #a0aec0; /* Disabled text color */
     cursor: not-allowed;
   }
+
+  .artwork-category{
+    display: flex;
+    gap: 1.5rem;
+  }
   
+  .artwork-category-card{
+    width: 15rem;
+    height: 15rem;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    font-size: 2.3rem;
+    border-radius: 0.5rem;
+    font-weight: 525;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .artwork-category-card:hover{
+    transform: scale(1.05);
+  }
