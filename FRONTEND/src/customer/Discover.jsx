@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config";
-import './styles/Discover.css'; // Assuming you have separate styles for Discover
+import './styles/Discover.css'; 
 import all from '../assets/all.jpg'
 
 const Discover = () => {
   const [artworks, setArtworks] = useState([]);
   const [error, setError] = useState("");
-  const [addedToWishlist, setAddedToWishlist] = useState([]); // Track added artworks
+  const [addedToWishlist, setAddedToWishlist] = useState([]); 
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const userId = sessionStorage.getItem('userId'); // Assuming userId is stored in sessionStorage after login
+  const userId = sessionStorage.getItem('userId');
 
   const handleCategoryClick = async (categoryValue) => {
-    setSelectedCategory(categoryValue);  // Highlight selected category (optional)
+    setSelectedCategory(categoryValue);  
+  
     try {
       const response = await axios.get(`${config.url}/customer/category`, {
         params: { category: categoryValue }
       });
-      setArtworks(response.data);  // Replace artworks with filtered list
-      setError("");  // Clear previous errors
+      setArtworks(response.data);  
+      setError("");  
     } catch (err) {
       console.error("Error fetching by category:", err);
       setError("Unable to filter artworks by category");
     }
   };
+  
   
 
   useEffect(() => {
@@ -41,8 +43,8 @@ const Discover = () => {
   }, []);
 
   const handleAddToWishlist = async (artworkId) => {
-    const user = JSON.parse(localStorage.getItem("user"));  // Retrieve user data from localStorage
-    const userId = user ? user.id : null;  // Get the userId, default to null if not found
+    const user = JSON.parse(localStorage.getItem("user"));  
+    const userId = user ? user.id : null;  
   
     if (!userId) {
       alert("Please log in first.");
@@ -56,7 +58,7 @@ const Discover = () => {
           artworkId: artworkId
         }
       });
-      alert(response.data);  // Show success message
+      alert(response.data);  
     } catch (error) {
       console.error("Failed to add artwork to wishlist:", error);
       alert("Failed to add artwork to wishlist");
@@ -123,7 +125,6 @@ const Discover = () => {
                     <button
                       className="wishlist-button"
                       onClick={() => handleAddToWishlist(art.id)}
-                      disabled={addedToWishlist.includes(art.id)} // disable after adding
                     >
                       {addedToWishlist.includes(art.id) ? "Added to Wishlist" : "Add to Wishlist"}
                     </button>
