@@ -8,12 +8,14 @@ import SellerNavbar from "./seller/SellerNavbar";
 import Footer from "./customer/Footer";
 import { AuthProvider, useAuth } from "./contextapi/AuthContext";
 import MainNavbar from "./main/MainNavbar";
+import { ToastContainer } from "react-toastify";
 
 function AppContent() {
   const { isAdminLoggedIn, isCustomerLoggedIn, isSellerLoggedIn } = useAuth();
 
   return (
     <div>
+      <ToastContainer position="top-center" autoClose={3000} />
       <BrowserRouter>
         {isAdminLoggedIn ? (
           <AdminNavbar />
