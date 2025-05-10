@@ -12,6 +12,8 @@ const Discover = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const navigate = useNavigate();
+  const isCustomerLoggedIn = sessionStorage.getItem("isCustomerLoggedIn") === "true";
+  const userId = sessionStorage.getItem("userId");
 
   const handleCategoryClick = async (categoryValue) => {
     setSelectedCategory(categoryValue);  
@@ -42,10 +44,7 @@ const Discover = () => {
   }, []);
 
   const handleAddToWishlist = async (artworkId) => {
-    const user = JSON.parse(localStorage.getItem("user"));  
-    const userId = sessionStorage.getItem("userId");
-
-    if (!user || !userId) {
+    if (!isCustomerLoggedIn) {
       navigate("/login");
       window.scrollTo(0, 0); 
       return;
@@ -67,10 +66,7 @@ const Discover = () => {
   };
 
   const handleBuyNow = (artworkId) => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const userId = sessionStorage.getItem("userId");
-
-    if (!user || !userId) {
+    if (!isCustomerLoggedIn) {
       navigate("/login");
       window.scrollTo(0, 0); 
       return;
