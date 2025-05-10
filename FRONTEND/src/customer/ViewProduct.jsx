@@ -120,6 +120,7 @@ const ViewProduct = () => {
               razorpay_signature: response.razorpay_signature,
               username,
               artwork_id: id,
+              
             };
 
             const verifyRes = await axios.post(`${config.url}/api/payment/verify`, verifyPayload);
