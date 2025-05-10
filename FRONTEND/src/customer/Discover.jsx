@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import './styles/Discover.css';
 import all from '../assets/all.jpg';
 import { useNavigate } from "react-router-dom";
@@ -10,77 +12,62 @@ const Discover = () => {
   const [error, setError] = useState("");
   const [addedToWishlist, setAddedToWishlist] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isLoadingArtworks, setIsLoadingArtworks] = useState(true);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
 
   const navigate = useNavigate();
-  const isCustomerLoggedIn = sessionStorage.getItem("isCustomerLoggedIn") === "true";
-  const userId = sessionStorage.getItem("userId");
+
+  // Retrieve and parse the user object from localStorage
+  const userString = localStorage.getItem("user");
+  const user = userString ? JSON.parse(userString) : null;
+  const userId = user?.id || null; // Safely access userId, default to null if not found
 
   const handleCategoryClick = async (categoryValue) => {
     setSelectedCategory(categoryValue);
+    setIsLoadingCategories(true);
     try {
+      await new Promise(resolve => setTimeout(resolve, 350));
       const response = await axios.get(`${config.url}/customer/category`, {
         params: { category: categoryValue }
       });
       setArtworks(response.data);
       setError("");
+      setIsLoadingCategories(false);
     } catch (err) {
       console.error("Error fetching by category:", err);
       setError("Unable to filter artworks by category");
+      setIsLoadingCategories(false);
     }
   };
 
   useEffect(() => {
     const fetchAllArtworks = async () => {
+      setIsLoadingArtworks(true);
       try {
+        await new Promise(resolve => setTimeout(resolve, 350));
         const response = await axios.get(`${config.url}/customer/viewallartworks`);
         setArtworks(response.data);
+        setIsLoadingArtworks(false);
       } catch (err) {
         setError("Failed to fetch artworks");
         console.error(err);
+        setIsLoadingArtworks(false);
       }
     };
 
     fetchAllArtworks();
   }, []);
 
-  useEffect(() => {
-    const fetchWishlist = async () => {
-      if (!isCustomerLoggedIn || !userId) return;
-
-      try {
-        const response = await axios.get(`${config.url}/customer/wishlist/view/${userId}`);
-        const wishlistItems = response.data; // Array of artworks in the wishlist
-        const wishlistIds = wishlistItems.map(item => item.id);
-        setAddedToWishlist(wishlistIds);
-      } catch (error) {
-        console.error("Failed to fetch wishlist:", error);
-      }
-    };
-
-    fetchWishlist();
-  }, [isCustomerLoggedIn, userId]);
-
   const handleAddToWishlist = async (artworkId) => {
-    if (!isCustomerLoggedIn || !userId) {
-      console.log("User not logged in or userId missing:", { isCustomerLoggedIn, userId });
-      navigate("/login");
-      window.scrollTo(0, 0);
-      return;
-    }
-
-    const userIdNumber = parseInt(userId, 10);
-    if (isNaN(userIdNumber)) {
-      console.error("Invalid userId:", userId);
-      alert("Invalid user ID. Please log in again.");
-      navigate("/login");
-      return;
-    }
-
     try {
-      console.log("Adding to wishlist with data:", { userId: userIdNumber, artworkId });
-      const response = await axios.post(`${config.url}/customer/wishlist/add`, {
-        userId: userIdNumber,
-        artworkId: artworkId
+      if(!userId){
+        window.alert("Log into your account !!")
+        navigate('/login')
+        window.scroll(0,0)
+        return;
+      }
+      const response = await axios.post(`${config.url}/customer/wishlist/add`, null, {
+        params: { userId, artworkId } // Include userId in the request
       });
       alert(response.data);
       if (!addedToWishlist.includes(artworkId)) {
@@ -93,12 +80,12 @@ const Discover = () => {
   };
 
   const handleBuyNow = (artworkId) => {
-    if (!isCustomerLoggedIn) {
-      navigate("/login");
-      window.scrollTo(0, 0);
-      return;
-    }
-
+    if(!userId){
+        window.alert("Log into your account !!")
+        navigate('/login')
+        window.scroll(0,0)
+        return;
+      }
     sessionStorage.setItem("artworks", JSON.stringify(artworks));
     navigate(`/view-product/${artworkId}`);
   };
@@ -114,30 +101,93 @@ const Discover = () => {
     <div className="artwork-container">
       <h2 className="artwork-title">Artwork Categories</h2>
       <div className="artwork-category">
-        <div style={{backgroundSize: 'cover',
-            backgroundPosition: 'center', backgroundImage:`url(${all})`}}
-          className="artwork-category-card all-artworks-card"
-          onClick={() => handleCategoryClick("ALL")}
-        >
-          All Artworks
-        </div>
-        {categories.map((val, ind) => (
-          <div
-            key={ind}
-            className="artwork-category-card"
-            style={{ backgroundImage: `url(${val.url})` }}
-            onClick={() => handleCategoryClick(val.value)}
-          >
-            {val.name}
-          </div>
-        ))}
+        {isLoadingCategories ? (
+          Array(5)
+            .fill()
+            .map((_, index) => (
+              <Skeleton
+                key={index}
+                height={100}
+                width={200}
+                borderRadius={8}
+                baseColor="#e0e0e0"
+                highlightColor="#f5f5f5"
+              />
+            ))
+        ) : (
+          <>
+            <div
+              style={{
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundImage: `url(${all})`
+              }}
+              className="artwork-category-card all-artworks-card"
+              onClick={() => handleCategoryClick("ALL")}
+            >
+              All Artworks
+            </div>
+            {categories.map((val, ind) => (
+              <div
+                key={ind}
+                className="artwork-category-card"
+                style={{ backgroundImage: `url(${val.url})` }}
+                onClick={() => handleCategoryClick(val.value)}
+              >
+                {val.name}
+              </div>
+            ))}
+          </>
+        )}
       </div>
 
       <div>
         <h2 className="artwork-title">Discover Artworks</h2>
         {error && <p className="error-message">{error}</p>}
 
-        {artworks.length === 0 ? (
+        {isLoadingArtworks || isLoadingCategories ? (
+          <div className="artwork-grid">
+            {Array(6)
+              .fill()
+              .map((_, index) => (
+                <div key={index} className="artwork-card">
+                  <Skeleton
+                    height={200}
+                    width="100%"
+                    borderRadius="8px 8px 0 0"
+                    baseColor="#e0e0e0"
+                    highlightColor="#f5f5f5"
+                  />
+                  <div style={{ padding: 15 }}>
+                    <Skeleton
+                      height={20}
+                      width="80%"
+                      style={{ marginBottom: 10 }}
+                    />
+                    <Skeleton
+                      height={14}
+                      width="90%"
+                      style={{ marginBottom: 10 }}
+                    />
+                    <Skeleton
+                      height={14}
+                      width="60%"
+                      style={{ marginBottom: 10 }}
+                    />
+                    <Skeleton
+                      height={14}
+                      width="50%"
+                      style={{ marginBottom: 15 }}
+                    />
+                    <div style={{ display: "flex", gap: 10 }}>
+                      <Skeleton height={30} width={120} />
+                      <Skeleton height={30} width={100} />
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+        ) : artworks.length === 0 ? (
           <p>No artworks available.</p>
         ) : (
           <div className="artwork-grid">

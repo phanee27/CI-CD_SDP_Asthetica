@@ -18,6 +18,7 @@ import Login from "../authentication/Login";
 import { useAuth } from "../contextapi/AuthContext";
 
 import "./styles/SellerNavbar.css";
+import EditArtwork from "./EditArtwork";
 
 const SellerNavbar = () => {
   const { setIsSellerLoggedIn, setUsername } = useAuth();
@@ -77,6 +78,7 @@ const SellerNavbar = () => {
         <Route path="/hostanauction" element={<HostAnAuction />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/edit/:id" element={<EditArtwork/>}/>
         <Route path="*" Component={NotFound} />
       </Routes>
     </div>

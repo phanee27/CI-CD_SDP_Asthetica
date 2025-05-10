@@ -1,5 +1,6 @@
 package com.fsd.sdp.asthetica.service;
 
+import java.lang.foreign.Linker.Option;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,5 +75,25 @@ public class ArtworkServiceImpl implements ArtworkService
 	        }
 	        return counts;
 	    }
+
+	@Override
+	public String updateartwork(Artwork artwork) {
+		Optional<Artwork> obj = artworkRepository.findById(artwork.getId());
+		if(obj.isPresent()) {
+			Artwork a = obj.get();
+			a.setHeight(artwork.getHeight());
+			a.setWidth(artwork.getWidth());
+			a.setPrice(artwork.getPrice());
+			a.setDescription(artwork.getDescription());
+			a.setStatus(artwork.getStatus());
+			a.setTitle(artwork.getTitle());
+			
+			artworkRepository.save(a);
+			return "Artwork updated successfully !";
+		}else {
+			return "Artwork Not found";
+		}
+		
+	}
 
 }

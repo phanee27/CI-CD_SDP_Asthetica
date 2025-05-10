@@ -67,7 +67,7 @@ public class PaymentServiceImpl implements PaymentService {
             order.setRazorpayOrderId(payload.get("razorpay_order_id"));
             order.setUsername(payload.get("username"));
             order.setArtworkId(Long.parseLong(payload.get("artwork_id")));
-            order.setAmount(Integer.parseInt(payload.get("amount"))); // Convert paise to INR
+            order.setAmount(Integer.parseInt(payload.get("amount"))); 
             order.setCreatedAt(LocalDateTime.now());
 
             orderRepository.save(order);
