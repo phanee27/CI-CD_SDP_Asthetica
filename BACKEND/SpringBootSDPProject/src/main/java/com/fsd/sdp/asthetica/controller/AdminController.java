@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.sdp.asthetica.model.Artwork;
 import com.fsd.sdp.asthetica.model.User;
+import com.fsd.sdp.asthetica.service.ArtworkService;
 import com.fsd.sdp.asthetica.service.UserService;
 
 @RestController
@@ -25,6 +26,9 @@ import com.fsd.sdp.asthetica.service.UserService;
 public class AdminController {
 	@Autowired
 	private UserService service;
+	
+	@Autowired
+	private ArtworkService artworkService;
 	
 	@GetMapping("/viewallusers")
 	public ResponseEntity<List<User>> viewallusers(){
@@ -67,6 +71,21 @@ public class AdminController {
         } catch (RuntimeException e) {
             return ResponseEntity.status(404).body(e.getMessage());
         }
+    }
+    
+    @GetMapping("/buyercount")
+    public long getBuyerCount() {
+        return service.displaybuyercount();
+    }
+
+    @GetMapping("/sellercount")
+    public long getSellerCount() {
+        return service.displaysellercount();
+    }
+    
+    @GetMapping("/artworkcount")
+    public long getArtworkCount() {
+    	return artworkService.displayartworkcount();
     }
 
 
