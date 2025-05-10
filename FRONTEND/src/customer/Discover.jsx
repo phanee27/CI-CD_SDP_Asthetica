@@ -114,7 +114,8 @@ const Discover = () => {
     <div className="artwork-container">
       <h2 className="artwork-title">Artwork Categories</h2>
       <div className="artwork-category">
-        <div
+        <div style={{backgroundSize: 'cover',
+            backgroundPosition: 'center', backgroundImage:`url(${all})`}}
           className="artwork-category-card all-artworks-card"
           onClick={() => handleCategoryClick("ALL")}
         >

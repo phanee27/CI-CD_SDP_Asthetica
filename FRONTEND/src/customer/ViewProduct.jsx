@@ -270,9 +270,9 @@ const ViewProduct = () => {
             mt: 3,
             borderRadius: 2,
             fontWeight: 'bold',
-            padding: { xs: '0.75rem 1.5rem', sm: '0.75rem 2rem' }, // Larger padding on mobile for better touch
+            padding: { xs: '0.75rem 1.5rem', sm: '0.75rem 2rem' },
             fontSize: { xs: '0.875rem', sm: '1rem' },
-            width: { xs: '100%', sm: 'auto' }, // Full width on mobile
+            width: { xs: '100%', sm: 'auto' }, 
           }}
           onClick={handleBuyNow}
         >

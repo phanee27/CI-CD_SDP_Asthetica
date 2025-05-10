@@ -50,9 +50,9 @@ public class PaymentServiceImpl implements PaymentService {
         return response;
     }
 
-	@Override
-	public boolean verifyPayment(Map<String, String> payload) throws SignatureException {
-		String expectedSignature = payload.get("razorpay_signature");
+    @Override
+    public boolean verifyPayment(Map<String, String> payload) throws SignatureException {
+        String expectedSignature = payload.get("razorpay_signature");
         String actual = payload.get("razorpay_order_id") + "|" + payload.get("razorpay_payment_id");
 
         System.out.println("Actual String for Signature: " + actual);
@@ -67,15 +67,16 @@ public class PaymentServiceImpl implements PaymentService {
             order.setRazorpayOrderId(payload.get("razorpay_order_id"));
             order.setUsername(payload.get("username"));
             order.setArtworkId(Long.parseLong(payload.get("artwork_id")));
+            order.setAmount(Integer.parseInt(payload.get("amount"))); // Convert paise to INR
             order.setCreatedAt(LocalDateTime.now());
 
             orderRepository.save(order);
         }
 
         return verified;
-	}
+    }
 
-	private static String hmacSHA256(String data, String key) throws SignatureException {
+    private static String hmacSHA256(String data, String key) throws SignatureException {
         try {
             Mac mac = Mac.getInstance("HmacSHA256");
             SecretKeySpec secret = new SecretKeySpec(key.getBytes(), "HmacSHA256");
@@ -86,6 +87,4 @@ public class PaymentServiceImpl implements PaymentService {
             throw new SignatureException("Error generating HMAC", e);
         }
     }
-
-   
 }

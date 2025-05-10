@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config";
 import Modal from "react-modal";
-
+import { useNavigate } from "react-router-dom";
+import './styles/Artist.css'
 // Set app element for accessibility
 Modal.setAppElement("#root");
 
 const Artist = () => {
+  const navigate = useNavigate()
   const [sellers, setSellers] = useState([]);
   const [artworks, setArtworks] = useState([]);
   const [selectedArtistId, setSelectedArtistId] = useState("");
@@ -34,6 +36,11 @@ const Artist = () => {
     setIsModalOpen(false);
     setArtworks([]);
     setSelectedArtistId(null);
+  };
+
+  const handleClick = (artworkId) => {
+    sessionStorage.setItem("artworks", JSON.stringify(artworks));
+    navigate(`/view-product/${artworkId}`);
   };
 
   return (
@@ -190,7 +197,9 @@ const Artist = () => {
           {artworks.length > 0 ? (
             artworks.map((artwork) => (
               <div
+                onClick={()=>{handleClick(artwork.id)}}
                 key={artwork.id}
+                className="artwork-artist-card"
                 style={{
                   width: "220px",
                   border: "1px solid #ccc",
@@ -198,6 +207,7 @@ const Artist = () => {
                   padding: "10px",
                   backgroundColor: "#fff",
                   textAlign: "center",
+                  cursor:"pointer"
                 }}
               >
                 <img
