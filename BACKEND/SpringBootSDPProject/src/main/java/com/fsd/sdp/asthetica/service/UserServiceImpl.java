@@ -1,6 +1,6 @@
 package com.fsd.sdp.asthetica.service;
 
-import java.util.List; 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 

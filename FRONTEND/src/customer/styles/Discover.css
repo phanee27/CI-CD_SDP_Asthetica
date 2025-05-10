@@ -136,3 +136,18 @@
   .artwork-category-card:hover{
     transform: scale(1.05);
   }
+
+  .buy-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-top: 8px;
+  margin-left: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.buy-button:hover {
+  background-color: #218838;
+}
