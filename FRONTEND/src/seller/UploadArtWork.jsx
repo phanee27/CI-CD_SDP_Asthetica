@@ -97,7 +97,7 @@ const UploadArtwork = () => {
         width: '',
         height: '',
         category:'',
-        status: 'AVAILABLE'
+        status: ''
       });
       setArtworkImage(null);
 
@@ -124,6 +124,7 @@ const UploadArtwork = () => {
           <input type="number" name="height" value={artwork.height} onChange={handleChange} placeholder="Height (cm)" className="upload-input" step="0.01" required />
           <label htmlFor="status">Art status</label>
           <select name="status" value={artwork.status} onChange={handleChange} className="upload-select">
+            <option value="" disabled>Select status</option>
             <option value="AVAILABLE">Available</option>
             <option value="SOLD">Sold</option>
             <option value="PENDING">Pending</option>
@@ -132,7 +133,7 @@ const UploadArtwork = () => {
           <label htmlFor="category">Art Category</label>
             <select name="category" value={artwork.category} onChange={handleChange} className="upload-select" required>
               <option value="" disabled>Select a category</option> {/* This prevents empty string from being sent */}
-              <option value="POTRAIT">Portrait</option>
+              <option value="POTRAIT">Potrait</option>
               <option value="ABSTRACT">Abstract</option>
               <option value="LANDSCAPE">Landscape</option>
               <option value="HOLISTIC">Holistic</option>
