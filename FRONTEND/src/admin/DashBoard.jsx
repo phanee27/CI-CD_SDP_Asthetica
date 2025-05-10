@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import config from '../../config';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,PieChart, Pie, Cell } from 'recharts';
 
 export default function DashBoard() {
   const [buyerCount, setbuyerCount] = useState(0);
   const [sellerCount, setsellerCount] = useState(0);
   const [artworkCount, setartworkCount] = useState(0);
+  const [categoryCounts, setCategoryCounts] = useState([]);
+  const PIECHARTCOLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']; // You can add more
+
 
   useEffect(() => {
     const fetchCounts = async () => {
@@ -18,6 +21,13 @@ export default function DashBoard() {
         setbuyerCount(buyerRes.data);
         setsellerCount(sellerRes.data);
         setartworkCount(artworkRes.data);
+        const categoryRes = await axios.get(`${config.url}/admin/categorycounts`);
+        const transformed = Object.entries(categoryRes.data).map(([key, value]) => ({
+          name: key,
+          value: value
+        }));
+        setCategoryCounts(transformed);
+
       } catch (error) {
         console.error("Error fetching counts:", error);
       }
@@ -50,19 +60,50 @@ export default function DashBoard() {
         </div>
       </div>
 
-      {/* Add Bar Chart */}
-      <div style={{ marginTop: '50px', width: '100%', height: '400px' }}>
-        <ResponsiveContainer width="35%" height="100%">
-          <BarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="count" fill="#28a745" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+     {/* Charts Side by Side */}
+<div style={{ marginTop: '50px', width: '100%', display: 'flex', justifyContent: 'center', gap: '40px', flexWrap: 'wrap' }}>
+  
+  {/* Bar Chart */}
+  <div style={{ width: '400px', height: '400px', backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 4px 10px rgba(0,0,0,0.1)', padding: '20px' }}>
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="count" fill="#28a745" />
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+
+  {/* Pie Chart */}
+  <div style={{ width: '400px', height: '400px', backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 4px 10px rgba(0,0,0,0.1)', padding: '20px' }}>
+    <ResponsiveContainer width="100%" height="100%">
+      <PieChart>
+        <Pie
+          data={categoryCounts}
+          dataKey="value"
+          nameKey="name"
+          cx="50%"
+          cy="50%"
+          outerRadius={100}
+          fill="#8884d8"
+          label
+        >
+          {categoryCounts.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={PIECHARTCOLORS[index % PIECHARTCOLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip />
+        <Legend />
+      </PieChart>
+    </ResponsiveContainer>
+  </div>
+
+</div>
+
+
     </div>
   );
 }

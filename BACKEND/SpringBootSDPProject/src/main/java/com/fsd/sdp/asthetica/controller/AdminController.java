@@ -3,6 +3,7 @@ package com.fsd.sdp.asthetica.controller;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -105,6 +106,11 @@ public class AdminController {
         } else {
             return ResponseEntity.status(404).body("Artwork not found");
         }
+    }
+    
+    @GetMapping("/categorycounts")
+    public Map<String, Integer> getCategoryCounts() {
+        return artworkService.getCategoryCounts();
     }
 
 }
