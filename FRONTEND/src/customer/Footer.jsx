@@ -55,7 +55,12 @@ const Footer = () => {
       </div>
       <div className="footer-copyright">
         <p>
-          © {new Date().getFullYear()} Aesthetica. All Rights Reserved.
+          © {new Date().getFullYear()} Aesthetica. All Rights Reserved. Designed and Developed by {""}
+          <a href="https://github.com/phanee27" target="_blank" style={{ color: "lightblue", textDecoration: "none"}} >Paneendra</a>
+          {",  "}
+          <a href="https://github.com/isuryaprakashh" target="_blank" style={{ color: "lightblue", textDecoration: "none" }}>Surya Prakash</a>
+          {" and "}
+          <a href="https://github.com/CharanTeja-6825" target="_blank" style={{ color: "lightblue", textDecoration: "none" }}>Charan Teja</a>
         </p>
       </div>
     </div>
