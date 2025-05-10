@@ -6,7 +6,6 @@ import DashBoard from "./DashBoard";
 import ManageUsers from "./ManageUsers";
 import ManageArtWorks from "./ManageArtWorks";
 import Transactions from "./Transactions";
-import ReportsAnalytics from "./ReportsAnalytics";
 import Login from "../authentication/Login";
 import { useAuth } from "../contextapi/AuthContext";
 import SellerRequest from "./SellerRequest";
@@ -35,7 +34,6 @@ const AdminNavbar = () => {
           <Link to="/admin-dashboard">DashBoard</Link>
           <Link to="/manage-users">ManageUsers</Link>
           <Link to="/sellerrequest">SellerApproval</Link>
-          <Link to="/reports-analytics">ReportsAnalytics</Link>
           <Link to="/transactions">Transactions</Link>
           <Link to='/manage-auctions'>ManageAuctions</Link>
         </div>
@@ -47,7 +45,6 @@ const AdminNavbar = () => {
       <Routes>
         <Route path="/admin-dashboard" element={<DashBoard />} />
         <Route path="/manage-users" element={<ManageUsers />} />
-        <Route path="/reports-analytics" element={<ReportsAnalytics />} />
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sellerrequest" element={<SellerRequest />} />

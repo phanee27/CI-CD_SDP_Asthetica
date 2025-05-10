@@ -67,8 +67,8 @@ const Artist = () => {
             textAlign: "center",
             transition: "transform 0.3s ease, box-shadow 0.3s ease",
           }}
-          onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-          onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
         >
           {seller.profileImage ? (
             <img
@@ -103,19 +103,19 @@ const Artist = () => {
               {seller.name?.charAt(0).toUpperCase() || "U"}
             </div>
           )}
-          <h3 style={{ fontSize: "18px", fontWeight: "600", color: "#333" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: "600", color: "#222", marginBottom: "10px" }}>
             {seller.name}
           </h3>
-          <p style={{ fontSize: "14px", color: "#777" }}>
+          <p style={{ fontSize: "14px", color: "#444", marginBottom: "6px" }}>
             <strong>Username:</strong> {seller.username}
           </p>
-          <p style={{ fontSize: "14px", color: "#777" }}>
+          <p style={{ fontSize: "14px", color: "#444", marginBottom: "6px" }}>
             <strong>Email:</strong> {seller.email}
           </p>
-          <p style={{ fontSize: "14px", color: "#777" }}>
+          <p style={{ fontSize: "14px", color: "#444", marginBottom: "6px" }}>
             <strong>Contact:</strong> {seller.contact}
           </p>
-          <p style={{ fontSize: "14px", color: "#777", marginBottom: "20px" }}>
+          <p style={{ fontSize: "14px", color: "#444", marginBottom: "20px" }}>
             <strong>Status:</strong> {seller.status || "N/A"}
           </p>
           <button
@@ -131,8 +131,8 @@ const Artist = () => {
               fontWeight: "600",
               transition: "background-color 0.3s ease, transform 0.3s ease",
             }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#005bb5"}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "#0066cc"}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#005bb5")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#0066cc")}
           >
             View Artworks
           </button>
@@ -153,7 +153,7 @@ const Artist = () => {
             margin: "auto",
             padding: "30px",
             borderRadius: "12px",
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
             boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
@@ -179,7 +179,14 @@ const Artist = () => {
           &times;
         </button>
 
-        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
+        <h2
+          style={{
+            textAlign: "center",
+            marginBottom: "30px",
+            fontWeight: "600",
+            color: "#222",
+          }}
+        >
           Artworks by Artist {selectedArtistId}
         </h2>
 
@@ -204,7 +211,7 @@ const Artist = () => {
                   width: "220px",
                   border: "1px solid #ccc",
                   borderRadius: "10px",
-                  padding: "10px",
+                  padding: "15px",
                   backgroundColor: "#fff",
                   textAlign: "center",
                   cursor:"pointer"
@@ -217,15 +224,33 @@ const Artist = () => {
                     width: "100%",
                     height: "140px",
                     objectFit: "cover",
-                    borderRadius: "10px",
+                    borderRadius: "8px",
+                    marginBottom: "12px",
                   }}
                 />
-                <h4>{artwork.title}</h4>
-                <p>{artwork.description}</p>
+                <h4
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: "#222",
+                    marginBottom: "8px",
+                  }}
+                >
+                  {artwork.title}
+                </h4>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    color: "#555",
+                    lineHeight: "1.4",
+                  }}
+                >
+                  {artwork.description}
+                </p>
               </div>
             ))
           ) : (
-            <p>No artworks found.</p>
+            <p style={{ fontSize: "16px", color: "#555" }}>No artworks found.</p>
           )}
         </div>
       </Modal>

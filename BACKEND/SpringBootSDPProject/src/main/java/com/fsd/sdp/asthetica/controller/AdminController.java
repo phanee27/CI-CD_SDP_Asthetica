@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.sdp.asthetica.model.Artwork;
 import com.fsd.sdp.asthetica.model.Auction;
+import com.fsd.sdp.asthetica.model.Order;
 import com.fsd.sdp.asthetica.model.User;
 import com.fsd.sdp.asthetica.service.ArtworkService;
 import com.fsd.sdp.asthetica.service.AuctionService;
@@ -139,6 +140,13 @@ public class AdminController {
     public Map<String, Integer> getCategoryCounts() {
         return artworkService.getCategoryCounts();
     }
+    
+    @GetMapping("/ordersviewall")
+    public ResponseEntity<List<Order>> getAllOrders() {
+        List<Order> orders = service.getAllOrders(); // Use your service layer
+        return ResponseEntity.ok(orders);
+    }
+
 
     
 }

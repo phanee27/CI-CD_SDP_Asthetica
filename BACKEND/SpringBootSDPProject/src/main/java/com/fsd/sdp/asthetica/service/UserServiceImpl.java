@@ -1,17 +1,19 @@
 package com.fsd.sdp.asthetica.service;
 
-import java.io.ObjectInputFilter.Status;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.*;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fsd.sdp.asthetica.enumeration.Role;
+import com.fsd.sdp.asthetica.model.Order;
 import com.fsd.sdp.asthetica.model.User;
+import com.fsd.sdp.asthetica.repository.OrderRepository;
 import com.fsd.sdp.asthetica.repository.UserRepository;
+
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -19,6 +21,8 @@ public class UserServiceImpl implements UserService{
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private UserRepository repository;
+	@Autowired
+	private OrderRepository orderRepository;
 	
 	@Override
 	public String adduser(User user) {
@@ -147,7 +151,10 @@ public class UserServiceImpl implements UserService{
 	    return repository.findApprovedSellers();
 	}
 
-	
+	@Override
+	public List<Order> getAllOrders() {
+	    return orderRepository.findAll();
+	}
 
 	
 	

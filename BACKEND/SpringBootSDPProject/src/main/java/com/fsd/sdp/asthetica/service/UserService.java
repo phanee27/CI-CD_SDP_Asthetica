@@ -3,6 +3,7 @@ package com.fsd.sdp.asthetica.service;
 
 import java.util.List;
 
+import com.fsd.sdp.asthetica.model.Order;
 import com.fsd.sdp.asthetica.model.User;
 
 
@@ -25,7 +26,7 @@ public interface UserService {
 	public long displaysellercount();
 	
 	List<User> getApprovedSellers();
-
+	List<Order> getAllOrders();
 	
 	
 }
