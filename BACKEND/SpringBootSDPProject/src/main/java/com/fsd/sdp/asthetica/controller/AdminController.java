@@ -1,8 +1,8 @@
 package com.fsd.sdp.asthetica.controller;
 
 
+import java.util.Collections;
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.fsd.sdp.asthetica.model.Artwork;
 import com.fsd.sdp.asthetica.model.User;
 import com.fsd.sdp.asthetica.service.ArtworkService;
 import com.fsd.sdp.asthetica.service.UserService;
@@ -88,6 +88,23 @@ public class AdminController {
     	return artworkService.displayartworkcount();
     }
 
+    @GetMapping("/viewbyid/{aid}")
+    public ResponseEntity<List<Artwork>> viewbyartist(@PathVariable int aid) {
+      try {
+        return ResponseEntity.ok(artworkService.viewartworksbyartist(aid));
+      } catch (Exception e) {
+        return ResponseEntity.status(500).body(Collections.emptyList());
+      }
+    }
 
+    @DeleteMapping("/deleteart/{aid}")
+    public ResponseEntity<String> deletebyID(@PathVariable int aid) {
+        boolean deleted = artworkService.deleteartwork(aid);
+        if (deleted) {
+            return ResponseEntity.ok("Artwork successfully deleted");
+        } else {
+            return ResponseEntity.status(404).body("Artwork not found");
+        }
+    }
 
 }
