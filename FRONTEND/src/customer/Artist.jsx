@@ -9,7 +9,7 @@ Modal.setAppElement("#root");
 const Artist = () => {
   const [sellers, setSellers] = useState([]);
   const [artworks, setArtworks] = useState([]);
-  const [selectedArtistId, setSelectedArtistId] = useState(null);
+  const [selectedArtistId, setSelectedArtistId] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -19,8 +19,8 @@ const Artist = () => {
       .catch((error) => console.error("Error fetching sellers:", error));
   }, []);
 
-  const handleViewArtworks = (artistId) => {
-    setSelectedArtistId(artistId);
+  const handleViewArtworks = (artistId,artistName) => {
+    setSelectedArtistId(artistName);
     axios
       .get(`${config.url}/seller/myartworks?artistId=${artistId}`)
       .then((response) => {
@@ -112,7 +112,7 @@ const Artist = () => {
             <strong>Status:</strong> {seller.status || "N/A"}
           </p>
           <button
-            onClick={() => handleViewArtworks(seller.id)}
+            onClick={() => handleViewArtworks(seller.id,seller.name)}
             style={{
               backgroundColor: "#0066cc",
               color: "#fff",

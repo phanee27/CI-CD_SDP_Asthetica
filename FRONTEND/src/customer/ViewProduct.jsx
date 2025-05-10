@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -11,9 +11,9 @@ const PoppinsTypography = styled(Typography)({
 });
 
 const ViewProduct = () => {
-  const [artist, setArtist] = useState(''); // Hook 1
-  const [artworks, setArtworks] = useState([]); // Hook 2
-  const { id } = useParams(); // Hook 3
+  const [artist, setArtist] = useState('');
+  const [artworks, setArtworks] = useState([]);
+  const { id } = useParams();
   const username = localStorage.getItem('username');
   let isCustomerLoggedIn = sessionStorage.getItem('isCustomerLoggedIn') === 'true';
 
@@ -23,7 +23,7 @@ const ViewProduct = () => {
     sessionStorage.setItem('isCustomerLoggedIn', 'true');
   }
 
-  // Hook 4: Fetch artworks
+  // Fetch artworks
   useEffect(() => {
     const fetchArtworks = async () => {
       try {
@@ -46,9 +46,9 @@ const ViewProduct = () => {
 
   const painting = artworks.find((art) => art.id.toString() === id);
 
-  // Hook 5: Fetch artist (moved before early returns)
+  // Fetch artist
   useEffect(() => {
-    if (!painting) return; // Skip if painting is not found
+    if (!painting) return;
 
     const handleArtist = async (artistId) => {
       try {
@@ -60,9 +60,9 @@ const ViewProduct = () => {
     };
 
     handleArtist(painting.artistId);
-  }, [painting?.artistId]); // Use optional chaining to handle undefined painting
+  }, [painting?.artistId]);
 
-  // Early returns (now after all hooks)
+  // Early returns
   if (!Array.isArray(artworks) || artworks.length === 0) {
     return <PoppinsTypography variant="h6">Loading artwork details...</PoppinsTypography>;
   }
@@ -120,6 +120,7 @@ const ViewProduct = () => {
               razorpay_signature: response.razorpay_signature,
               username,
               artwork_id: id,
+              amount: painting.price // Add amount to the payload
             };
 
             const verifyRes = await axios.post(`${config.url}/api/payment/verify`, verifyPayload);
@@ -130,7 +131,8 @@ const ViewProduct = () => {
               toast.error('Payment verification failed!');
             }
           } catch (err) {
-            toast.error('Verification failed. Try again.');
+            const errorMessage = err.response?.data || 'Verification failed. Try again.';
+            toast.error(errorMessage);
           }
         },
         prefill: {
@@ -146,25 +148,29 @@ const ViewProduct = () => {
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (err) {
-      toast.error('Payment initiation failed.');
+      const errorMessage = err.response?.data || 'Payment initiation failed.';
+      toast.error(errorMessage);
     }
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
+    <Box
+      sx={{
         maxWidth: '1200px',
         margin: '2rem auto',
         border: '2px solid #ccc',
         borderRadius: '12px',
-        padding: '1rem',
+        padding: { xs: '1rem', sm: '1.5rem', md: '2rem' },
         boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' }, // Stack vertically on mobile
+        gap: { xs: '1rem', sm: '2rem' }, // Responsive gap
       }}
     >
-      <div
-        style={{
-          width: '400px',
+      {/* Image Section */}
+      <Box
+        sx={{
+          width: { xs: '100%', sm: '400px' }, // Full width on mobile, fixed width on larger screens
           flexShrink: 0,
           display: 'flex',
           justifyContent: 'center',
@@ -181,49 +187,99 @@ const ViewProduct = () => {
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
           }}
         />
-      </div>
+      </Box>
 
-      <div
-        style={{
+      {/* Details Section */}
+      <Box
+        sx={{
           flex: 1,
-          marginLeft: '2rem',
           backgroundColor: 'white',
           borderRadius: '12px',
-          padding: '2rem',
+          padding: { xs: '1rem', sm: '1.5rem', md: '2rem' },
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
         }}
       >
-        <PoppinsTypography variant="h4" gutterBottom>
+        <PoppinsTypography
+          variant="h4"
+          gutterBottom
+          sx={{
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }, // Responsive font size
+          }}
+        >
           {painting.title}
         </PoppinsTypography>
-        <PoppinsTypography variant="subtitle1" color="textSecondary">
+        <PoppinsTypography
+          variant="subtitle1"
+          color="textSecondary"
+          sx={{
+            fontSize: { xs: '0.9rem', sm: '1rem' },
+          }}
+        >
           By: {artist}
         </PoppinsTypography>
-        <PoppinsTypography variant="h5" color="green" sx={{ mt: 2 }}>
+        <PoppinsTypography
+          variant="h5"
+          color="green"
+          sx={{
+            mt: 2,
+            fontSize: { xs: '1.25rem', sm: '1.5rem' },
+          }}
+        >
           ₹{painting.price.toLocaleString()}
         </PoppinsTypography>
-        <PoppinsTypography variant="body1" sx={{ mt: 2 }}>
+        <PoppinsTypography
+          variant="body1"
+          sx={{
+            mt: 2,
+            fontSize: { xs: '0.875rem', sm: '1rem' },
+          }}
+        >
           {painting.description}
         </PoppinsTypography>
-        <PoppinsTypography variant="body2" sx={{ mt: 2 }}>
+        <PoppinsTypography
+          variant="body2"
+          sx={{
+            mt: 2,
+            fontSize: { xs: '0.75rem', sm: '0.875rem' },
+          }}
+        >
           Dimensions: {painting.height} x {painting.width} cm
         </PoppinsTypography>
-        <PoppinsTypography variant="body2" sx={{ mt: 1 }}>
+        <PoppinsTypography
+          variant="body2"
+          sx={{
+            mt: 1,
+            fontSize: { xs: '0.75rem', sm: '0.875rem' },
+          }}
+        >
           Category: {painting.category}
         </PoppinsTypography>
-        <PoppinsTypography variant="body2" sx={{ mt: 1 }}>
+        <PoppinsTypography
+          variant="body2"
+          sx={{
+            mt: 1,
+            fontSize: { xs: '0.75rem', sm: '0.875rem' },
+          }}
+        >
           Status: <strong>{painting.status}</strong>
         </PoppinsTypography>
         <Button
           variant="contained"
           color="primary"
-          sx={{ mt: 3, borderRadius: 2, fontWeight: 'bold' }}
+          sx={{
+            mt: 3,
+            borderRadius: 2,
+            fontWeight: 'bold',
+            padding: { xs: '0.75rem 1.5rem', sm: '0.75rem 2rem' }, // Larger padding on mobile for better touch
+            fontSize: { xs: '0.875rem', sm: '1rem' },
+            width: { xs: '100%', sm: 'auto' }, // Full width on mobile
+          }}
           onClick={handleBuyNow}
         >
           Buy Now
         </Button>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
