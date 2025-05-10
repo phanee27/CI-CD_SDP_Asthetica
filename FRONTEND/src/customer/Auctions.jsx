@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
 import './styles/Auction.css';
+import config from '../../config';
 
 function Auctions() {
   const [auctions, setAuctions] = useState([]);
@@ -17,12 +18,12 @@ function Auctions() {
   const buyerName = buyer?.name;
 
   const fetchAuctions = async () => {
-    const response = await axios.get('http://localhost:6969/customer/live');
+    const response = await axios.get(`${config.url}/customer/live`);
     setAuctions(response.data);
   };
 
   const fetchBids = async (auctionId) => {
-    const response = await axios.get(`http://localhost:6969/customer/bids/${auctionId}`);
+    const response = await axios.get(`${config.url}/customer/bids/${auctionId}`);
     setBids(response.data);
   };
 
@@ -35,7 +36,7 @@ function Auctions() {
       params.append('amount', bidAmount);
       params.append('buyerName',buyerName);
 
-      const response = await axios.post('http://localhost:6969/customer/bid', params);
+      const response = await axios.post(`${config.url}/customer/bid`, params);
       setBidSuccess(response.data);
       setBidAmount('');
       fetchAuctions();
