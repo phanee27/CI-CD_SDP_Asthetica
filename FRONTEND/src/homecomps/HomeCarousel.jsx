@@ -10,13 +10,13 @@ const HomeCarousel = () => {
   const itemsRef = useRef([]);
 
   const images = [
-    "https://i.pinimg.com/736x/bf/7c/34/bf7c34488b5ea4bef4d725d706de0b92.jpg",
-    "https://i.pinimg.com/736x/f3/21/07/f32107f833efeb1687557e8400d8419c.jpg",
-    "https://i.pinimg.com/474x/77/c5/5e/77c55ea960afac64baa1a1ceaaefc569.jpg",
-    "https://i.pinimg.com/474x/1e/fb/17/1efb17fbed67de14fc39e4c5ba8114de.jpg",
-    "https://i.pinimg.com/474x/87/12/77/871277c93bed3015c3ce5b6ae4dbe3f0.jpg",
-    "https://i.pinimg.com/474x/c3/89/72/c389727463b0bb82a68cf739a79494fc.jpg",
-    "https://i.pinimg.com/474x/db/f5/45/dbf54574a0fb6e43de01ffe4c0606bea.jpg",
+    "https://i.pinimg.com/736x/8b/52/33/8b52339d2b72042a52272c0bec355459.jpg",
+    "https://i.pinimg.com/736x/61/02/51/6102514bb5552372faaaceff27563064.jpg",
+    "https://i.pinimg.com/736x/2e/97/7a/2e977a8c7107bf0ddf871e7c152a6486.jpg",
+    "https://i.pinimg.com/736x/86/46/3c/86463c39bbd062cfef45ce4ec5cc84ff.jpg",
+    "https://i.pinimg.com/736x/c1/e2/ca/c1e2ca5d02005ec45f1c8db84c1c1ffc.jpg",
+    "https://i.pinimg.com/736x/5b/4f/54/5b4f54704ecc5aef7c80aa54ca265ffa.jpg",
+    "https://i.pinimg.com/736x/c0/09/d9/c009d94c2748d61f24cb4ab897e36965.jpg",
   ];
 
   let width, height, totalWidth, margin = 20;
