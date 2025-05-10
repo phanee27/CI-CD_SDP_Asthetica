@@ -15,7 +15,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	@Query("SELECT u.name FROM User u WHERE u.id = :id")
 	String findNameById(@Param("id") int cid);
 	public List<User> findByStatusIsNotNull();
-	
 	long countByRole(Role role);
-
+	@Query("SELECT u FROM User u WHERE u.role = 'SELLER' AND u.status = 'APPROVED'")
+	List<User> findApprovedSellers();
 }

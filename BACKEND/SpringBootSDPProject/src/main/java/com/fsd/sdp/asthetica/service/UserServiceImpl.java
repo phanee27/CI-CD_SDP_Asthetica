@@ -1,5 +1,6 @@
 package com.fsd.sdp.asthetica.service;
 
+import java.io.ObjectInputFilter.Status;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -140,7 +141,13 @@ public class UserServiceImpl implements UserService{
 		return repository.findNameById(cid);
 	}
 
+	
+	@Override
+	public List<User> getApprovedSellers() {
+	    return repository.findApprovedSellers();
+	}
 
+	
 
 	
 	

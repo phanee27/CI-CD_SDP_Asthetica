@@ -143,5 +143,11 @@ public class CustomerController {
     public List<Bid> getBids(@PathVariable Long auctionId) {
         return bidService.getBidsForAuction(auctionId);
     }
+    
+    @GetMapping("/approvedsellers")
+    public List<User> getApprovedSellers() {
+        return service.getApprovedSellers();
+    }
+
 
 }
