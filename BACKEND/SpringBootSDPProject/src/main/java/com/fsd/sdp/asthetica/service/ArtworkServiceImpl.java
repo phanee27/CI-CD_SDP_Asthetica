@@ -1,10 +1,13 @@
 package com.fsd.sdp.asthetica.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.fsd.sdp.asthetica.enumeration.Category;
 import com.fsd.sdp.asthetica.model.Artwork;
 import com.fsd.sdp.asthetica.repository.ArtworkRepository;
@@ -61,5 +64,15 @@ public class ArtworkServiceImpl implements ArtworkService
 	public long displayartworkcount() {
 		return artworkRepository.count();
 	}
+	
+	 @Override
+	    public Map<String, Integer> getCategoryCounts() {
+	        Map<String, Integer> counts = new HashMap<>();
+	        for (Category category : Category.values()) {
+	            int count = (int) artworkRepository.countByCategory(category);
+	            counts.put(category.name(), count);
+	        }
+	        return counts;
+	    }
 
 }

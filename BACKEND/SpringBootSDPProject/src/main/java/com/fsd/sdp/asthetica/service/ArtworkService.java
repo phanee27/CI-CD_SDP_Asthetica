@@ -1,6 +1,7 @@
 package com.fsd.sdp.asthetica.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fsd.sdp.asthetica.enumeration.Category;
 import com.fsd.sdp.asthetica.model.Artwork;
@@ -15,5 +16,6 @@ public interface ArtworkService
 	public boolean deleteartwork(int aid);
 	
 	public long displayartworkcount();
+	public Map<String, Integer> getCategoryCounts();
 	
 }
