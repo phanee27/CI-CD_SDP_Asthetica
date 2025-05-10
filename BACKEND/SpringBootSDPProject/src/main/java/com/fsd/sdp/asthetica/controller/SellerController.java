@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.fsd.sdp.asthetica.model.Artwork;
+import com.fsd.sdp.asthetica.model.Auction;
 import com.fsd.sdp.asthetica.service.ArtworkService;
+import com.fsd.sdp.asthetica.service.AuctionService;
 
 
 
@@ -27,7 +29,9 @@ public class SellerController
 	
 	  @Autowired
 	    private ArtworkService artworkService;
-
+	  @Autowired
+	    private AuctionService auctionService;
+	  
 	  @PostMapping("/upload")
 	  public ResponseEntity<?> uploadArtwork(@RequestBody Artwork artworkRequest) {
 	      try {
@@ -41,6 +45,11 @@ public class SellerController
 	  public ResponseEntity<List<Artwork>> viewMyArtworks(@RequestParam int artistId) {
 	      List<Artwork> artworkList = artworkService.viewartworksbyartist(artistId);
 	      return ResponseEntity.ok(artworkList);
+	  }
+
+	  @PostMapping("/request")
+	  public Auction requestAuction(@RequestBody Auction auction) {
+	      return auctionService.requestAuction(auction, auction.getArtwork());
 	  }
 
 

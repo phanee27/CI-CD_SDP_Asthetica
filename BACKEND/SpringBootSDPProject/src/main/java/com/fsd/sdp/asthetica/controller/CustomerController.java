@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.sdp.asthetica.enumeration.Category;
 import com.fsd.sdp.asthetica.model.Artwork;
+import com.fsd.sdp.asthetica.model.Auction;
+import com.fsd.sdp.asthetica.model.Bid;
 import com.fsd.sdp.asthetica.model.User;
 import com.fsd.sdp.asthetica.service.ArtworkService;
+import com.fsd.sdp.asthetica.service.AuctionService;
+import com.fsd.sdp.asthetica.service.BidService;
 import com.fsd.sdp.asthetica.service.UserService;
 import com.fsd.sdp.asthetica.service.WishlistService;
 
@@ -33,7 +37,12 @@ public class CustomerController {
 	@Autowired
 	private WishlistService wishlistService;
 
-	
+	@Autowired
+    private AuctionService auctionService;
+
+    @Autowired
+    private BidService bidService;
+    
 	@PostMapping("/adduser")
 	public String adduser(@RequestBody User user) {
 		return service.adduser(user);
@@ -110,5 +119,29 @@ public class CustomerController {
 	        return ResponseEntity.status(500).body("Unable to filter by category");
 	    }
 	}
+	
+	@GetMapping("/live")
+    public List<Auction> getLiveAuctions() {
+        return auctionService.getLiveAuctions();
+    }
+
+	@PostMapping("/bid")
+	public ResponseEntity<String> placeBid(@RequestParam Long auctionId,
+	                                       @RequestParam Long buyerId,
+	                                       @RequestParam Double amount) {
+	    try {
+	        Bid bid = bidService.placeBid(auctionId, buyerId, amount);
+	        return ResponseEntity.ok("Bid placed successfully!");
+	    } catch (IllegalArgumentException | IllegalStateException ex) {
+	        // Return appropriate error message
+	        return ResponseEntity.status(400).body(ex.getMessage());
+	    }
+	}
+
+
+    @GetMapping("/bids/{auctionId}")
+    public List<Bid> getBids(@PathVariable Long auctionId) {
+        return bidService.getBidsForAuction(auctionId);
+    }
 
 }

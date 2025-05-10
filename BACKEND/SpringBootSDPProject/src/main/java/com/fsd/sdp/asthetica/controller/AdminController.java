@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.sdp.asthetica.model.Artwork;
+import com.fsd.sdp.asthetica.model.Auction;
 import com.fsd.sdp.asthetica.model.User;
 import com.fsd.sdp.asthetica.service.ArtworkService;
+import com.fsd.sdp.asthetica.service.AuctionService;
 import com.fsd.sdp.asthetica.service.UserService;
 
 @RestController
@@ -30,6 +32,9 @@ public class AdminController {
 	
 	@Autowired
 	private ArtworkService artworkService;
+	
+	 @Autowired
+	    private AuctionService auctionService;
 	
 	@GetMapping("/viewallusers")
 	public ResponseEntity<List<User>> viewallusers(){
@@ -108,9 +113,26 @@ public class AdminController {
         }
     }
     
+    
+    @GetMapping("/pending")
+    public List<Auction> viewPendingAuctions() {
+        return auctionService.getPendingAuctions();
+    }
+
+    @PutMapping("/approve/{id}")
+    public Auction approveAuction(@PathVariable Long id) {
+        return auctionService.approveAuction(id);
+    }
+
+    @PutMapping("/reject/{id}")
+    public Auction rejectAuction(@PathVariable Long id) {
+        return auctionService.rejectAuction(id);
+    }
+    
     @GetMapping("/categorycounts")
     public Map<String, Integer> getCategoryCounts() {
         return artworkService.getCategoryCounts();
     }
+
 
 }
