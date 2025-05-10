@@ -1,6 +1,7 @@
 package com.fsd.sdp.asthetica.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,18 @@ public class ArtworkServiceImpl implements ArtworkService
 		return artworkRepository.findByCategory(category);
 	}
 
+	@Override
+	public boolean deleteartwork(int aid) {
+	    Optional<Artwork> obj = artworkRepository.findById(aid);
+	    if (obj.isPresent()) {
+	        artworkRepository.delete(obj.get());
+	        return true;
+	    }
+	    return false;
+	}
+
+
+	
 	@Override
 	public long displayartworkcount() {
 		return artworkRepository.count();

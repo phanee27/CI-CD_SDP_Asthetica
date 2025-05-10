@@ -12,6 +12,7 @@ public interface ArtworkService
 	public Artwork viewartworkbyid(int id);
 	public List<Artwork> viewartworksbyartist(int artistId);
 	public List<Artwork> viewbycategory(Category category);
+	public boolean deleteartwork(int aid);
 	
 	public long displayartworkcount();
 	

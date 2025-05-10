@@ -34,7 +34,6 @@ const AdminNavbar = () => {
           <Link to="/admin-dashboard">DashBoard</Link>
           <Link to="/manage-users">ManageUsers</Link>
           <Link to="/sellerrequest">SellerApproval</Link>
-          <Link to="/manage-artworks">ManageArtWorks</Link>
           <Link to="/reports-analytics">ReportsAnalytics</Link>
           <Link to="/transactions">Transactions</Link>
         </div>
@@ -46,11 +45,11 @@ const AdminNavbar = () => {
       <Routes>
         <Route path="/admin-dashboard" element={<DashBoard />} />
         <Route path="/manage-users" element={<ManageUsers />} />
-        <Route path="/manage-artworks" element={<ManageArtWorks />} />
         <Route path="/reports-analytics" element={<ReportsAnalytics />} />
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sellerrequest" element={<SellerRequest />} />
+        <Route path="/manage-artworks/:userId/artworks" element={<ManageArtWorks/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

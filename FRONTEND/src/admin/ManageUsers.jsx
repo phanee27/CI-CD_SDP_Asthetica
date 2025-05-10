@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config";
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import {
   Table,
   TableHead,
@@ -13,8 +14,10 @@ import {
   Button,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 
 const ManageUsers = () => {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
 
@@ -26,7 +29,9 @@ const ManageUsers = () => {
       setError("Failed to fetch users: " + err.message);
     }
   };
-
+  const handleManage = (id) => {
+    navigate(`/manage-artworks/${id}/artworks`)
+  }
   const deleteUser = async (id) => {
     try {
       const response = await axios.delete(`${config.url}/admin/deleteuser?cid=${cid}`);
@@ -42,7 +47,7 @@ const ManageUsers = () => {
   }, []);
 
   const font = { fontFamily: "Montserrat, sans-serif" };
-  const headings = ["ID", "Name", "Gender", "Email", "Username", "Contact", "Role", "Delete"];
+  const headings = ["ID", "Name", "Gender", "Email", "Username", "Contact", "Role", "Delete", "Manage"];
 
   return (
     <div style={{ padding: "30px", ...font }}>
@@ -99,6 +104,16 @@ const ManageUsers = () => {
                       onClick={() => deleteUser(user.id)}
                     >
                       Delete
+                    </Button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      startIcon={<ManageAccountsIcon/>}
+                      onClick={() => handleManage(user.id)}
+                    >
+                      Manage
                     </Button>
                   </TableCell>
                 </TableRow>
