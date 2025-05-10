@@ -23,6 +23,7 @@ import Discover from "./Discover";
 
 import { useAuth } from "../contextapi/AuthContext";
 import ViewProduct from "./ViewProduct";
+import MyOrders from "./MyOrders";
 
 
 const CustomerNavbar = () => {
@@ -55,6 +56,7 @@ const CustomerNavbar = () => {
           <Link to="/discover" onClick={() => setMenuOpen(false)}>Discover</Link>
           <Link to="/artists" onClick={() => setMenuOpen(false)}>Artists</Link>
           <Link to="/auctions" onClick={() => setMenuOpen(false)}>Auctions</Link>
+          <Link to='/myorders' onClick={()=> setMenuOpen(false)}>My Orders</Link>
         </div>
 
         <div className={`nav-end-section ${menuOpen ? "open" : ""}`}>
@@ -77,6 +79,7 @@ const CustomerNavbar = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
+        <Route path="/myorders" element={<MyOrders/>}/>
         <Route path="*" Component={NotFound} />
         <Route path="/view-product/:id" element={<ViewProduct/>}/>
       </Routes>

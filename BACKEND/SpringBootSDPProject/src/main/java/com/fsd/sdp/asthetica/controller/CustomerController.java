@@ -133,7 +133,7 @@ public class CustomerController {
 		
 											
 	    try {
-	        Bid bid = bidService.placeBid(auctionId, buyerId, amount,buyerName);
+	        bidService.placeBid(auctionId, buyerId, amount,buyerName);
 	        return ResponseEntity.ok("Bid placed successfully!");
 	    } catch (IllegalArgumentException | IllegalStateException ex) {
 	        // Return appropriate error message
