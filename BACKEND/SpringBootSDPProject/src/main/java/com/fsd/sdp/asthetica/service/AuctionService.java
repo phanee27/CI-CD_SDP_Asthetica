@@ -6,9 +6,10 @@ import com.fsd.sdp.asthetica.model.Auction;
 
 public interface AuctionService 
 {
-    Auction requestAuction(Auction auction, Artwork artwork);
-    List<Auction> getPendingAuctions();
-    Auction approveAuction(Long auctionId);
-    Auction rejectAuction(Long auctionId);
-    List<Auction> getLiveAuctions();
+   public Auction requestAuction(Auction auction, Artwork artwork);
+   public  Auction approveAuction(Long auctionId);
+   public  Auction rejectAuction(Long auctionId);
+   public  List<Auction> getLiveAuctions();
+   public List<Auction> getApprovedAuctions();
+   public List<Auction> getPendingAuctions();
 }

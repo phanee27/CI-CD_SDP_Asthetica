@@ -22,7 +22,7 @@ public class BidServiceImpl implements BidService {
     private AuctionRepository auctionRepository;
 
     @Override
-    public Bid placeBid(Long auctionId, Long buyerId, Double amount) {
+    public Bid placeBid(Long auctionId, Long buyerId, Double amount,String buyerName) {
         Optional<Auction> optionalAuction = auctionRepository.findById(auctionId);
         
         if (!optionalAuction.isPresent()) {
@@ -52,6 +52,7 @@ public class BidServiceImpl implements BidService {
         bid.setAuction(auction);
         bid.setBuyerId(buyerId);
         bid.setAmount(amount);
+        bid.setBuyerName(buyerName);
         bid.setTimestamp(LocalDateTime.now());
 
         // Update auction details

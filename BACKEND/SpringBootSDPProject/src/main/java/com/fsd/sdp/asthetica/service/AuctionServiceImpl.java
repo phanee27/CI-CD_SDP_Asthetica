@@ -23,22 +23,26 @@ public class AuctionServiceImpl implements AuctionService {
 
     @Override
     public Auction requestAuction(Auction auction, Artwork artwork) {
-        // Save the artwork first
-        Artwork savedArtwork = artworkRepository.save(artwork);
+        // Check if the artwork already exists (e.g., based on its ID or other unique properties)
+        Artwork existingArtwork = artworkRepository.findById(artwork.getId()).orElse(null);
 
-        // Set it in auction and initialize auction fields
-        auction.setArtwork(savedArtwork);
+        if (existingArtwork == null) {
+            // If the artwork doesn't exist, save the new artwork
+            existingArtwork = artworkRepository.save(artwork);
+        }
+
+        // Set the artwork in the auction
+        auction.setArtwork(existingArtwork);
+
+        // Set the auction status and initial bid
         auction.setStatus(AuctionStatus.PENDING);
         auction.setHighestBid(auction.getStartingBid());
 
-        // Now save the auction
+        // Save the auction
         return auctionRepository.save(auction);
     }
 
-    @Override
-    public List<Auction> getPendingAuctions() {
-        return auctionRepository.findByStatus(AuctionStatus.PENDING);
-    }
+   
 
     @Override
     public Auction approveAuction(Long auctionId) {
@@ -66,4 +70,15 @@ public class AuctionServiceImpl implements AuctionService {
     public List<Auction> getLiveAuctions() {
         return auctionRepository.findByStatus(AuctionStatus.APPROVED);
     }
+    @Override
+    public List<Auction> getApprovedAuctions() {
+        return auctionRepository.findByStatus(AuctionStatus.APPROVED);
+        
+    }
+    @Override
+    public List<Auction> getPendingAuctions() {
+        return auctionRepository.findByStatus(AuctionStatus.PENDING);
+    }
+
+
 }
