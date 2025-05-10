@@ -19,6 +19,7 @@ public interface UserService {
 	public String rejectseller(int cid);
 	public String removeseller(int cid);
 	public String requestToBecomeSeller(int cid);
+	public String getusername(int cid);
 	
 	public long displaybuyercount();
 	public long displaysellercount();

@@ -135,6 +135,11 @@ public class UserServiceImpl implements UserService{
         return repository.countByRole(Role.SELLER);
     }
 
+	@Override
+	public String getusername(int cid) {
+		return repository.findNameById(cid);
+	}
+
 
 
 	
