@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import config from '../../config';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,PieChart, Pie, Cell } from 'recharts';
+import {Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export default function DashBoard() {
   const [buyerCount, setbuyerCount] = useState(0);
@@ -10,6 +11,8 @@ export default function DashBoard() {
   const [categoryCounts, setCategoryCounts] = useState([]);
   const PIECHARTCOLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']; // You can add more
 
+
+  const COLORS = ['#28a745', '#007bff', '#ffc107', '#dc3545', '#6f42c1', '#17a2b8', '#fd7e14'];
 
   useEffect(() => {
     const fetchCounts = async () => {
@@ -38,7 +41,7 @@ export default function DashBoard() {
 
   const data = [
     { name: 'Customers', count: buyerCount },
-    { name: 'Managers', count: sellerCount },
+    { name: 'Sellers', count: sellerCount },
     { name: 'Artworks', count: artworkCount },
   ];
 
@@ -51,7 +54,7 @@ export default function DashBoard() {
           <p style={{ fontSize: '28px', fontWeight: 'bold', color: '#007bff' }}>{buyerCount}</p>
         </div>
         <div style={{ backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 4px 10px rgba(0,0,0,0.1)', padding: '25px', width: '200px' }}>
-          <h3 style={{ marginBottom: '10px', color: '#333' }}>Managers</h3>
+          <h3 style={{ marginBottom: '10px', color: '#333' }}>Sellers</h3>
           <p style={{ fontSize: '28px', fontWeight: 'bold', color: '#28a745' }}>{sellerCount}</p>
         </div>
         <div style={{ backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 4px 10px rgba(0,0,0,0.1)', padding: '25px', width: '200px' }}>

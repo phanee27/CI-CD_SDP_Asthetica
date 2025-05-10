@@ -130,12 +130,14 @@ const UploadArtwork = () => {
             <option value="AUCTION">Auction</option>
           </select>
           <label htmlFor="category">Art Category</label>
-          <select name="category" value={artwork.category} onChange={handleChange} className="upload-select">
-            <option value="POTRAIT">Potrait</option>
-            <option value="ABSTRACT">Abstract</option>
-            <option value="LANDSCAPE">Land Scape</option>
-            <option value="HOLISTIC">Holistic</option>
-          </select>
+            <select name="category" value={artwork.category} onChange={handleChange} className="upload-select" required>
+              <option value="" disabled>Select a category</option> {/* This prevents empty string from being sent */}
+              <option value="POTRAIT">Portrait</option>
+              <option value="ABSTRACT">Abstract</option>
+              <option value="LANDSCAPE">Landscape</option>
+              <option value="HOLISTIC">Holistic</option>
+            </select>
+
           <input type="file" onChange={handleImageChange} className="upload-file" required />
           <button type="submit" className="upload-button">Upload</button>
         </form>

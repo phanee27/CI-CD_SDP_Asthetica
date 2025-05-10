@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { Card, CardContent, CardOverflow, Typography, AspectRatio } from '@mui/joy';
+import Button from '@mui/material/Button';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 const ArtworkCard = ({ art }) => {
   return (
@@ -46,6 +49,11 @@ const ArtworkCard = ({ art }) => {
         <Typography level="body3" color={art.status === 'Available' ? 'success' : 'danger'}>
           {art.status || 'Unavailable'}
         </Typography>
+
+        <Button sx={{marginTop:"2px",fontSize:"small",width:"40%", display:"flex",gap:"0.5rem",fontFamily:"Poppins"}} variant="contained">
+          <EditIcon sx={{fontSize:"medium"}}/>
+          Edit
+        </Button>
       </CardContent>
     </Card>
   );

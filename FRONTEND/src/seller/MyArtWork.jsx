@@ -64,6 +64,7 @@ const MyArtWork = () => {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center' }}>
           {artworks.map((art) => (
             <ArtworkCard key={art.id} art={art} />
+            
           ))}
         </div>
       )}
