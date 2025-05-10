@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import './styles/NotFound.css'
-
 const NotFound = () => {
   const shapesRef = useRef([]);
 
@@ -75,7 +74,7 @@ const NotFound = () => {
       default:
         shapeElement = <circle cx="50" cy="50" r="40" fill={fill} />;
     }
-
+    
     return (
       <svg
         key={i}
@@ -111,6 +110,7 @@ const NotFound = () => {
           Back to Home
         </a>
       </div>
+     
     </main>
   );
 };
