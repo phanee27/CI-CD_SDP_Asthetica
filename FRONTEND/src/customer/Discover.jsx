@@ -3,6 +3,7 @@ import axios from "axios";
 import config from "../../config";
 import './styles/Discover.css'; 
 import all from '../assets/all.jpg'
+import { useNavigate } from "react-router-dom";  // <-- Add this
 
 const Discover = () => {
   const [artworks, setArtworks] = useState([]);
@@ -11,9 +12,10 @@ const Discover = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const userId = sessionStorage.getItem('userId');
 
+  const navigate = useNavigate(); // <-- Initialize router navigation
+
   const handleCategoryClick = async (categoryValue) => {
     setSelectedCategory(categoryValue);  
-  
     try {
       const response = await axios.get(`${config.url}/customer/category`, {
         params: { category: categoryValue }
@@ -25,8 +27,6 @@ const Discover = () => {
       setError("Unable to filter artworks by category");
     }
   };
-  
-  
 
   useEffect(() => {
     const fetchAllArtworks = async () => {
@@ -64,7 +64,13 @@ const Discover = () => {
       alert("Failed to add artwork to wishlist");
     }
   };
-  
+
+  const handleBuyNow = (artworkId) => {
+  sessionStorage.setItem("artworks", JSON.stringify(artworks)); // Store artworks
+  navigate(`/view-product/${artworkId}`); // Navigate using param
+};
+
+
   const categories = [
     {value:"POTRAIT",name:"Potrait", url:"https://i.pinimg.com/736x/ab/92/38/ab9238f8a6d8aa7658f1128ef641fb0e.jpg"},
     {value:"ABSTRACT",name:"Abstract", url:"https://texturetones.com/wp-content/uploads/2022/12/2-2.png"},
@@ -74,67 +80,70 @@ const Discover = () => {
 
   return (
     <div className="artwork-container">
-        <h2 className="artwork-title">Artwork Categories</h2>
-        <div className="artwork-category">
+      <h2 className="artwork-title">Artwork Categories</h2>
+      <div className="artwork-category">
         <div className="artwork-category-card" 
-            style={{backgroundSize: 'cover',
-            backgroundPosition: 'center', backgroundImage:`url(${all})`}}
-            onClick={()=>handleCategoryClick("ALL")}>
+          style={{backgroundSize: 'cover', backgroundPosition: 'center', backgroundImage:`url(${all})`}}
+          onClick={()=>handleCategoryClick("ALL")}>
           All Artworks
         </div>
         {
-          
           categories.map((val, ind) => (
             <div key={ind} className="artwork-category-card" 
-            style={{backgroundImage:`url(${val.url})`,backgroundSize: 'cover',
-            backgroundPosition: 'center'}}
-            onClick={() => handleCategoryClick(val.value)}>
+              style={{backgroundImage:`url(${val.url})`,backgroundSize: 'cover', backgroundPosition: 'center'}}
+              onClick={() => handleCategoryClick(val.value)}>
               {val.name}
             </div>
           ))
         }
+      </div>
+      
+      <div>
+        <h2 className="artwork-title">Discover Artworks</h2>
+        {error && <p className="error-message">{error}</p>}
 
-        </div>
-        <div>
-          <h2 className="artwork-title">Discover Artworks</h2>
+        {artworks.length === 0 ? (
+          <p>No artworks available.</p>
+        ) : (
+          <div className="artwork-grid">
+            {artworks.map((art) => (
+              <div key={art.id} className="artwork-card">
+                <img
+                  src={art.image}
+                  alt={art.title}
+                  className="artwork-image"
+                />
+                <div className="artwork-card-body">
+                  <h3 className="artwork-card-title">{art.title}</h3>
+                  <p className="artwork-description">{art.description}</p>
+                  <p className="artwork-price">₹{art.price}</p>
+                  <p className="artwork-dimensions">
+                    {art.width} x {art.height} cm
+                  </p>
+                  <p className="artwork-status">
+                    Status: {art.status ? art.status : "Unavailable"}
+                  </p>
 
-          {error && <p className="error-message">{error}</p>}
+                  <button
+                    className="wishlist-button"
+                    onClick={() => handleAddToWishlist(art.id)}
+                  >
+                    {addedToWishlist.includes(art.id) ? "Added to Wishlist" : "Add to Wishlist"}
+                  </button>
 
-          {artworks.length === 0 ? (
-            <p>No artworks available.</p>
-          ) : (
-            <div className="artwork-grid">
-              {artworks.map((art) => (
-                <div key={art.id} className="artwork-card">
-                  <img
-                    src={art.image}
-                    alt={art.title}
-                    className="artwork-image"
-                  />
-                  <div className="artwork-card-body">
-                    <h3 className="artwork-card-title">{art.title}</h3>
-                    <p className="artwork-description">{art.description}</p>
-                    <p className="artwork-price">₹{art.price}</p>
-                    <p className="artwork-dimensions">
-                      {art.width} x {art.height} cm
-                    </p>
-                    <p className="artwork-status">
-                      Status: {art.status ? art.status : "Unavailable"}
-                    </p>
+                  <button
+                    className="buy-button"
+                    onClick={() => handleBuyNow(art.id)}
+                  >
+                    Buy Now
+                  </button>
 
-                    <button
-                      className="wishlist-button"
-                      onClick={() => handleAddToWishlist(art.id)}
-                    >
-                      {addedToWishlist.includes(art.id) ? "Added to Wishlist" : "Add to Wishlist"}
-                    </button>
-
-                  </div>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

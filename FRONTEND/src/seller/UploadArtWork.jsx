@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './../../config';
 import './styles/UploadArtwork.css';
+import { toast } from 'react-toastify';
 
 const UploadArtwork = () => {
   const [artwork, setArtwork] = useState({
@@ -85,7 +86,7 @@ const UploadArtwork = () => {
         headers: { 'Content-Type': 'application/json' }
       });
 
-      setMessage(response.data);
+      toast.success(response.data)
       setError("");
 
       setArtwork({

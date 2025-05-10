@@ -22,6 +22,7 @@ import "./styles/CustomerNavbar.css";
 import Discover from "./Discover";
 
 import { useAuth } from "../contextapi/AuthContext";
+import ViewProduct from "./ViewProduct";
 
 
 const CustomerNavbar = () => {
@@ -77,6 +78,7 @@ const CustomerNavbar = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
         <Route path="*" Component={NotFound} />
+        <Route path="/view-product/:id" element={<ViewProduct/>}/>
       </Routes>
     </div>
   );
