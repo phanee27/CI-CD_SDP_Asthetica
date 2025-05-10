@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config";
 import './styles/Discover.css'; 
-import all from '../assets/all.jpg'
-import { useNavigate } from "react-router-dom";  // <-- Add this
+import all from '../assets/all.jpg';
+import { useNavigate } from "react-router-dom";  
 
 const Discover = () => {
   const [artworks, setArtworks] = useState([]);
   const [error, setError] = useState("");
   const [addedToWishlist, setAddedToWishlist] = useState([]); 
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const userId = sessionStorage.getItem('userId');
 
-  const navigate = useNavigate(); // <-- Initialize router navigation
+  const navigate = useNavigate();
 
   const handleCategoryClick = async (categoryValue) => {
     setSelectedCategory(categoryValue);  
@@ -44,13 +43,14 @@ const Discover = () => {
 
   const handleAddToWishlist = async (artworkId) => {
     const user = JSON.parse(localStorage.getItem("user"));  
-    const userId = user ? user.id : null;  
-  
-    if (!userId) {
-      alert("Please log in first.");
+    const userId = sessionStorage.getItem("userId");
+
+    if (!user || !userId) {
+      navigate("/login");
+      window.scrollTo(0, 0); 
       return;
     }
-  
+
     try {
       const response = await axios.post(`${config.url}/customer/wishlist/add`, null, {
         params: {
@@ -59,6 +59,7 @@ const Discover = () => {
         }
       });
       alert(response.data);  
+      setAddedToWishlist([...addedToWishlist, artworkId]);
     } catch (error) {
       console.error("Failed to add artwork to wishlist:", error);
       alert("Failed to add artwork to wishlist");
@@ -66,17 +67,25 @@ const Discover = () => {
   };
 
   const handleBuyNow = (artworkId) => {
-  sessionStorage.setItem("artworks", JSON.stringify(artworks)); // Store artworks
-  navigate(`/view-product/${artworkId}`); // Navigate using param
-};
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userId = sessionStorage.getItem("userId");
 
+    if (!user || !userId) {
+      navigate("/login");
+      window.scrollTo(0, 0); 
+      return;
+    }
+
+    sessionStorage.setItem("artworks", JSON.stringify(artworks)); 
+    navigate(`/view-product/${artworkId}`); 
+  };
 
   const categories = [
     {value:"POTRAIT",name:"Potrait", url:"https://i.pinimg.com/736x/ab/92/38/ab9238f8a6d8aa7658f1128ef641fb0e.jpg"},
     {value:"ABSTRACT",name:"Abstract", url:"https://texturetones.com/wp-content/uploads/2022/12/2-2.png"},
     {value:"LANDSCAPE",name:"Land Scape", url:"https://www.fineart.pub/wp-content/uploads/2021/05/landscape-painting.jpg"},
     {value:"HOLISTIC",name:"Holistic", url:"https://www.artzolo.com/cdn/shop/files/Lord-Krishna-ArtZolo-com-7611.jpg?v=1706738876&width=900"},
-  ]
+  ];
 
   return (
     <div className="artwork-container">
@@ -124,19 +133,21 @@ const Discover = () => {
                     Status: {art.status ? art.status : "Unavailable"}
                   </p>
 
-                  <button
-                    className="wishlist-button"
-                    onClick={() => handleAddToWishlist(art.id)}
-                  >
-                    {addedToWishlist.includes(art.id) ? "Added to Wishlist" : "Add to Wishlist"}
-                  </button>
+                  <div style={{ display: "flex", gap:"1rem" }}>
+                    <button
+                      className="wishlist-button"
+                      onClick={() => handleAddToWishlist(art.id)}
+                    >
+                      {addedToWishlist.includes(art.id) ? "Added to Wishlist" : "Add to Wishlist"}
+                    </button>
 
-                  <button
-                    className="buy-button"
-                    onClick={() => handleBuyNow(art.id)}
-                  >
-                    Buy Now
-                  </button>
+                    <button
+                      className="buy-button"
+                      onClick={() => handleBuyNow(art.id)}
+                    >
+                      Buy Now
+                    </button>
+                  </div>
 
                 </div>
               </div>
