@@ -128,9 +128,12 @@ public class CustomerController {
 	@PostMapping("/bid")
 	public ResponseEntity<String> placeBid(@RequestParam Long auctionId,
 	                                       @RequestParam Long buyerId,
-	                                       @RequestParam Double amount) {
+	                                       @RequestParam Double amount,
+	                                       @RequestParam String buyerName) {
+		
+											
 	    try {
-	        Bid bid = bidService.placeBid(auctionId, buyerId, amount);
+	        Bid bid = bidService.placeBid(auctionId, buyerId, amount,buyerName);
 	        return ResponseEntity.ok("Bid placed successfully!");
 	    } catch (IllegalArgumentException | IllegalStateException ex) {
 	        // Return appropriate error message

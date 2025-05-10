@@ -11,6 +11,7 @@ public class Bid {
     private Long id;
 
     private Long buyerId;
+    private String buyerName;
     private Double amount;
     private LocalDateTime timestamp;
 
@@ -56,5 +57,13 @@ public class Bid {
 
 	public void setAuction(Auction auction) {
 		this.auction = auction;
+	}
+
+	public String getBuyerName() {
+		return buyerName;
+	}
+
+	public void setBuyerName(String buyerName) {
+		this.buyerName = buyerName;
 	}
 }

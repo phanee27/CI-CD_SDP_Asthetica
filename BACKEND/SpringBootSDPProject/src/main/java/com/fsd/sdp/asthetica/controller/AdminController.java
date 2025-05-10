@@ -128,6 +128,12 @@ public class AdminController {
     public Auction rejectAuction(@PathVariable Long id) {
         return auctionService.rejectAuction(id);
     }
+    @GetMapping("/approved")
+    public List<Auction> viewApprovedAuctions() {
+        return auctionService.getApprovedAuctions();
+    }
+
+    
     
     @GetMapping("/categorycounts")
     public Map<String, Integer> getCategoryCounts() {
