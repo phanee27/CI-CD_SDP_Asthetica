@@ -24,4 +24,8 @@ public interface UserService {
 	public long displaybuyercount();
 	public long displaysellercount();
 	
+	List<User> getApprovedSellers();
+
+	
+	
 }
