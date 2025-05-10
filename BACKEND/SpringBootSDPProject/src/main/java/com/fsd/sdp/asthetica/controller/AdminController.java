@@ -1,6 +1,7 @@
 package com.fsd.sdp.asthetica.controller;
 
-import java.util.List; 
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.sdp.asthetica.model.User;
+import com.fsd.sdp.asthetica.service.ArtworkService;
 import com.fsd.sdp.asthetica.service.UserService;
 
 @RestController
@@ -22,6 +24,9 @@ import com.fsd.sdp.asthetica.service.UserService;
 public class AdminController {
 	@Autowired
 	private UserService service;
+	
+	@Autowired
+	private ArtworkService artworkService;
 	
 	@GetMapping("/viewallusers")
 	public ResponseEntity<List<User>> viewallusers(){
@@ -65,7 +70,32 @@ public class AdminController {
             return ResponseEntity.status(404).body(e.getMessage());
         }
     }
-
+    
+    @GetMapping("/buyercount")
+    public ResponseEntity<Long> getBuyerCount()
+    {
+        long count = service.displaybuyercount();
+        return ResponseEntity.ok(count);
+    }
+    
+    @GetMapping("/sellercount")
+    public ResponseEntity<Long> getSellerCount()
+    {
+        long count = service.displaysellercount();
+        return ResponseEntity.ok(count);
+    }
+    
+    @GetMapping("/artworkcount")
+    public ResponseEntity<Long> getArtworkCount()
+    {
+        long count = artworkService.displayartworkcount();
+        return ResponseEntity.ok(count);
+    }
+    
+    @GetMapping("/categorycount")
+    public ResponseEntity<Map<String, Long>> getArtworkCategoryCount() {
+        return ResponseEntity.ok(artworkService.getCategoryCounts());
+    }
 
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.fsd.sdp.asthetica.enumeration.Role;
 import com.fsd.sdp.asthetica.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
@@ -11,4 +12,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	public User findByUsername(String username);
 	
 	public List<User> findByStatusIsNotNull();
+	
+	long countByRole(Role role);
+
 }

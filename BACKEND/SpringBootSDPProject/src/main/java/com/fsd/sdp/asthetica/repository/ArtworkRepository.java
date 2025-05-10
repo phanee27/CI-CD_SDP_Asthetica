@@ -12,4 +12,5 @@ public interface ArtworkRepository extends JpaRepository<Artwork, Integer>
 {
 	 List<Artwork> findByArtistId(int artistId);
 	 List<Artwork> findByCategory(Category category);
+	 
 }

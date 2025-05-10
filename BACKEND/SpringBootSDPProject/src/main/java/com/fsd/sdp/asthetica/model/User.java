@@ -1,6 +1,5 @@
 package com.fsd.sdp.asthetica.model;
 
-import java.sql.Blob;
 
 import com.fsd.sdp.asthetica.enumeration.Role;
 

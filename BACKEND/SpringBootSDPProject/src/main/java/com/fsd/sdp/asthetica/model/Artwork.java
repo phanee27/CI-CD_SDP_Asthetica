@@ -1,6 +1,6 @@
 package com.fsd.sdp.asthetica.model;
 
-import java.sql.Blob;
+
 import com.fsd.sdp.asthetica.enumeration.Category;
 
 import com.fsd.sdp.asthetica.enumeration.Status;

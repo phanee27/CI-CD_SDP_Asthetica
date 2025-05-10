@@ -125,6 +125,17 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    public long displaybuyercount() {
+        return repository.countByRole(Role.BUYER); 
+    }
+
+    @Override
+    public long displaysellercount() {
+        return repository.countByRole(Role.SELLER);
+    }
+
+
 
 	
 	

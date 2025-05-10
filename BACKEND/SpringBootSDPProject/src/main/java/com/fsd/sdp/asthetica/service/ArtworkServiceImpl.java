@@ -44,4 +44,9 @@ public class ArtworkServiceImpl implements ArtworkService
 		return artworkRepository.findByCategory(category);
 	}
 
+	@Override
+	public long displayartworkcount() {
+		return artworkRepository.count();
+	}
+
 }
