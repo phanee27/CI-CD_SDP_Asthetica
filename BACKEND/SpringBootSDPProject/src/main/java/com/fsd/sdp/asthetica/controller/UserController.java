@@ -1,7 +1,9 @@
 package com.fsd.sdp.asthetica.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired; 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.fsd.sdp.asthetica.model.User;
 import com.fsd.sdp.asthetica.service.UserService;
 
@@ -62,5 +65,6 @@ public class UserController {
 	public String getUsername(@PathVariable int cid) {
 		return service.getusername(cid);
 	}
+	
 	
 }
