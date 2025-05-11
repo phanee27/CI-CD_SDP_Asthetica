@@ -44,7 +44,7 @@ public class BidServiceImpl implements BidService {
         // Check if bid is valid (>= highest bid + minIncrement)
         double minValidBid = auction.getHighestBid() + auction.getMinIncrement();
         if (amount < minValidBid) {
-            throw new IllegalArgumentException("Bid amount " + amount + " is less than the minimum required " + minValidBid + " for auction ID " + auctionId);
+            throw new IllegalArgumentException("Bid amount " + amount + " is less than the minimum required " + minValidBid);
         }
 
         // ✅ Manual object creation
