@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../config";
 import './styles/MyArtWork.css';
-import ArtworkCard from "./Artworkcard";
+import ArtworkCard from "./ArtworkCard";
 
 const MyArtWork = () => {
   const [artworks, setArtworks] = useState([]);
