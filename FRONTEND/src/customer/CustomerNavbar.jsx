@@ -60,7 +60,7 @@ const CustomerNavbar = () => {
         </div>
 
         <div className={`nav-end-section ${menuOpen ? "open" : ""}`}>
-          <Link to="/search" onClick={() => setMenuOpen(false)}><IoSearchSharp /></Link>
+          {/* <Link to="/search" onClick={() => setMenuOpen(false)}><IoSearchSharp /></Link> */}
           <Link to="/wishlist" onClick={() => setMenuOpen(false)}><IoMdHeart /></Link>
           <Link to="/profile" onClick={() => setMenuOpen(false)}><IoPersonSharp /></Link>
           <Link to="/login" onClick={handleClick}>
