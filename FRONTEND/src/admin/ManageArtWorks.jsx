@@ -80,9 +80,9 @@ const ManageArtWorks = () => {
                                             <Button onClick={() => {handleDelete(art.id)}} sx={{backgroundColor:"black", color:"white"}} variant="contained">
                                             Delete
                                             </Button>
-                                            <Button variant="contained" color="primary">
+                                            {/* <Button variant="contained" color="primary">
                                             Edit
-                                            </Button>
+                                            </Button> */}
                                         </div>
                                     </div>
                         </div>

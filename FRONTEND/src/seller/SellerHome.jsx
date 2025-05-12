@@ -1,9 +1,12 @@
 import React from 'react';
+import MyArtWork from './MyArtWork';
+import UploadArtwork from './UploadArtWork';
 
 const SellerHome = () => {
     return (
         <div>
-            this is seller home
+            <MyArtWork/>
+            <UploadArtwork/>
         </div>
     );
 }
