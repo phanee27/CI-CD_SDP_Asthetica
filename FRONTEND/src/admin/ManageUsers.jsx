@@ -32,11 +32,11 @@ const ManageUsers = () => {
   const handleManage = (id) => {
     navigate(`/manage-artworks/${id}/artworks`)
   }
-  const deleteUser = async (id) => {
+  const deleteUser = async (cid) => {
     try {
       const response = await axios.delete(`${config.url}/admin/deleteuser?cid=${cid}`);
       alert(response.data);
-      displayusers();
+      fetchUsers();
     } catch (err) {
       setError("Unexpected Error: " + err.message);
     }
