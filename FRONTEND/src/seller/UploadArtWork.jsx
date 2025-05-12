@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './../../config';
-// import './styles/UploadArtwork.css';
+import './styles/UploadArtWork.css';
 import { toast } from 'react-toastify';
 
 const UploadArtwork = () => {
