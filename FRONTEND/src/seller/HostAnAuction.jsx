@@ -75,8 +75,8 @@ const HostAnAuction = () => {
         startingBid: parseFloat(startingBid),
         minIncrement: parseFloat(minIncrement),
         artwork: {
-          id: selectedArtwork.id  // Only send ID, not full object
-        }
+          id: selectedArtwork.id,
+        },
       });
 
       if (response.status === 200 || response.status === 201) {
@@ -110,13 +110,27 @@ const HostAnAuction = () => {
       {artworks.length === 0 ? (
         <p>No artworks found.</p>
       ) : (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center' }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem", justifyContent: "center" }}>
           {artworks.map((art) => (
             <div key={art.id} className="artwork-card">
-              <img src={art.image} alt={art.title} style={{ width: "250px", height: "200px", objectFit: "cover", borderRadius: "8px" }} />
-              <h3>{art.title}</h3>
-              <p>₹{art.price}</p>
-              <button onClick={() => openModal(art)} className="host-btn">Host an Auction</button>
+              <img src={art.image} alt={art.title} className="artwork-image" />
+              <div className="artwork-badge">
+                <span>{art.status || "Unavailable"}</span>
+              </div>
+              <div className="artwork-footer">
+                <div className="artwork-info">
+                  <div className="artwork-title-text">{art.title}</div>
+                  <div className="artwork-description">
+                    {art.description?.length > 60
+                      ? `${art.description.slice(0, 60)}...`
+                      : art.description || "No description available"}
+                  </div>
+                  <div className="artwork-price">₹{art.price}</div>
+                </div>
+                <button onClick={() => openModal(art)} className="host-btn">Host an Auction
+                  <span className="host-btn-icon">↑</span> 
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -124,37 +138,54 @@ const HostAnAuction = () => {
 
       {modalOpen && (
         <div className="modal-overlay">
-          <div className="modal-box" style={{ position: "relative" }}>
-            <button
-              onClick={closeModal}
-              style={{
-                position: "absolute",
-                top: "10px",
-                right: "10px",
-                background: "none",
-                border: "none",
-                fontSize: "1.5rem",
-                cursor: "pointer"
-              }}
-            >
-              &times;
+          <div className="modal-box">
+            <button onClick={closeModal} className="modal-close-btn">
+              ×
             </button>
             <h3>Host Auction for "{selectedArtwork?.title}"</h3>
-            <form onSubmit={handleAuctionSubmit}>
-              <label>Start Time</label>
-              <input type="datetime-local" value={startTime} onChange={(e) => setStartTime(e.target.value)} required />
+            <form onSubmit={handleAuctionSubmit} className="modal-form">
+              <label className="modal-label">Start Time</label>
+              <input
+                type="datetime-local"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                className="modal-input"
+                required
+              />
 
-              <label>End Time</label>
-              <input type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
+              <label className="modal-label">End Time</label>
+              <input
+                type="datetime-local"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                className="modal-input"
+                required
+              />
 
-              <label>Starting Bid (₹)</label>
-              <input type="number" value={startingBid} onChange={(e) => setStartingBid(e.target.value)} required />
+              <label className="modal-label">Starting Bid (₹)</label>
+              <input
+                type="number"
+                value={startingBid}
+                onChange={(e) => setStartingBid(e.target.value)}
+                className="modal-input"
+                required
+              />
 
-              <label>Minimum Increment (₹)</label>
-              <input type="number" value={minIncrement} onChange={(e) => setMinIncrement(e.target.value)} required />
+              <label className="modal-label">Minimum Increment (₹)</label>
+              <input
+                type="number"
+                value={minIncrement}
+                onChange={(e) => setMinIncrement(e.target.value)}
+                className="modal-input"
+                required
+              />
 
-              <button type="submit" className="submit-btn">Submit</button>
-              {submitMessage && <p style={{ marginTop: "10px", color: "green" }}>{submitMessage}</p>}
+              <button type="submit" className="submit-btn">
+                <span className="submit-btn-icon">↑</span> Submit
+              </button>
+              {submitMessage && (
+                <p className="submit-message">{submitMessage}</p>
+              )}
             </form>
           </div>
         </div>

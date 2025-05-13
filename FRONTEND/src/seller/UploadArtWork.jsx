@@ -138,6 +138,10 @@ const UploadArtwork = () => {
               <option value="ABSTRACT">Abstract</option>
               <option value="LANDSCAPE">Landscape</option>
               <option value="HOLISTIC">Holistic</option>
+              <option value="PENCILSKETCH">Pencil Sketch</option>
+              <option value="OILPAINTING">Oil Painting</option>
+              <option value="GLASSPAINTING">Glass Painting</option>
+              <option value="SCULPTURE">Sculpture</option>
             </select>
 
           <input type="file" onChange={handleImageChange} className="upload-file" required />

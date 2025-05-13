@@ -1,85 +1,135 @@
+/* Container for the entire component */
 .upload-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f6;
-  padding: 20px;
-  width: 100%;
-  box-sizing: border-box;
+  min-height: 100vh;
+  background: #f0f0f3;
+  padding: 2rem;
 }
 
-
+/* Card for the form */
 .upload-card {
-  background-color: white;
-  padding: 3.5rem;
-  width: 25%;
-  border-radius: 1rem;
+  background: #f0f0f3;
+  border-radius: 25px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 10px 10px 30px #d1d9e6, -10px -10px 30px #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
+/* Title styling */
 .upload-title {
-  font-size: 24px;
+  font-size: 1.8rem;
   font-weight: bold;
+  color: #333;
   text-align: center;
-  margin-bottom: 20px;
-  color: #000000;
 }
 
+/* Form styling */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Input fields */
+.upload-input,
+.upload-textarea,
+.upload-select,
+.upload-file {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #e0e0e0;
+  box-shadow: inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.upload-input:focus,
+.upload-textarea:focus,
+.upload-select:focus {
+  box-shadow: inset 1px 1px 3px #d1d9e6, inset -1px -1px 3px #ffffff;
+}
+
+/* Disabled input */
+.upload-input.disabled {
+  background: #d0d0d0;
+  color: #777;
+  cursor: not-allowed;
+}
+
+/* Textarea specific styling */
+.upload-textarea {
+  resize: none;
+  height: 80px;
+}
+
+/* File input (minimal styling as browsers limit file input customization) */
+.upload-file {
+  padding: 5px;
+}
+
+/* Labels for dimensions and status */
+.upload-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Upload button (matches the "Submitted" button from the image) */
+.upload-button {
+  background: #ffffff;
+  color: #333;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 2px 2px 8px #d1d9e6, -2px -2px 8px #ffffff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  margin: 0 auto;
+}
+
+.upload-button:hover {
+  transform: scale(1.05);
+}
+
+/* Icon inside the button */
+.upload-button::before {
+  content: "↑";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #d3e3fd;
+  color: #5a8dee;
+  font-size: 12px;
+}
+
+/* Success and error messages */
 .upload-message {
   text-align: center;
-  margin-bottom: 15px;
   font-size: 14px;
 }
 
 .upload-message.success {
-  color: #28a745;
+  color: #27ae60;
 }
 
 .upload-message.error {
-  color: #dc3545;
-}
-
-.upload-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.upload-input, .upload-textarea, .upload-select, .upload-file {
-  padding: 10px 14px;
-  border: 1px solid #dcdcdc;
-  border-radius: 6px;
-  background-color: #fff;
-  font-size: 14px;
-  color: #333;
-}
-
-.upload-input.disabled {
-  background-color: #f0f0f0;
-  cursor: not-allowed;
-}
-
-.upload-textarea {
-  resize: vertical;
-}
-
-.upload-select {
-  background: #fff;
-}
-
-.upload-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #000000;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
-  font-family: 'Montserrat';
-}
-
-.upload-button:hover {
-  background-color: #333333;
+  color: #e74c3c;
 }

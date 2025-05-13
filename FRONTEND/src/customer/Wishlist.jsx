@@ -6,7 +6,7 @@ import './styles/Wishlist.css';
 const Wishlist = () => {
   const [wishlistItems, setWishlistItems] = useState([]);
   const [error, setError] = useState("");
-  const userId = JSON.parse(localStorage.getItem("user"))?.id; // Get userId from localStorage
+  const userId = JSON.parse(localStorage.getItem("user"))?.id;
 
   useEffect(() => {
     if (!userId) {
@@ -17,7 +17,7 @@ const Wishlist = () => {
     const fetchWishlist = async () => {
       try {
         const response = await axios.get(`${config.url}/customer/wishlist/view/${userId}`);
-        setWishlistItems(response.data); // Assuming the backend returns an array of wishlisted artworks
+        setWishlistItems(response.data);
       } catch (err) {
         setError("Failed to fetch wishlist items");
         console.error(err);
@@ -30,10 +30,7 @@ const Wishlist = () => {
   const removeFromWishlist = async (artworkId) => {
     try {
       await axios.put(`${config.url}/customer/wishlist/remove`, null, {
-        params: {
-          userId: userId,
-          artworkId: artworkId,
-        },
+        params: { userId: userId, artworkId: artworkId },
       });
       setWishlistItems(wishlistItems.filter((art) => art.id !== artworkId));
     } catch (err) {
@@ -41,15 +38,11 @@ const Wishlist = () => {
       console.error(err);
     }
   };
-  
-  
 
   return (
-    <div className="wishlist-container">
+    <div className="wishlist-page wishlist-container">
       <h2 className="wishlist-title">Your Wishlist</h2>
-
       {error && <p className="error-message">{error}</p>}
-
       {wishlistItems.length === 0 ? (
         <p>No items in your wishlist.</p>
       ) : (
@@ -57,7 +50,7 @@ const Wishlist = () => {
           {wishlistItems.map((art) => (
             <div key={art.id} className="artwork-card">
               <img
-                src={art.image} // Assuming artwork has an image field
+                src={art.image}
                 alt={art.title}
                 className="artwork-image"
               />
@@ -71,8 +64,8 @@ const Wishlist = () => {
                 <p className="artwork-status">
                   Status: {art.status ? art.status : "Unavailable"}
                 </p>
-                <button 
-                  onClick={() => removeFromWishlist(art.id)} 
+                <button
+                  onClick={() => removeFromWishlist(art.id)}
                   className="remove-button"
                 >
                   Remove from Wishlist

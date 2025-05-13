@@ -1,107 +1,137 @@
 /* Wishlist container */
-.wishlist-container {
-    padding: 24px;
+.wishlist-page .wishlist-container {
+  padding: 24px;
+}
+
+/* Wishlist title */
+.wishlist-page .wishlist-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Error message */
+.wishlist-page .error-message {
+  color: #e53e3e; /* Tailwind's red-600 */
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+/* Wishlist Grid Layout */
+.wishlist-page .wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Default to one column */
+  gap: 24px;
+}
+
+.wishlist-page .wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Default to one column */
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .wishlist-page .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
   }
-  
-  .wishlist-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .wishlist-page .wishlist-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on large screens */
   }
-  
-  .error-message {
-    color: #e53e3e; /* Tailwind's red-600 */
-    font-weight: 500;
-    margin-bottom: 16px;
+}
+
+@media (min-width: 1024px) {
+  .wishlist-page .wishlist-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on extra-large screens */
   }
-  
-  /* Wishlist Grid Layout */
-  .wishlist-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr); /* Default to one column */
-    gap: 24px;
-  }
-  
-  @media (min-width: 640px) {
-    .wishlist-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .wishlist-grid {
-      grid-template-columns: repeat(3, 1fr); /* 3 columns on large screens */
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .wishlist-grid {
-      grid-template-columns: repeat(4, 1fr); /* 4 columns on extra-large screens */
-    }
-  }
-  
-  /* Individual artwork card */
-  .artwork-card {
-    max-width: 300px;
-    background-color: #fff;
-    border: 1px solid #e2e8f0; /* Tailwind's gray-200 */
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
-  .artwork-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .artwork-card-body {
-    padding: 16px;
-  }
-  
-  .artwork-card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  
-  .artwork-description {
-    color: #4a5568; /* Tailwind's gray-600 */
-    font-size: 0.875rem;
-    margin-bottom: 16px;
-  }
-  
-  .artwork-price {
-    color: #48bb78; /* Tailwind's green-600 */
-    font-weight: 600;
-    font-size: 1rem;
-  }
-  
-  .artwork-dimensions {
-    color: #2d3748; /* Tailwind's gray-800 */
-    font-size: 0.875rem;
-    margin-bottom: 8px;
-  }
-  
-  .artwork-status {
-    color: #ecc94b; /* Tailwind's yellow-400 */
-    font-size: 0.875rem;
-    font-weight: 500;
-    margin-top: 8px;
-  }
-  
-  /* Remove from wishlist button */
-  .remove-button {
-    background-color: #e53e3e; /* Red color */
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .remove-button:hover {
-    background-color: #c53030; /* Darker red on hover */
-  }
-  
+}
+
+/* Individual artwork card */
+.wishlist-page .artwork-card {
+  max-width: 300px;
+  background-color: #fff;
+  border: 1px solid #e2e8f0; /* Tailwind's gray-200 */
+  border-radius: 8px 0px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex; /* Use flexbox to control layout */
+  flex-direction: column; /* Stack image and body vertically */
+  height: 450px; /* Fixed height to control card size */
+  padding: 4px;
+}
+
+/* Artwork image */
+.wishlist-page .artwork-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Card body */
+.wishlist-page .artwork-card-body {
+  padding: 16px;
+  flex: 1; /* Allow the body to take remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute space between elements */
+  overflow: hidden; /* Prevent overflow in the body */
+}
+
+/* Card title */
+.wishlist-page .artwork-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* Description (truncate if too long) */
+.wishlist-page .artwork-description {
+  color: #4a5568; /* Tailwind's gray-600 */
+  font-size: 0.875rem;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Price */
+.wishlist-page .artwork-price {
+  color: #48bb78; /* Tailwind's green-600 */
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+/* Dimensions */
+.wishlist-page .artwork-dimensions {
+  color: #2d3748; /* Tailwind's gray-800 */
+  font-size: 0.875rem;
+  margin-bottom: 8px;
+}
+
+/* Status */
+.wishlist-page .artwork-status {
+  color: #ecc94b; /* Tailwind's yellow-400 */
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Remove from wishlist button */
+.wishlist-page .remove-button {
+  background-color: #e53e3e; /* Red color */
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  width: 100%; /* Full-width button for better visibility */
+  margin-top: auto; /* Push the button to the bottom of the flex container */
+}
+
+.wishlist-page .remove-button:hover {
+  background-color: #c53030; /* Darker red on hover */
+}

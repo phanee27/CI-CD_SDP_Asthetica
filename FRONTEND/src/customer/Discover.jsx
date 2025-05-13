@@ -20,7 +20,7 @@ const Discover = () => {
   // Retrieve and parse the user object from localStorage
   const userString = localStorage.getItem("user");
   const user = userString ? JSON.parse(userString) : null;
-  const userId = user?.id || null; // Safely access userId, default to null if not found
+  const userId = user?.id || null;
 
   const handleCategoryClick = async (categoryValue) => {
     setSelectedCategory(categoryValue);
@@ -60,14 +60,14 @@ const Discover = () => {
 
   const handleAddToWishlist = async (artworkId) => {
     try {
-      if(!userId){
-        window.alert("Log into your account !!")
-        navigate('/login')
-        window.scroll(0,0)
+      if (!userId) {
+        window.alert("Log into your account !!");
+        navigate('/login');
+        window.scroll(0, 0);
         return;
       }
       const response = await axios.post(`${config.url}/customer/wishlist/add`, null, {
-        params: { userId, artworkId } // Include userId in the request
+        params: { userId, artworkId }
       });
       alert(response.data);
       if (!addedToWishlist.includes(artworkId)) {
@@ -80,12 +80,12 @@ const Discover = () => {
   };
 
   const handleBuyNow = (artworkId) => {
-    if(!userId){
-        window.alert("Log into your account !!")
-        navigate('/login')
-        window.scroll(0,0)
-        return;
-      }
+    if (!userId) {
+      window.alert("Log into your account !!");
+      navigate('/login');
+      window.scroll(0, 0);
+      return;
+    }
     sessionStorage.setItem("artworks", JSON.stringify(artworks));
     navigate(`/view-product/${artworkId}`);
   };
@@ -95,6 +95,10 @@ const Discover = () => {
     { value: "ABSTRACT", name: "Abstract", url: "https://texturetones.com/wp-content/uploads/2022/12/2-2.png" },
     { value: "LANDSCAPE", name: "Land Scape", url: "https://www.fineart.pub/wp-content/uploads/2021/05/landscape-painting.jpg" },
     { value: "HOLISTIC", name: "Holistic", url: "https://www.artzolo.com/cdn/shop/files/Lord-Krishna-ArtZolo-com-7611.jpg?v=1706738876&width=900" },
+    { value: "PENCILSKETCH", name: "PencilSketch", url: "https://res.cloudinary.com/dgmk3fhuz/image/upload/v1747066168/wata1tdd1ocsqfae6oay.jpg" },
+    { value: "OILPAINTING", name: "OilPainting", url: "https://res.cloudinary.com/dgmk3fhuz/image/upload/v1747109712/elyrn6i8clcco7sfc4lz.jpg" },
+    { value: "GLASSPAINTING", name: "GlassPainting", url: "https://res.cloudinary.com/dgmk3fhuz/image/upload/v1747068072/gfrnrfymu9dqdshvuvzf.jpg" },
+    { value: "SCULPTURE", name: "Sculpture", url: "https://i.pinimg.com/736x/66/36/6c/66366c25276518709f475e1b77059b2c.jpg" },
   ];
 
   return (
@@ -179,10 +183,6 @@ const Discover = () => {
                       width="50%"
                       style={{ marginBottom: 15 }}
                     />
-                    <div style={{ display: "flex", gap: 10 }}>
-                      <Skeleton height={30} width={120} />
-                      <Skeleton height={30} width={100} />
-                    </div>
                   </div>
                 </div>
               ))}
@@ -193,11 +193,30 @@ const Discover = () => {
           <div className="artwork-grid">
             {artworks.map((art) => (
               <div key={art.id} className="artwork-card">
-                <img
-                  src={art.image}
-                  alt={art.title}
-                  className="artwork-image"
-                />
+                <div className="artwork-image-container">
+                  <img
+                    src={art.image}
+                    alt={art.title}
+                    className="artwork-image"
+                  />
+                  <div className="artwork-actions">
+                    <button
+                      className={`wishlist-icon ${addedToWishlist.includes(art.id) ? 'added' : ''}`}
+                      onClick={() => handleAddToWishlist(art.id)}
+                      disabled={addedToWishlist.includes(art.id)}
+                      title={addedToWishlist.includes(art.id) ? "Added to Wishlist" : "Add to Wishlist"}
+                    >
+                      ❤️
+                    </button>
+                    <button
+                      className="buy-icon"
+                      onClick={() => handleBuyNow(art.id)}
+                      title="Buy Now"
+                    >
+                      🛒
+                    </button>
+                  </div>
+                </div>
                 <div className="artwork-card-body">
                   <h3 className="artwork-card-title">{art.title}</h3>
                   <p className="artwork-description">{art.description}</p>
@@ -208,22 +227,6 @@ const Discover = () => {
                   <p className="artwork-status">
                     Status: {art.status ? art.status : "Unavailable"}
                   </p>
-
-                  <div>
-                    <button
-                      className="wishlist-button"
-                      onClick={() => handleAddToWishlist(art.id)}
-                      disabled={addedToWishlist.includes(art.id)}
-                    >
-                      {addedToWishlist.includes(art.id) ? "Added to Wishlist" : "Add to Wishlist"}
-                    </button>
-                    <button
-                      className="buy-button"
-                      onClick={() => handleBuyNow(art.id)}
-                    >
-                      Buy Now
-                    </button>
-                  </div>
                 </div>
               </div>
             ))}

@@ -45,7 +45,7 @@ public class Artwork
     private int artistId;  // Store the user_id who uploaded this artwork
     
     @Enumerated(EnumType.STRING)
-    @Column(name="artwork_category", nullable=false)
+    @Column(name="artwork_category", nullable=false,length = 20)
     private Category category;
 
     public int getId() { return id; }

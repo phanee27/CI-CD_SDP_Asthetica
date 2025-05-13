@@ -57,14 +57,14 @@ const MyOrders = () => {
 
   return (
     <div style={{ padding: "30px", ...font }}>
-      <Typography
+      <h1
         variant="h5"
         align="center"
         gutterBottom
-        sx={{ fontWeight: "bold", textDecoration: "underline" }}
+        sx={{ fontWeight: "bold" }}
       >
         My Orders
-      </Typography>
+      </h1>
 
       {error ? (
         <Typography align="center" color="error" sx={{ fontWeight: "bold", fontSize: "18px" }}>

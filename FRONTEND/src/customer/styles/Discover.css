@@ -1,11 +1,12 @@
 /* Container for the discover page */
 .artwork-container {
   padding: 24px;
+  background: #f5f5f5; /* Light gray background for a clean look */
 }
 
 @media (max-width: 600px) {
   .artwork-container {
-    padding: 16px; /* Reduced padding on mobile */
+    padding: 16px;
   }
 }
 
@@ -14,25 +15,29 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 16px;
+  color: #333;
+  text-align: center;
+  
 }
 
 @media (max-width: 600px) {
   .artwork-title {
-    font-size: 1.25rem; /* Smaller font size on mobile */
-    margin-bottom: 12px; /* Reduced margin */
+    font-size: 1.25rem;
+    margin-bottom: 12px;
   }
 }
 
 /* Error message */
 .error-message {
-  color: #e53e3e; /* Tailwind's red-600 */
+  color: #e53e3e;
   font-weight: 500;
   margin-bottom: 16px;
+  text-align: center;
 }
 
 @media (max-width: 600px) {
   .error-message {
-    font-size: 0.875rem; /* Smaller font size on mobile */
+    font-size: 0.875rem;
     margin-bottom: 12px;
   }
 }
@@ -40,207 +45,270 @@
 /* Grid layout for the artworks */
 .artwork-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr); /* Default to one column */
-  gap: 24px;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2px;
+  justify-items: center;
 }
 
 @media (min-width: 640px) {
   .artwork-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
-    gap: 20px; /* Slightly smaller gap */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
 @media (min-width: 768px) {
   .artwork-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns on large screens */
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
 }
 
 @media (min-width: 1024px) {
   .artwork-grid {
-    grid-template-columns: repeat(4, 1fr); /* 4 columns on extra-large screens */
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 /* Individual artwork card styling */
 .artwork-card {
-  width: 100%; /* Full width within the grid column */
-  max-width: 300px; /* Limit max width on larger screens */
-  margin: 0 auto; /* Center the card within the grid column */
-  background-color: #fff;
-  border: 1px solid #e2e8f0; /* Tailwind's gray-200 */
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+  height: 470px; /* Adjusted for larger image */
+  background: #ffffff; /* Clean white background */
+  border-radius: 16px;
+  border: 1px solid #e0e0e0; /* Subtle border for definition */
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artwork-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
 }
 
 @media (max-width: 600px) {
   .artwork-card {
-    max-width: 100%; /* Full width on mobile */
+    max-width: 100%;
+    height: 100px; /* Adjusted for mobile */
   }
 }
 
-.artwork-image {
+/* Image container */
+.artwork-image-container {
+  position: relative;
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: 300px; /* Increased image height */
+  margin-bottom: 0; /* Ensure no margin below the container */
 }
 
 @media (max-width: 600px) {
-  .artwork-image {
-    height: 150px; /* Shorter image height on mobile */
+  .artwork-image-container {
+    height: 200px; /* Increased image height for mobile */
+    margin-bottom: 0;
   }
 }
 
+/* Ensure the image fills the container */
+.artwork-image-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the container without gaps */
+  margin: 0; /* Remove any default margins */
+}
+
+/* Card body */
 .artwork-card-body {
-  padding: 16px;
+  padding: 0 16px 8px; /* No top padding */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 0; /* Explicitly remove any top margin */
 }
 
 @media (max-width: 600px) {
   .artwork-card-body {
-    padding: 12px; /* Reduced padding on mobile */
+    padding: 0 12px 6px;
+    margin-top: 0;
   }
 }
 
+/* Card title */
 .artwork-card-title {
   font-size: 1.25rem;
   font-weight: bold;
-  margin-bottom: 8px;
+  margin: 0 0 4px; /* No top margin */
+  color: #333;
+  line-height: 1.2; /* Tighten line height to reduce spacing */
 }
 
 @media (max-width: 600px) {
   .artwork-card-title {
-    font-size: 1rem; /* Smaller title on mobile */
-    margin-bottom: 6px;
+    font-size: 1rem;
+    margin: 0 0 3px;
+    line-height: 1.2;
   }
 }
 
+
+/* Actions container (for icons) */
+.artwork-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+/* Wishlist icon */
+.wishlist-icon {
+  
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+  color: #5a8dee;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.wishlist-icon:hover {
+  transform: scale(1.1);
+  background: #ffffff;
+}
+
+.wishlist-icon.added {
+  background: #d3e3fd;
+  color: #ff4d4f; /* Red heart when added */
+}
+
+.wishlist-icon:disabled {
+  background: #e0e0e0;
+  color: #777;
+  cursor: not-allowed;
+}
+
+/* Buy icon */
+.buy-icon {
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+  color: #5a8dee;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.buy-icon:hover {
+  transform: scale(1.1);
+  background: #ffffff;
+}
+
+/* Card body */
+.artwork-card-body {
+  padding: 0 16px 8px; /* Remove top padding, keep bottom and sides */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+ 
+}
+
+@media (max-width: 600px) {
+  .artwork-card-body {
+    padding: 0 12px 6px; /* Remove top padding for mobile */
+  }
+}
+
+/* Card title */
+.artwork-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0 0 4px; /* Remove top margin explicitly */
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .artwork-card-title {
+    font-size: 1rem;
+    margin: 0 0 3px; /* Remove top margin for mobile */
+  }
+}
+/* Description (truncate if too long) */
 .artwork-description {
-  color: #4a5568; /* Tailwind's gray-600 */
+  color: #4a5568;
   font-size: 0.875rem;
-  margin-bottom: 16px;
+  margin-bottom: 1px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 600px) {
   .artwork-description {
-    font-size: 0.75rem; /* Smaller description on mobile */
-    margin-bottom: 12px;
+    font-size: 0.75rem;
+    margin-bottom: 6px;
   }
 }
 
+/* Price */
 .artwork-price {
-  color: #48bb78; /* Tailwind's green-600 */
+  color: #48bb78;
   font-weight: 600;
   font-size: 1rem;
 }
 
 @media (max-width: 600px) {
   .artwork-price {
-    font-size: 0.875rem; /* Smaller price on mobile */
+    font-size: 0.875rem;
   }
 }
 
+/* Dimensions */
 .artwork-dimensions {
-  color: #2d3748; /* Tailwind's gray-800 */
+  color: #2d3748;
   font-size: 0.875rem;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 
 @media (max-width: 600px) {
   .artwork-dimensions {
-    font-size: 0.75rem; /* Smaller dimensions on mobile */
+    font-size: 0.75rem;
     margin-bottom: 6px;
   }
 }
 
+/* Status */
 .artwork-status {
-  color: #ecc94b; /* Tailwind's yellow-400 */
+  color: #ecc94b;
   font-size: 0.875rem;
   font-weight: 500;
-  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 @media (max-width: 600px) {
   .artwork-status {
-    font-size: 0.75rem; /* Smaller status on mobile */
-    margin-top: 6px;
+    font-size: 0.75rem;
+    margin-bottom: 6px;
   }
 }
 
-/* Button container */
-.artwork-card-body > div {
-  display: flex;
-  gap: 1rem;
-}
-
-@media (max-width: 600px) {
-  .artwork-card-body > div {
-    gap: 0.5rem; /* Smaller gap on mobile */
-    flex-wrap: wrap; /* Allow buttons to wrap if needed */
-  }
-}
-
-/* Button for adding to wishlist */
-.wishlist-button {
-  background-color: #3182ce; /* Blue color */
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 12px;
-  font-family: 'Poppins';
-  font-size: 0.875rem;
-  flex: 1; /* Allow buttons to grow equally */
-}
-
-.wishlist-button:hover {
-  background-color: #2b6cb0; /* Darker blue on hover */
-}
-
-.wishlist-button:disabled {
-  background-color: #e2e8f0; /* Disabled state */
-  color: #a0aec0; /* Disabled text color */
-  cursor: not-allowed;
-}
-
-@media (max-width: 600px) {
-  .wishlist-button {
-    padding: 6px 12px; /* Smaller padding on mobile */
-    font-size: 0.75rem; /* Smaller font size */
-    margin-top: 8px;
-  }
-}
-
-/* Buy button */
-.buy-button {
-  background-color: rgb(0, 178, 0); /* Green color */
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 12px;
-  font-family: 'Poppins';
-  font-size: 0.875rem;
-  flex: 1; /* Allow buttons to grow equally */
-}
-
-.buy-button:hover {
-  background-color: #218838;
-}
-
-@media (max-width: 600px) {
-  .buy-button {
-    padding: 6px 12px; /* Smaller padding on mobile */
-    font-size: 0.75rem; /* Smaller font size */
-    margin-top: 8px;
-  }
-}
-
-/* Artwork category (already responsive, left unchanged) */
+/* Artwork category */
 .artwork-category {
   display: flex;
   flex-wrap: wrap;
@@ -256,7 +324,8 @@
   height: 150px;
   background-size: cover;
   background-position: center;
-  border-radius: 8px;
+  border-radius: 16px;
+  border: 1px solid #e0e0e0; /* Subtle border */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -271,7 +340,7 @@
 
 .artwork-category-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
 }
 
 .all-artworks-card {
