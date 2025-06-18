@@ -22,7 +22,7 @@ Asthetica supports multiple user roles, each with tailored functionalities to en
 - **Artwork Discovery**: Browse all available artworks. Each artwork card displays the title, description, price, dimensions, and status.
 - **Wishlist Management**: Add/remove artworks to/from a personal wishlist.
 - **Filtering**: Filter artworks by categories (e.g., "pencil sketch") for better discovery.
-- **Secure Purchasing**: Purchase artworks securely using "Desert Pay" (test mode). Redirected to "My Orders" upon success.
+- **Secure Purchasing**: Purchase artworks securely using "Razaro Pay" (test mode). Redirected to "My Orders" upon success.
 - **Artist Exploration**: View profiles of registered artists with their details and all artworks by a specific artist.
 - **Auction Participation**: 
   - Browse live and completed auctions.
