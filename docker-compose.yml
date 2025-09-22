@@ -16,7 +16,7 @@ services:
     container_name: springboot
     build:
       context: ./BACKEND/SpringBootSDPProject    #source code path
-      dockerfile: ./ASTHETICA-FULLSTACK/backend.Dockerfile   #dockerfile path
+      dockerfile: backend.Dockerfile
     ports:
       - "1999:6969"
     depends_on:
@@ -27,7 +27,7 @@ services:
     container_name: react
     build:
       context: ./FRONTEND
-      dockerfile: ./ASTHETICA-FULLSTACK/frontend.Dockerfile
+      dockerfile: frontend.Dockerfile
     ports:
       - "2000:80"
     depends_on:
