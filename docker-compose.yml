@@ -1,0 +1,40 @@
+services:
+  mysqldb:
+    container_name: mysql-db
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: asthetica
+      # MYSQL_USER: klu
+      # MYSQL_PASSWORD: klu
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql    #volume added here
+
+  backend:
+    container_name: springboot
+    build:
+      context: ./BACKEND/SpringBootSDPProject    #source code path
+      dockerfile: ./ASTHETICA-FULLSTACK/backend.Dockerfile   #dockerfile path
+    ports:
+      - "1999:6969"
+    depends_on:
+      - mysqldb
+    restart: on-failure
+
+  frontend:
+    container_name: react
+    build:
+      context: ./FRONTEND
+      dockerfile: ./ASTHETICA-FULLSTACK/frontend.Dockerfile
+    ports:
+      - "2000:80"
+    depends_on:
+      - backend
+
+
+# Declare the volume at the bottom
+
+volumes:
+  mysql-data:
