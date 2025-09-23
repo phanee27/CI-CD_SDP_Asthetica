@@ -36,7 +36,11 @@ public class AdminController {
 	
 	 @Autowired
 	    private AuctionService auctionService;
-	
+	@GetMapping("/")
+    public String home()
+    {
+        return "Welcome to Admin page";
+    }
 	@GetMapping("/viewallusers")
 	public ResponseEntity<List<User>> viewallusers(){
 		List<User> users=service.displayusers();
