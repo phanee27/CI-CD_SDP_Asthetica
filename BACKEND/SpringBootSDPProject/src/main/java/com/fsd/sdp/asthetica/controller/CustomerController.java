@@ -46,7 +46,7 @@ public class CustomerController {
 	@GetMapping("/")
     public String home()
     {
-        return "Welcome to Customer page";
+        return "Welcome to Customer Homepage";
     }
 
 	@PostMapping("/adduser")
