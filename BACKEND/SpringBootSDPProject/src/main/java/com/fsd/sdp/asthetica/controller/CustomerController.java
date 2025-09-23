@@ -43,6 +43,12 @@ public class CustomerController {
     @Autowired
     private BidService bidService;
     
+	@GetMapping("/")
+    public String home()
+    {
+        return "Welcome to Customer Homepage";
+    }
+
 	@PostMapping("/adduser")
 	public String adduser(@RequestBody User user) {
 		return service.adduser(user);
